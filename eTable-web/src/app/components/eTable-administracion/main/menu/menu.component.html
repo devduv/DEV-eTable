@@ -1,0 +1,31 @@
+<button (click)="show(1)" class="list-group-item btn-item">Administración del Sistema</button>
+<div *ngIf="admsis" class="ele">
+    <button class="list-group-item btn-light subitem" mat-list-item (click)="setTitle(1)" [routerLink]="['sistema/general']">Sistema General</button>
+    <button class="list-group-item btn-light subitem" mat-list-item (click)="setTitle(2)" [routerLink]="['sistema/configuracion']">Configuración</button>
+</div>
+<button (click)="show(2)" class="list-group-item btn-item">Administración de Usuarios</button>
+<div *ngIf="admus" class="ele">
+    <button class="list-group-item btn-light subitem" (click)="setTitle(3)" mat-list-item [routerLink]="['usuarios/roles']">Roles de Usuario</button>
+    <button class="list-group-item btn-light subitem" (click)="setTitle(4)" mat-list-item [routerLink]="['usuarios/list']">Usuarios</button>
+    <button class="list-group-item btn-light subitem" (click)="setTitle(5)" mat-list-item [routerLink]="['usuarios/permisos']">Permisos</button>
+</div>
+<button (click)="show(3)" class="list-group-item btn-item">Administración de Mesas</button>
+<div *ngIf="admme" class="ele">
+    <button class="list-group-item btn-light subitem" (click)="setTitle(6)" mat-list-item [routerLink]="['mesas/list']">Mesas</button>
+    <button class="list-group-item btn-light subitem" (click)="setTitle(7)" mat-list-item [routerLink]="['mesas/perfiles']">Perfil de Mesa</button>
+    <button class="list-group-item btn-light subitem" (click)="setTitle(8)" mat-list-item [routerLink]="['mesas/programacion']">Programación de Mesas</button>
+</div>
+<button (click)="show(4)" class="list-group-item btn-item">Administración de Clientes</button>
+<div *ngIf="admcl" class="ele">
+    <button class="list-group-item btn-light subitem" (click)="setTitle(9)" mat-list-item [routerLink]="['clientes/list']">Clientes</button>
+    <button class="list-group-item btn-light subitem" (click)="setTitle(10)" mat-list-item [routerLink]="['clientes/tipos']">Tipo de Cliente</button>
+    <button class="list-group-item btn-light subitem" (click)="setTitle(11)" mat-list-item [routerLink]="['clientes/historial']">Historial de Cliente</button>
+</div>
+<button (click)="show(5)" class="list-group-item btn-item">Dashboard</button>
+<div *ngIf="admda" class="ele">
+    <button class="list-group-item btn-light subitem" (click)="setTitle(12)" mat-list-item [routerLink]="['dashboard/reservaciones']">Reservaciones</button>
+</div>
+<button (click)="show(6)" class="list-group-item btn-item">Reportes</button>
+<div *ngIf="admre" class="ele">
+    <button class="list-group-item btn-light subitem" (click)="setTitle(13)" mat-list-item [routerLink]="['reportes/importar-exportar']">Importar/Exportar</button>
+</div>

@@ -1,0 +1,41 @@
+<div class="container" style="margin-top:50px;">
+    <div class="row">
+        <div class="col-lg-4 col-md-3 col-sm-2 col-2"></div>
+        <div class="col-lg-4 col-md-6 col-sm-8 col-8">
+            <div class="row">
+                <div class="col-lg-1"></div>
+                <div class="col-lg-10">
+                    <div style="text-align: center;">
+                        <img src="{{logo}}" width=150>
+                    </div>
+
+                    <div class="mt-3 text-center">
+                        <h4><b>eTable - Reservaciones</b></h4>
+                    </div>
+                    <div class="mt-3">
+                        <label style="margin: 0px; padding: 0px; font-size: 14px;">
+                            Usuario
+                        </label>
+                        <input class="form-control" type="text" name="user">
+                    </div>
+
+                    <div>
+                        <label style="margin: 0px; padding: 0px; font-size: 14px;">
+                            Contraseña
+                        </label>
+                        <input class="form-control" type="password" name="password">
+                    </div>
+                    <button (click) = "login()"
+                    type="button" class="btn btn-dark btn-block mt-3 mb-3">Ingresar</button>
+                    <div>
+                        <button class="btn btn-default" style="float:left; font-size: 12px;">Solicitar cuenta</button>
+                        <button class="btn btn-default" style="float:right; font-size: 12px;">Cambiar
+                            contraseña</button>
+                    </div>
+                </div>
+                <div class="col-lg-1"></div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-3 col-sm-2 col-2"></div>
+    </div>
+</div>

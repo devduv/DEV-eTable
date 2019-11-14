@@ -1,1 +1,164 @@
-/* You can add global styles to this file, and also import other style files */
+.header-user-list{
+    background-color: rgb(244,245, 247); color: white;
+    font-size: 18px;
+    height: 40px;
+    align-items: center;
+    padding: 5px;
+}
+
+.header-table{
+    font-size: 13px;
+}
+
+.header-body{
+    font-size: 13px;
+}
+
+
+.btn-nuevo{
+    background: rgb(228, 225, 225);
+    height: 100%;
+    border: none;
+    font-size: 14px;
+    border-radius: 3px;
+}
+
+
+.btn-edit{
+    background: rgb(244,245, 247);
+    border-radius: 8px;
+    border: none;
+    display: flex;
+    padding-top: 5px;
+}
+
+.btn-edit:hover{
+    background: silver;
+}
+
+.btn-delete{
+    background: rgb(252, 64, 74);
+    height: 100%;
+    border: none;
+    font-size: 14px;
+    border-radius: 3px;
+    color: white;
+}
+
+.btn-delete:hover{
+    background: rgb(252, 64, 74);
+}
+.btn-nuevo:hover{
+    background: silver;
+}
+
+.btn-habilitado{
+    background-color: rgb(7, 71, 166);
+    color: white;
+    border-radius: 5px;
+    border: none;
+    padding: 10px;
+    text-align: center;
+    width: 95px;
+}
+
+.btn-habilitado:hover{
+    background-color: rgb(42, 95, 173);
+}
+
+.btn-deshabilitado{
+    background-color: silver;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    padding: 10px;
+    text-align: center;
+    width: 95px;
+}
+
+.btn-deshabilitado:hover{
+    background-color: rgb(160, 160, 160);
+}
+
+.center-body{
+    border-radius: 8px;
+    border: none;
+    padding: 10px;
+}
+
+.center-head{
+    border-radius: 8px;
+    border: none;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.f-16{
+    font-size: 16px;
+}
+
+.f-13{
+    font-size: 13px;
+}
+
+.example-container {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+
+  .example-is-mobile .example-toolbar {
+    position: fixed;
+    /* Make sure the toolbar will stay on top of the content as it scrolls past. */
+    z-index: 2;
+  }
+  
+  h1.example-app-name {
+    margin-left: 8px;
+  }
+  
+  .sidenav-container {
+
+    flex: 1;
+  }
+  
+  .example-is-mobile .example-sidenav-container {
+    flex: 1 0 auto;
+  }
+  
+  .header-login{
+    background-color: rgb(7, 71, 166); color: white;
+    font-size: 14px;
+    height: 50px;
+    align-items: center;
+}
+
+.f-20{
+  font-size: 20px;
+}
+
+.text-header{
+    margin-left: 10px;
+    margin-right: 10px;
+    float: left; 
+}
+
+.f-left{
+    height: 100%; display:flex; align-items: center;
+    float: left;
+}
+
+.f-right{
+    height: 100%; display:flex; align-items: center;
+    float: right;
+}
+
+.btn-sidenav{
+  background: transparent;
+  border: 0px;
+  color: white;
+}

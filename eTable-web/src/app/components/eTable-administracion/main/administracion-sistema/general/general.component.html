@@ -1,0 +1,97 @@
+<div class="header-user-list">
+    <button class="btn-nuevo ml-1 mr-1" (click)="guardarCambios()">
+        <i class="mdi mdi-plus-box-multiple-outline f-16"></i> Guardar
+    </button>
+    <button class="btn-nuevo ml-1 mr-1" (click)="guardarCambios()">
+        <i class="mdi mdi-close-circle f-16"></i> Cancelar
+    </button>
+
+    <button class="btn-delete ml-1 mr-1" (click)="guardarCambios()">
+        <i class="mdi mdi-delete f-16"></i> Restaurar todo
+    </button>
+</div>
+
+<div class="ml-3 mt-3 f-13">
+    <span><b>Información de la Empresa</b></span>
+    <hr class="mt-1" />
+    <table class="mb-4">
+        <tbody>
+            <tr>
+                <td>
+                    <span class="mr-2">Nombre de la Empresa:</span>
+                </td>
+                <td>
+                    <input class="form-control" type="text" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span class="mr-2">Dirección:</span>
+                </td>
+                <td>
+                    <input class="form-control" type="text" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span class="mr-2">E-mail:</span>
+                </td>
+                <td>
+                    <input class="form-control" type="text" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span class="mr-2">Celular:</span>
+                </td>
+                <td>
+                    <input class="form-control" type="text" />
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <span><b>Estado de los Sistemas</b></span>
+    <hr class="mt-1" />
+    <table class="mb-4">
+        <tbody>
+            <tr>
+                <td>
+                    <span class="mr-2">Sistema de Reservaciones del Cliente:</span>
+                </td>
+                <td>
+                    <button class="btn-habilitado">Habilitado</button>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span class="mr-2 mt-3  ">Sistema de Atención al Cliente:</span>
+                </td>
+                <td>
+                    <button class="btn-deshabilitado">Deshabilitado</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <span><b>Parámetros Generales</b></span>
+    <hr class="mt-1" />
+    <table class="mb-4">
+        <tbody>
+            <tr>
+                <td>
+                    <span class="mr-2">Mesas compuestas:</span>
+                </td>
+                <td>
+                    <button class="btn-habilitado">Habilitado</button>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span class="mr-2 mt-3  ">Agregar cliente manualmente:</span>
+                </td>
+                <td>
+                    <button class="btn-deshabilitado">Deshabilitado</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
