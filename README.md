@@ -1,10 +1,5 @@
-# Sistema de Reservación de Mesas para Restaurantes 
--------------------------------------------------
-_Nombre del Sistema: eTable_
-_Este Sistema Web se base en 3 módulos:_
-_1. Aplicación Web Administrativa._
-_2. Aplicación Web Reservaciones del Cliente._
-_3. Aplicación Web Atender Cliente._
+# eTable: Sistema de Reservación de Mesas para Restaurantes 
+Aplicación Web que consiste en la administración del negocio básico de un retaurante, administración de las mesas disponibles, gestión de clientes, reservaciones realizadas, entre otros.
 
 ## Aplicación Web Administrativa
   Mantenimiento de Usuario (Administrador, soporte, etc).
