@@ -58,6 +58,12 @@ _Crear rama para realizar cambios y no alterar la rama principal_
 git checkout -b 'feature/patrones'
 ```
 
+_Ejecutar el proyecto angular (Sin conexion al servidor)_
+```
+CMD:
+cd 'X:\nombre-carpeta\eTable\eTable-web
+ng serve
+```
 
 ### ⌨️ Desarrollar e implementar un módulo
 
