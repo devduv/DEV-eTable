@@ -4,9 +4,18 @@ Aplicación Web que consiste en la administración del negocio básico de un ret
 ### 📋 Pre-requisitos 
 _Front-end_
 ```
-Angular Cli version: 8.3.3
+angular cli version: 8.3.3
 node versión: v12.10.0
 npm  versión: 6.11.3
+```
+_Back-end_
+```
+Apache maven version: 3.6.2
+Java JDK version: 1.8.0_191
+```
+_Base de Datos_
+```
+MySQL
 ```
 ## Aplicación Web Administrativa
   Mantenimiento de Usuario (Administrador, soporte, etc).
