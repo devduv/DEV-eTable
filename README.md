@@ -57,3 +57,41 @@ _Crear rama para realizar cambios y no alterar la rama principal_
 ```
 git checkout -b 'feature/usuarios'
 ```
+
+
+### Desarrollar un módulo ⌨️
+
+_Abrir el proyecto Angular en algún editor_
+
+Ejemplo: Módulo _Administración de Mesas_
+```
+En esta carpeta se encuentran los archivos .html .ts .css del módulo:
+X:\pnombre-carpeta\eTable\eTable-web\src\app\components\eTable-administracion\main\administracion-mesas\mesas
+```
+Al levantar el proyecto e ir a la opción _Administración de Mesas_ visualizará una lista de Mesas, editar una mesa seleccionada y una opción para crear una nueva mesa.
+Este módulo se encuentra en la carpeta indicada, donde al realizar algún cambio en el _.html_ podrá visualizar los cambios respectivos en este módulo.
+
+_Para crear un Componente en este módulo_
+```
+ng g c components/eTable-administracion/main/administracion-mesas/mesas/NOMBRECOMPONENTE
+```
+Lo que acaba de crear lo podrá visualizar en la carpeta
+```
+X:\pnombre-carpeta\eTable\eTable-web\src\app\components\eTable-administracion\main\administracion-mesas\mesas\NOMBRECOMPONENTE
+```
+
+En el archivo _app-routing.module.ts_ agregar:
+```
+import { NOMBRECOMPONENTECOMPONENT } from ./.....;
+const routes: Routes = [
+  ....
+   { path: 'mesas/CUALQUIER_NOMBRE', component: NOMBRECOMPONENTECOMPONENT},
+  ....
+```
+
+ahora en cualquier _<button>_ agregar:
+```
+ [routerLink]="['mesas/cCUALQUIER_NOMBRE']"
+ ```
+
+ Al hacer clic en el botón se le mostrará el contenido del componente que agregó.
