@@ -14,42 +14,56 @@
 <div class="ml-3 mt-3 f-13">
     <span><b>Información de la Empresa</b></span>
     <hr class="mt-1" />
-    <table class="mb-4">
-        <tbody>
-            <tr>
-                <td>
-                    <span class="mr-2">Nombre de la Empresa:</span>
-                </td>
-                <td>
-                    <input class="form-control" type="text" />
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <span class="mr-2">Dirección:</span>
-                </td>
-                <td>
-                    <input class="form-control" type="text" />
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <span class="mr-2">E-mail:</span>
-                </td>
-                <td>
-                    <input class="form-control" type="text" />
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <span class="mr-2">Celular:</span>
-                </td>
-                <td>
-                    <input class="form-control" type="text" />
-                </td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="table-responsive">
+        <table class="mb-4">
+            <tbody>
+                <tr>
+                    <td>
+                        <span class="mr-2">Nombre:</span>
+                    </td>
+                    <td>
+                        <input class="form-control" type="text" />
+                    </td>
+                    <td>
+                        <span class="ml-2 mr-2">Descripción:</span>
+                    </td>
+                    <td>
+                        <input class="form-control" type="text" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="mr-2">Dirección:</span>
+                    </td>
+                    <td>
+                        <input class="form-control" type="text" />
+                    </td>
+                    <td>
+                        <span class="ml-2 mr-2">Logo:</span>
+                    </td>
+                    <td>
+                        <button class="btn-load mr-3">Cargar imagen</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="mr-2">E-mail:</span>
+                    </td>
+                    <td>
+                        <input class="form-control" type="text" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="mr-2">Celular:</span>
+                    </td>
+                    <td>
+                        <input class="form-control" type="text" />
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
     <span><b>Estado de los Sistemas</b></span>
     <hr class="mt-1" />
     <table class="mb-4">
@@ -64,34 +78,63 @@
             </tr>
             <tr>
                 <td>
-                    <span class="mr-2 mt-3  ">Sistema de Atención al Cliente:</span>
+                    <span class="mr-2">Sistema de Atención al Cliente:</span>
                 </td>
                 <td>
-                    <button class="btn-deshabilitado">Deshabilitado</button>
+                    <button class="mt-1 btn-deshabilitado">Deshabilitado</button>
                 </td>
             </tr>
         </tbody>
     </table>
     <span><b>Parámetros Generales</b></span>
     <hr class="mt-1" />
-    <table class="mb-4">
-        <tbody>
-            <tr>
-                <td>
-                    <span class="mr-2">Mesas compuestas:</span>
-                </td>
-                <td>
-                    <button class="btn-habilitado">Habilitado</button>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <span class="mr-2 mt-3  ">Agregar cliente manualmente:</span>
-                </td>
-                <td>
-                    <button class="btn-deshabilitado">Deshabilitado</button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="table-responsive">
+        <table class="mb-4">
+            <tbody>
+                <tr>
+                    <td>
+                        <span class="mr-2">Mesas compuestas:</span>
+                    </td>
+                    <td>
+                        <button class="btn-habilitado mr-5">Habilitado</button>
+                    </td>
+                    <td>
+                        <span class="mr-2">Reservaciones de Pedidos:</span>
+                    </td>
+                    <td>
+                        <button class="mt-1 btn-habilitado">Habilitado</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="mr-2">Agregar cliente manualmente:</span>
+                    </td>
+                    <td>
+                        <button class="mt-1 btn-deshabilitado mr-5">Deshabilitado</button>
+                    </td>
+                    <td>
+                        <span class="mr-2">Reservas Especiales:</span>
+                    </td>
+                    <td>
+                        <button class="mt-1 btn-deshabilitado">Deshabilitado</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="mr-2">Pagos con tarjeta de crédito:</span>
+                    </td>
+                    <td>
+                        <button class="mt-1 btn-deshabilitado mr-5">Deshabilitado</button>
+                    </td>
+                    <td>
+                        <span class="mr-2">Reservas No Sesionadas</span>
+                    </td>
+                    <td>
+                        <button class="mt-1 btn-deshabilitado">Deshabilitado</button>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
 </div>

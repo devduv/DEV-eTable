@@ -14,7 +14,7 @@ public class AuthenticationRepositoryImpl implements AuthenticationRepository{
 		this.jdbcTemplate = jdbcTemplate;
 	}
 	public boolean buscarUsuarioSiExiste(int cusuario, String nickname) {
-		// TODO Auto-generated method stub
+		String query = "" + cusuario ;
 		return false;
 	}
 
