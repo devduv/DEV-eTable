@@ -49,26 +49,26 @@ _Realizar los siguientes comandos en Git Bash o CMD, seleccionar una carpeta don
 
 _Clonar el proyecto_
 ```
-_cd X:\nombre-carpeta\_
+cd 'X:\nombre-carpeta\'
 git https://github.com/ISETH1998/eTable.git
 ```
 
 _Crear rama para realizar cambios y no alterar la rama principal_
 ```
-git checkout -b 'feature/usuarios'
+git checkout -b 'feature/patrones'
 ```
 
 
-### Desarrollar un módulo ⌨️
+### ⌨️ Desarrollar e implementar un módulo
 
 _Abrir el proyecto Angular en algún editor_
 
-Ejemplo: Módulo _Administración de Mesas_
+Ejemplo: Módulo _Administración de Mesas_: tiene 3 submódulos, el submódulo mesas:
 ```
-En esta carpeta se encuentran los archivos .html .ts .css del módulo:
+En esta carpeta se encuentran los archivos .html .ts .css del submódulo:
 X:\pnombre-carpeta\eTable\eTable-web\src\app\components\eTable-administracion\main\administracion-mesas\mesas
 ```
-Al levantar el proyecto e ir a la opción _Administración de Mesas_ visualizará una lista de Mesas, editar una mesa seleccionada y una opción para crear una nueva mesa.
+Al levantar el proyecto e ir a la opción _Administración de Mesas_ visualizará una lista de Mesas, una opción de editar una mesa seleccionada y una opción para crear una nueva mesa.
 Este módulo se encuentra en la carpeta indicada, donde al realizar algún cambio en el _.html_ podrá visualizar los cambios respectivos en este módulo.
 
 _Para crear un Componente en este módulo_
@@ -89,9 +89,9 @@ const routes: Routes = [
   ....
 ```
 
-ahora en cualquier _<button>_ agregar:
+ahora en cualquier _Button_ agregar:
 ```
- [routerLink]="['mesas/cCUALQUIER_NOMBRE']"
+ <button [routerLink]="['mesas/cCUALQUIER_NOMBRE']"> ir al componente </button>
  ```
 
  Al hacer clic en el botón se le mostrará el contenido del componente que agregó.
