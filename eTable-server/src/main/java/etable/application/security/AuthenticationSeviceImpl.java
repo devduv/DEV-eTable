@@ -11,8 +11,8 @@ public class AuthenticationSeviceImpl implements AuthenticationService{
 	@Autowired
 	private AuthenticationRepository repository;
 	
-	public boolean buscarUsuarioSiExiste(int cusuario, String nickname) {
-		return this.repository.buscarUsuarioSiExiste(cusuario, nickname);
+	public boolean buscarUsuarioSiExiste(String nickname) {
+		return this.repository.buscarUsuarioSiExiste(nickname);
 	}
 
 }

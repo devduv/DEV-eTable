@@ -50,7 +50,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [BrowserAnimationsModule, RouterModule.forRoot(routes), MatSidenavModule],
+  imports: [BrowserAnimationsModule, RouterModule.forRoot(routes, {useHash: true}), MatSidenavModule],
   exports: [RouterModule,
     MatListModule,
     MatSidenavModule,

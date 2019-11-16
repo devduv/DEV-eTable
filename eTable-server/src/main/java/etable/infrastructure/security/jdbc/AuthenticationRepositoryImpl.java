@@ -13,8 +13,8 @@ public class AuthenticationRepositoryImpl implements AuthenticationRepository{
 	public AuthenticationRepositoryImpl(JdbcTemplate jdbcTemplate) {
 		this.jdbcTemplate = jdbcTemplate;
 	}
-	public boolean buscarUsuarioSiExiste(int cusuario, String nickname) {
-		String query = "" + cusuario ;
+	public boolean buscarUsuarioSiExiste(String nickname) {
+		String query = "" + nickname ;
 		return false;
 	}
 

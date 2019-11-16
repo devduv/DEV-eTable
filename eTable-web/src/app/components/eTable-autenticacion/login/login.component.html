@@ -10,32 +10,49 @@
                     </div>
 
                     <div class="mt-3 text-center">
-                        <h4><b>eTable - Reservaciones</b></h4>
+                        <div class="mb-4">
+                            <h4><b>eTable - Reservaciones</b></h4>
+                        </div>
+                        <div class="not-user" *ngIf="notuser">
+                            <span id="notuser">{{notUserEmpty}}</span>
+                            <button class="btn-close" (click)="closeSpan()">
+                                <i class="mdi mdi-close-circle-outline"></i>
+                            </button>
+                        </div>
+                        <div class="not-user" *ngIf="notuserexist">
+                            <span id="notuserexist">{{notUserExist}}</span>
+                            <button class="btn-close" (click)="closeSpan()">
+                                <i class="mdi mdi-close-circle-outline"></i>
+                            </button>
+                        </div>
                     </div>
-                    <div class="mt-3">
-                        <label style="margin: 0px; padding: 0px; font-size: 14px;">
-                            Usuario
-                        </label>
-                        <input class="form-control" type="text" name="user">
-                    </div>
+                    <form class="form-group m-0" novalidate>
+                        <div class="mt-3">
+                            <label style="margin: 0px; padding: 0px; font-size: 14px;">
+                                Usuario
+                            </label>
+                            <input [(ngModel)]="user.nickname" class="form-control" type="text" name="user">
+                        </div>
 
+                        <div>
+                            <label style="margin: 0px; padding: 0px; font-size: 14px;">
+                                Contraseña
+                            </label>
+                            <input [(ngModel)]="user.password" class="form-control" type="password" name="password">
+                        </div>
+                        <button (click)="login()" type="button" class="btn-login mt-3">Ingresar</button>
+                    </form>
                     <div>
-                        <label style="margin: 0px; padding: 0px; font-size: 14px;">
-                            Contraseña
-                        </label>
-                        <input class="form-control" type="password" name="password">
-                    </div>
-                    <button (click) = "login()"
-                    type="button" class="btn btn-dark btn-block mt-3 mb-3">Ingresar</button>
-                    <div>
-                        <button class="btn btn-default" style="float:left; font-size: 12px;">Solicitar cuenta</button>
-                        <button class="btn btn-default" style="float:right; font-size: 12px;">Cambiar
-                            contraseña</button>
+                        <button class="btn btn-recuperar">Recuperar contraseña</button>
+                        <button class="btn-register">Crear una cuenta</button>
+                        <div *ngIf="load" class="div-loading"><img class="loading" [src]="loading"/></div>
                     </div>
                 </div>
                 <div class="col-lg-1"></div>
             </div>
         </div>
-        <div class="col-lg-4 col-md-3 col-sm-2 col-2"></div>
+        <div class="col-lg-4 col-md-3 col-sm-2 col-2">
+            
+        </div>
     </div>
 </div>
