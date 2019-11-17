@@ -22,11 +22,8 @@
     "@angular/platform-browser-dynamic": "~8.2.4",
     "@angular/router": "~8.2.4",
     "@mdi/font": "^4.5.95",
-<<<<<<< HEAD
-=======
     "bootstrap": "^4.3.1",
     "password-hash": "^1.2.2",
->>>>>>> f8ded9d9785f495179b192e871e8bce37d22e8f5
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
     "webpack": "^4.41.2",
