@@ -1,7 +1,9 @@
 package etable.application.security;
 
+import etable.domain.security.model.Authentication;
 
 public interface AuthenticationService {
 
-	boolean buscarUsuarioSiExiste(int cusuario, String nickname);
+	Authentication buscarUsuarioSiExiste(String nickname);
+	Authentication authenticationLogin(Authentication auth);
 }
