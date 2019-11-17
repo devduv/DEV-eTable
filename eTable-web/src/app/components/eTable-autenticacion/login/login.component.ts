@@ -16,7 +16,9 @@ export class LoginComponent implements OnInit {
   public authentication: boolean;
   public notuser: boolean;
   public notuserexist: boolean;
+  public notpass: boolean;
   public notUserEmpty: string;
+  public notPassEmpty: string;
   public notUserExist: string;
   public logo: string;
   public user: User;
@@ -26,8 +28,11 @@ export class LoginComponent implements OnInit {
   constructor(private router: Router, private service: LoginService) {
     this.logo = Path.logo;
     this.notuser = false;
+    this.notpass = false;
+    this.notuserexist = false;
     this.load = false;
     this.notUserEmpty = Mensaje.notUserEmpty;
+    this.notPassEmpty = Mensaje.notPassEmpty;
     this.notUserExist = Mensaje.notUserExist;
     this.loading = Path.loading;
     this.user = new User();
@@ -52,17 +57,34 @@ export class LoginComponent implements OnInit {
   login() {
     if (this.user.nickname === undefined || this.user.nickname.trim() === '' || this.user.nickname.length === 0) {
       this.notUser(1);
+    } else if (this.user.password === undefined || this.user.password.trim() === '' || this.user.password.length === 0) {
+      this.notUser(3);
     } else if (this.user.nickname.length >= 0) {
       this.load = true;
-      this.authenticationByNickname(this.user.nickname);
+      this.authenticationByNickname(this.user.nickname, this.user.password);
     }
   }
 
-  authenticationByNickname(nickname: string) {
-    this.service.authenticationLogin(nickname).subscribe(data => {
+  authenticationByNickname(nickname: string, password: string) {
+    this.service.findUserByNickname(nickname).subscribe(data => {
+      console.log(data);
+      if (data !== null) {
+        const user = new User();
+        user.cusuario = data.cusuario;
+        user.nickname = data.nickname;
+        user.password = password;
+        this.authenticationLogin(user);
+      } else {
+        this.load = false;
+        this.notUser(2);
+      }
+    });
+  }
+
+  authenticationLogin(user: User) {
+    this.service.authenticationLogin(user).subscribe(data => {
       this.load = false;
-      if (data) {
-        console.log('authentication successful');
+      if (data != null) {
         this.setAuthentication();
       } else {
         this.notUser(2);
@@ -79,10 +101,16 @@ export class LoginComponent implements OnInit {
   notUser(id: number) {
     if (id === 1) {
       this.notuserexist = false;
+      this.notpass = false;
       this.notuser = true;
     } else if (id === 2) {
       this.notuser = false;
+      this.notpass = false;
       this.notuserexist = true;
+    } else if (id === 3) {
+      this.notuser = false;
+      this.notpass = true;
+      this.notuserexist = false;
     }
   }
 
@@ -91,5 +119,6 @@ export class LoginComponent implements OnInit {
     this.user.password = '';
     this.notuserexist = false;
     this.notuser = false;
+    this.notpass = false;
   }
 }

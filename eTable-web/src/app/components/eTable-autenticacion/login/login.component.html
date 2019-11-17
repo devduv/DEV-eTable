@@ -19,6 +19,12 @@
                                 <i class="mdi mdi-close-circle-outline"></i>
                             </button>
                         </div>
+                        <div class="not-user" *ngIf="notpass">
+                            <span id="notpass">{{notPassEmpty}}</span>
+                            <button class="btn-close" (click)="closeSpan()">
+                                <i class="mdi mdi-close-circle-outline"></i>
+                            </button>
+                        </div>
                         <div class="not-user" *ngIf="notuserexist">
                             <span id="notuserexist">{{notUserExist}}</span>
                             <button class="btn-close" (click)="closeSpan()">
@@ -45,7 +51,7 @@
                     <div>
                         <button class="btn btn-recuperar">Recuperar contraseña</button>
                         <button class="btn-register">Crear una cuenta</button>
-                        <div *ngIf="load" class="div-loading"><img class="loading" [src]="loading"/></div>
+                        <div *ngIf="load" class="div-loading"><img class="loading" src="{{loading}}"/></div>
                     </div>
                 </div>
                 <div class="col-lg-1"></div>

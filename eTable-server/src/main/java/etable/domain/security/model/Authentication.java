@@ -1,17 +1,22 @@
 package etable.domain.security.model;
 
+
 public class Authentication {
 
 	private int cusuario;
 	private String nickname;
-	private String contrasena;
+	private String password;
 	
-	Authentication(int cusuario, String nickname, String contrasena){
+	public Authentication(int cusuario, String nickname, String password){
 		this.cusuario = cusuario;
 		this.nickname = nickname;
-		this.contrasena = contrasena;
+		this.password = password;
 	}
 
+	public Authentication() {
+		
+	}
+	
 	public int getCusuario() {
 		return cusuario;
 	}
@@ -28,12 +33,12 @@ public class Authentication {
 		this.nickname = nickname;
 	}
 
-	public String getContrasena() {
-		return contrasena;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setContrasena(String contrasena) {
-		this.contrasena = contrasena;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 	
 }

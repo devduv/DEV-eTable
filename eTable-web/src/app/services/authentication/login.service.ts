@@ -13,7 +13,11 @@ export class LoginService {
     this.url = 'etable/api/authentication';
   }
 
-  authenticationLogin(nickname: string) {
-    return this.http.get<User>(this.url + '/' + 'finduserbynickname' + '/' + nickname);
+  findUserByNickname(nickname: string) {
+    return this.http.get<User>(this.url + '/' + 'finduserbynickname' + '/' + nickname, nickname);
   }
+  authenticationLogin(user: User) {
+    return this.http.post<User>(this.url + '/' + 'authenticationLogin', user);
+  }
+
 }
