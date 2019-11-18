@@ -1,140 +1,162 @@
-<div class="header-user-list">
-    <button class="btn-nuevo ml-1 mr-1" (click)="guardarCambios()">
-        <i class="mdi mdi-plus-box-multiple-outline f-16"></i> Guardar
-    </button>
-    <button class="btn-nuevo ml-1 mr-1" (click)="guardarCambios()">
-        <i class="mdi mdi-close-circle f-16"></i> Cancelar
-    </button>
+<form>
+    <div class="header-user-list">
+        <button class="btn-nuevo ml-2 mr-1" (click)="guardarCambios()">
+            <i class="mdi mdi-plus-box-multiple-outline f-16"></i> Guardar
+        </button>
+        <button class="btn-nuevo ml-1 mr-1" (click)="guardarCambios()">
+            <i class="mdi mdi-close-circle f-16"></i> Cancelar
+        </button>
 
-    <button class="btn-delete ml-1 mr-1" (click)="guardarCambios()">
-        <i class="mdi mdi-delete f-16"></i> Restaurar todo
-    </button>
-</div>
-
-<div class="ml-3 mt-3 f-13">
-    <span><b>Información de la Empresa</b></span>
-    <hr class="mt-1" />
-    <div class="table-responsive">
+        <button class="btn-delete ml-1 mr-1" (click)="guardarCambios()">
+            <i class="mdi mdi-delete f-16"></i> Restaurar todo
+        </button>
+    </div>
+    <div *ngIf="load" class="div-loading"><img class="loading" src="{{loading}}"/></div>
+    <div [ngClass]="(load ? 'invisible' : 'visible')" class="ml-4 mt-3 f-13">
+        <span><b>Información de la Empresa</b></span>
+        <hr class="mt-1" />
+        <div class="table-responsive">
+            <table class="mb-4">
+                <tbody>
+                    <tr>
+                        <td>
+                            <span class="mr-2">Nombre:</span>
+                        </td>
+                        <td>
+                            <input [(ngModel)]="configuracion.empnombre" 
+                            name="empnombre" class="mb-2 form-control form-control-sm" type="text" />
+                        </td>
+                        <td>
+                            <span class="ml-5 mr-2">Descripción:</span>
+                        </td>
+                        <td>
+                            <input [(ngModel)]="configuracion.empdescripcion" 
+                            name="empdescripcion" class="form-control form-control-sm input-large mb-2" type="text"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="mr-2">Dirección:</span>
+                        </td>
+                        <td>
+                            <input input [(ngModel)]="configuracion.empdireccion" 
+                            name="empdireccion" class="mb-2 form-control form-control-sm input-large" type="text" />
+                        </td>
+                        <td>
+                            <span class="ml-5 mr-2">Logo:</span>
+                        </td>
+                        <td>
+                            <button class="mb-2 btn-load mr-3">Cargar imagen</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="mr-2">E-mail:</span>
+                        </td>
+                        <td>
+                            <input [(ngModel)]="configuracion.empemail" 
+                            name="empemail" class="mb-2 form-control form-control-sm input-large" type="text" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="mr-2">Celular:</span>
+                        </td>
+                        <td>
+                            <input [(ngModel)]="configuracion.empcelular" 
+                            name="empcelular" class="mb-2 form-control form-control-sm input-small" type="text" />
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <span><b>Estado de los Sistemas</b></span>
+        <hr class="mt-1" />
         <table class="mb-4">
             <tbody>
                 <tr>
                     <td>
-                        <span class="mr-2">Nombre:</span>
+                        <span class="mr-2">Sistema de Reservaciones del Cliente:</span>
                     </td>
                     <td>
-                        <input class="form-control" type="text" />
-                    </td>
-                    <td>
-                        <span class="ml-2 mr-2">Descripción:</span>
-                    </td>
-                    <td>
-                        <input class="form-control" type="text" />
+                        <button id="sistreservacioncliente" (click)="habilitar(1)" 
+                        [ngClass]="(configuracion.sist_reservacion_cliente ? 
+                        'btn-habilitado': 'btn-deshabilitado')" class="mb-3"></button>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <span class="mr-2">Dirección:</span>
+                        <span class="mr-2">Sistema de Atención al Cliente:</span>
                     </td>
                     <td>
-                        <input class="form-control" type="text" />
-                    </td>
-                    <td>
-                        <span class="ml-2 mr-2">Logo:</span>
-                    </td>
-                    <td>
-                        <button class="btn-load mr-3">Cargar imagen</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <span class="mr-2">E-mail:</span>
-                    </td>
-                    <td>
-                        <input class="form-control" type="text" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <span class="mr-2">Celular:</span>
-                    </td>
-                    <td>
-                        <input class="form-control" type="text" />
+                        <button id="sistatencioncliente" (click)="habilitar(2)" 
+                        [ngClass]="(configuracion.sist_atencion_cliente ? 
+                        'btn-habilitado': 'btn-deshabilitado')"></button>
                     </td>
                 </tr>
             </tbody>
         </table>
+        <span><b>Parámetros Generales</b></span>
+        <hr class="mt-1" />
+        <div class="table-responsive">
+            <table class="mb-4">
+                <tbody>
+                    <tr>
+                        <td>
+                            <span class="mr-2">Mesas compuestas:</span>
+                        </td>
+                        <td>
+                            <button id="mesascompuestas" (click)="habilitar(3)" 
+                        [ngClass]="(configuracion.mesas_compuestas ? 
+                        'btn-habilitado': 'btn-deshabilitado')" class="mb-2 mr-5"></button>
+                        </td>
+                        <td>
+                            <span class="mr-2">Reservaciones de Pedidos:</span>
+                        </td>
+                        <td>
+                            <button id="reservacionpedidos" (click)="habilitar(4)" 
+                            [ngClass]="(configuracion.reservacion_pedidos ? 
+                            'btn-habilitado': 'btn-deshabilitado')" class="mb-2 mr-5"></button>
+                        </td>
+                        <td>
+                            <span class="mr-2">Reservas No Sesionadas</span>
+                        </td>
+                        <td>
+                            <button id="reservasnosesionadas" (click)="habilitar(5)" 
+                        [ngClass]="(configuracion.reservas_no_sesionadas ? 
+                        'btn-habilitado': 'btn-deshabilitado')" class="mb-2 mr-5"></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="mr-2">Agregar cliente manualmente:</span>
+                        </td>
+                        <td>
+                            <button id="agregarclientemanual" (click)="habilitar(6)" 
+                        [ngClass]="(configuracion.agregar_cliente_manual ? 
+                        'btn-habilitado': 'btn-deshabilitado')" class="mb-2 mr-5"></button>
+                        </td>
+                        <td>
+                            <span class="mr-2">Reservas Especiales:</span>
+                        </td>
+                        <td>
+                            <button id="reservasespeciales" (click)="habilitar(7)" 
+                        [ngClass]="(configuracion.reservas_especiales ? 
+                        'btn-habilitado': 'btn-deshabilitado')" class="mb-2 mr-5"></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="mr-2">Pagos con tarjeta de crédito:</span>
+                        </td>
+                        <td>
+                            <button id="pagostarjetacredito" (click)="habilitar(8)" 
+                        [ngClass]="(configuracion.pagos_tarjeta_credito ? 
+                        'btn-habilitado': 'btn-deshabilitado')" class="mb-2 mr-5"></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
-    <span><b>Estado de los Sistemas</b></span>
-    <hr class="mt-1" />
-    <table class="mb-4">
-        <tbody>
-            <tr>
-                <td>
-                    <span class="mr-2">Sistema de Reservaciones del Cliente:</span>
-                </td>
-                <td>
-                    <button class="btn-habilitado">Habilitado</button>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <span class="mr-2">Sistema de Atención al Cliente:</span>
-                </td>
-                <td>
-                    <button class="mt-1 btn-deshabilitado">Deshabilitado</button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <span><b>Parámetros Generales</b></span>
-    <hr class="mt-1" />
-    <div class="table-responsive">
-        <table class="mb-4">
-            <tbody>
-                <tr>
-                    <td>
-                        <span class="mr-2">Mesas compuestas:</span>
-                    </td>
-                    <td>
-                        <button class="btn-habilitado mr-5">Habilitado</button>
-                    </td>
-                    <td>
-                        <span class="mr-2">Reservaciones de Pedidos:</span>
-                    </td>
-                    <td>
-                        <button class="mt-1 btn-habilitado">Habilitado</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <span class="mr-2">Agregar cliente manualmente:</span>
-                    </td>
-                    <td>
-                        <button class="mt-1 btn-deshabilitado mr-5">Deshabilitado</button>
-                    </td>
-                    <td>
-                        <span class="mr-2">Reservas Especiales:</span>
-                    </td>
-                    <td>
-                        <button class="mt-1 btn-deshabilitado">Deshabilitado</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <span class="mr-2">Pagos con tarjeta de crédito:</span>
-                    </td>
-                    <td>
-                        <button class="mt-1 btn-deshabilitado mr-5">Deshabilitado</button>
-                    </td>
-                    <td>
-                        <span class="mr-2">Reservas No Sesionadas</span>
-                    </td>
-                    <td>
-                        <button class="mt-1 btn-deshabilitado">Deshabilitado</button>
-                    </td>
-                </tr>
-
-            </tbody>
-        </table>
-    </div>
-</div>
+</form>

@@ -172,3 +172,14 @@
   border: 0px;
   color: white;
 }
+
+.div-loading{
+    margin-top: 10px;
+    width: 100%;
+    text-align: center;
+    align-content: center;
+}
+.loading{
+    width: 45px;
+    height: 45px;
+}

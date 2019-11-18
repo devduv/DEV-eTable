@@ -6,8 +6,4 @@ public class UserQuery {
 	public static final String CUSUARIO = "CUSUARIO";
 	public static final String NICKNAME = "NICKNAME";
 	public static final String PASSWORD = "PASSWORD";
-	
-	public static String selectFrom() {
-		return "SELECT " + CUSUARIO + ", " + "";
-	}
 }
