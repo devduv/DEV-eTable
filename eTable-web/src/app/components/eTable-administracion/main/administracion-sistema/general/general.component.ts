@@ -11,14 +11,25 @@ import { Path } from 'src/app/infrastructure/constans/Path';
 export class GeneralComponent implements OnInit {
 
   configuracion: Configuracion;
+  prevconfiguracion: Configuracion;
   load: boolean;
+  edit: boolean;
+  saving: boolean;
   loading: string;
+  btn: string;
+  empty: boolean;
+  emptyText: string;
 
 
   constructor(private service: SistemaGeneralService) {
     this.configuracion = new Configuracion();
+    this.prevconfiguracion = new Configuracion();
     this.loading = Path.loading;
+    this.edit = true;
     this.load = true;
+    this.saving = false;
+    this.btn = 'Editar';
+    this.empty = false;
   }
 
   ngOnInit() {
@@ -30,11 +41,18 @@ export class GeneralComponent implements OnInit {
     this.service.getConfiguracionSistemaGeneral().subscribe(data => {
       this.load = false;
       if (data != null) {
-        this.configuracion = data;
+        this.configuracion.setConfiguracion(data);
+        this.prevconfiguracion.setConfiguracion(this.configuracion);
         this.initConfig();
       }
     });
   }
+
+  editar() {
+    this.edit = !this.edit;
+    this.btn = 'Guardar';
+  }
+
 
   habilitar(id: number) {
     switch (id) {
@@ -94,6 +112,71 @@ export class GeneralComponent implements OnInit {
   }
 
   guardarCambios() {
-    console.log('Cambios guardados.');
+    if (this.camposCompletos()) {
+      this.saving = true;
+      this.service.actualizarConfiguracionSistemaGeneral(this.configuracion).subscribe(data => {
+        this.saving = false;
+        if (data != null) {
+          this.edit = !this.edit;
+          this.btn = 'Editar';
+          console.log('Guardado.');
+        }
+      });
+    }
+  }
+
+  camposCompletos() {
+    if (this.configuracion.empnombre.trim().length === 0) {
+      this.empty = true;
+      this.emptyText = 'Ingrese nombre de la empresa';
+      return false;
+    } else if (this.configuracion.empdescripcion.trim().length === 0) {
+      this.empty = true;
+      this.emptyText = 'Ingrese descripción de la empresa';
+      return false;
+    } else if (this.configuracion.empdireccion.trim().length === 0) {
+      this.empty = true;
+      this.emptyText = 'Ingrese dirección de la empresa';
+      return false;
+    } else if (this.configuracion.emplogo.trim().length === 0) {
+      this.empty = true;
+      this.emptyText = 'Ingrese el logotipo de la empresa';
+      return false;
+    } else if (this.configuracion.empemail.trim().length === 0) {
+      this.empty = true;
+      this.emptyText = 'Ingrese el e-mail de la empresa';
+      return false;
+    } else if (this.configuracion.empcelular.toString().length === 0) {
+      this.empty = true;
+      this.emptyText = 'Ingrese número celular de la empresa';
+      return false;
+    }
+    return true;
+  }
+
+  restaurarTodo() {
+    this.configuracion.empnombre = '';
+    this.configuracion.empdescripcion = '';
+    this.configuracion.empemail = '';
+    this.configuracion.empdireccion = '';
+    this.configuracion.emplogo = '';
+    this.configuracion.empcelular = undefined;
+    this.configuracion.sist_reservacion_cliente = false;
+    this.configuracion.sist_atencion_cliente = false;
+    this.configuracion.mesas_compuestas = false;
+    this.configuracion.pagos_tarjeta_credito = false;
+    this.configuracion.reservas_especiales = false;
+    this.configuracion.reservas_no_sesionadas = false;
+    this.configuracion.agregar_cliente_manual = false;
+    this.configuracion.reservacion_pedidos = false;
+    this.initConfig();
+  }
+
+  cancelar() {
+    this.configuracion.setConfiguracion(this.prevconfiguracion);
+    this.initConfig();
+    this.btn = 'Editar';
+    this.edit = !this.edit;
+    this.empty = false;
   }
 }

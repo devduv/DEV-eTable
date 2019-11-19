@@ -17,4 +17,12 @@ export class SistemaGeneralService {
   getConfiguracionSistemaGeneral() {
     return this.http.get<Configuracion>(this.url + '/' + 'configuracionSistema');
   }
+
+  actualizarConfiguracionSistemaGeneral(configuracion: Configuracion) {
+    return this.http.put<Configuracion>(this.url + '/' + 'actualizarConfiguracion' + '/' + configuracion.cconfiguracion, configuracion);
+  }
+
+  getConfiguracionParametros() {
+    return this.http.get<Configuracion>(this.url + '/' + 'configuracionParametros');
+  }
 }

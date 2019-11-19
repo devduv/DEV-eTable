@@ -1,21 +1,16 @@
 package etable.infrastructure.configuracion.jdbc;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
 import javax.swing.tree.RowMapper;
 import javax.swing.tree.TreePath;
-
 import org.springframework.stereotype.Component;
-
 import etable.domain.configuracion.model.Configuracion;
-import etable.web.constants.querys.Query;
 
 @Component
 public class ConfiguracionRowMapper implements RowMapper{
 
-	public Configuracion mapRow(List<Map<String, Object>> rows){
+	public Configuracion mapRowConfigSistema(List<Map<String, Object>> rows){
 		 Configuracion configuracion = null;
 		for(Map<String, Object> row: rows) {
 			int cconfiguracion = Integer.parseInt(row.get("CCONFIGURACION").toString());
@@ -42,6 +37,19 @@ public class ConfiguracionRowMapper implements RowMapper{
 					pagos_tarjeta_credito, reservacion_pedidos, reservas_especiales, reservas_no_sesionadas, date_configurado);
 		}
 		return configuracion;
+	}
+	
+	public Configuracion mapRowConfigParametros(List<Map<String, Object>> rows) {
+		 Configuracion configuracion = null;
+		 for(Map<String, Object> row: rows) {
+			 int cant_max_mesas = Integer.parseInt(row.get("CANT_MAX_MESAS").toString());
+			 int cant_max_us_registrados = Integer.parseInt(row.get("CANT_MAX_US_REGISTRADOS").toString());
+			 String horario_atencion = row.get("HORARIO_ATENCION").toString();
+			 int max_us_trab_conectados = Integer.parseInt(row.get("MAX_US_TRAB_CONECTADOS").toString());
+			 
+			 configuracion = new Configuracion(cant_max_mesas, cant_max_us_registrados, horario_atencion, max_us_trab_conectados);
+		 }
+		 return configuracion;
 	}
 	
 	@Override

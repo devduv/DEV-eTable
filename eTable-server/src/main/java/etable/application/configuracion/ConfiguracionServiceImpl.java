@@ -16,6 +16,16 @@ public class ConfiguracionServiceImpl implements ConfiguracionService{
 	public Configuracion getConfiguracion() {
 		return this.repository.getConfiguracion();
 	}
+
+	@Override
+	public Configuracion actualizarConfiguracion(Configuracion configuracion) {
+		return this.repository.actualizarById(configuracion);
+	}
+
+	@Override
+	public Configuracion getParametros() {
+		return this.repository.getParametrosGenerales();
+	}
 	
 	
 }

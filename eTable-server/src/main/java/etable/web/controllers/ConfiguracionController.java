@@ -3,6 +3,9 @@ package etable.web.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,5 +23,16 @@ public class ConfiguracionController {
 	@GetMapping(path = {"/configuracionSistema"})
 	public Configuracion getConfiguracionSistemaGeneral() {
 		return this.service.getConfiguracion();
+	}
+	
+	@PutMapping(path = {"/actualizarConfiguracion/{id}"})
+	public Configuracion actualizarConfiguracionSistemaGeneral(@RequestBody Configuracion configuracion, @PathVariable int id) {
+		configuracion.setCconfiguracion(id);
+		return this.service.actualizarConfiguracion(configuracion);
+	}
+	
+	@GetMapping(path = {"/configuracionParametros"})
+	public Configuracion getConfiguracionParametros() {
+		return this.service.getParametros();
 	}
 }

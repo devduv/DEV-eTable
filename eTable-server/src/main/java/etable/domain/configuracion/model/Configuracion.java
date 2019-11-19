@@ -19,6 +19,12 @@ public class Configuracion {
 	private boolean reservacion_pedidos;
 	private boolean reservas_especiales;
 	private boolean reservas_no_sesionadas;
+	
+	private int cant_max_mesas;
+	private int cant_max_us_registrados;
+	private String horario_atencion;
+	private int max_us_trab_conectados;
+	
 	private String date_configurado;
 	
 	public Configuracion() {
@@ -49,6 +55,48 @@ public class Configuracion {
 		this.date_configurado = date_configurado;
 	}
 	
+	
+	public Configuracion(int cant_max_mesas, int cant_max_us_registrados, String horario_atencion,
+			int max_us_trab_conectados) {
+		super();
+		this.cant_max_mesas = cant_max_mesas;
+		this.cant_max_us_registrados = cant_max_us_registrados;
+		this.horario_atencion = horario_atencion;
+		this.max_us_trab_conectados = max_us_trab_conectados;
+	}
+
+	public int getCant_max_mesas() {
+		return cant_max_mesas;
+	}
+
+	public void setCant_max_mesas(int cant_max_mesas) {
+		this.cant_max_mesas = cant_max_mesas;
+	}
+
+	public int getCant_max_us_registrados() {
+		return cant_max_us_registrados;
+	}
+
+	public void setCant_max_us_registrados(int cant_max_us_registrados) {
+		this.cant_max_us_registrados = cant_max_us_registrados;
+	}
+
+	public String getHorario_atencion() {
+		return horario_atencion;
+	}
+
+	public int getMax_us_trab_conectados() {
+		return max_us_trab_conectados;
+	}
+
+	public void setMax_us_trab_conectados(int max_us_trab_conectados) {
+		this.max_us_trab_conectados = max_us_trab_conectados;
+	}
+
+	public void setHorario_atencion(String horario_atencion) {
+		this.horario_atencion = horario_atencion;
+	}
+
 	public String getDate_configurado() {
 		return date_configurado;
 	}
