@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,6 +30,12 @@ public class ConfiguracionController {
 	public Configuracion actualizarConfiguracionSistemaGeneral(@RequestBody Configuracion configuracion, @PathVariable int id) {
 		configuracion.setCconfiguracion(id);
 		return this.service.actualizarConfiguracion(configuracion);
+	}
+	
+	@PostMapping(path = {"/actualizarParametros/{id}"})
+	public Configuracion actualizarParametros(@RequestBody Configuracion configuracion, @PathVariable int id) {
+		configuracion.setCconfiguracion(id);
+		return this.service.actualizarParametrosById(configuracion);
 	}
 	
 	@GetMapping(path = {"/configuracionParametros"})

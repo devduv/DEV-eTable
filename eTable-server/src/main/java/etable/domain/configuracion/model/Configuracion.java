@@ -22,7 +22,9 @@ public class Configuracion {
 	
 	private int cant_max_mesas;
 	private int cant_max_us_registrados;
-	private String horario_atencion;
+	private String horario_ini_atencion;
+	private String horario_fin_atencion;
+	private String dias_atencion;
 	private int max_us_trab_conectados;
 	
 	private String date_configurado;
@@ -56,12 +58,14 @@ public class Configuracion {
 	}
 	
 	
-	public Configuracion(int cant_max_mesas, int cant_max_us_registrados, String horario_atencion,
-			int max_us_trab_conectados) {
+	public Configuracion(int cant_max_mesas, int cant_max_us_registrados, String horario_ini_atencion, String horario_fin_atencion,
+			 String dias_atencion, int max_us_trab_conectados) {
 		super();
 		this.cant_max_mesas = cant_max_mesas;
 		this.cant_max_us_registrados = cant_max_us_registrados;
-		this.horario_atencion = horario_atencion;
+		this.horario_ini_atencion = horario_ini_atencion;
+		this.horario_fin_atencion = horario_fin_atencion;
+		this.dias_atencion = dias_atencion;
 		this.max_us_trab_conectados = max_us_trab_conectados;
 	}
 
@@ -81,8 +85,29 @@ public class Configuracion {
 		this.cant_max_us_registrados = cant_max_us_registrados;
 	}
 
-	public String getHorario_atencion() {
-		return horario_atencion;
+
+	public String getHorario_ini_atencion() {
+		return horario_ini_atencion;
+	}
+
+	public void setHorario_ini_atencion(String horario_ini_atencion) {
+		this.horario_ini_atencion = horario_ini_atencion;
+	}
+
+	public String getHorario_fin_atencion() {
+		return horario_fin_atencion;
+	}
+
+	public void setHorario_fin_atencion(String horario_fin_atencion) {
+		this.horario_fin_atencion = horario_fin_atencion;
+	}
+
+	public String getDias_atencion() {
+		return dias_atencion;
+	}
+
+	public void setDias_atencion(String dias_atencion) {
+		this.dias_atencion = dias_atencion;
 	}
 
 	public int getMax_us_trab_conectados() {
@@ -93,9 +118,6 @@ public class Configuracion {
 		this.max_us_trab_conectados = max_us_trab_conectados;
 	}
 
-	public void setHorario_atencion(String horario_atencion) {
-		this.horario_atencion = horario_atencion;
-	}
 
 	public String getDate_configurado() {
 		return date_configurado;

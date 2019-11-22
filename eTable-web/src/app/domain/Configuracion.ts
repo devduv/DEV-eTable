@@ -18,7 +18,9 @@ export class Configuracion {
     date_configurado: boolean;
     cant_max_mesas: number;
     cant_max_us_registrados: number;
-    horario_atencion: string;
+    horario_ini_atencion: string;
+    horario_fin_atencion: string;
+    dias_atencion: string;
     max_us_trab_conectados: number;
 
 
@@ -43,10 +45,19 @@ export class Configuracion {
     }
 
     public setParametros(configuracion: Configuracion) {
+        this.cconfiguracion = configuracion.cconfiguracion;
         this.cant_max_mesas = configuracion.cant_max_mesas;
         this.cant_max_us_registrados = configuracion.cant_max_us_registrados;
-        this.horario_atencion = configuracion.horario_atencion;
+        this.horario_ini_atencion = configuracion.horario_ini_atencion;
+        this.horario_ini_atencion = configuracion.horario_ini_atencion;
+        this.horario_fin_atencion = configuracion.horario_fin_atencion;
+        this.dias_atencion = configuracion.dias_atencion;
         this.max_us_trab_conectados = configuracion.max_us_trab_conectados;
+    }
+
+    public getDiasAtencion() {
+        const dias = this.dias_atencion.split(',');
+        return dias;
     }
 
 }

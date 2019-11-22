@@ -3,10 +3,12 @@
         <button class="btn-nuevo ml-2 mr-1" (click)="(edit ? editar() : guardarCambios())">
             <i [ngClass]="(edit ? 'mdi-pencil' : 'mdi-plus-box-multiple-outline')" class="mdi f-16"></i> {{btn}}
         </button>
+        <span *ngIf="success" class="ml-3 action-success">
+                <i class="mdi mdi-check-circle mr-1"></i>
+                {{successText}} <br/></span>
         <button *ngIf="!edit" class="btn-nuevo ml-1 mr-1" (click)="cancelar()">
             <i class="mdi mdi-close-circle f-16"></i> Cancelar
         </button>
-
         <button *ngIf="!edit" class="btn-delete ml-1 mr-1" (click)="restaurarTodo()">
             <i class="mdi mdi-delete f-16"></i> Restaurar todo
         </button>
@@ -24,7 +26,7 @@
                             <span class="mr-2">Nombre:</span>
                         </td>
                         <td>
-                            <input [disabled]="edit"
+                            <input [disabled]="edit" maxlength="128"
                             [(ngModel)]="configuracion.empnombre" name="empnombre"
                                 class="mb-2 form-control form-control-sm" type="text" />
                         </td>
@@ -32,7 +34,7 @@
                             <span class="ml-5 mr-2">Descripción:</span>
                         </td>
                         <td>
-                            <input [disabled]="edit" 
+                            <input [disabled]="edit" maxlength="256"
                             [(ngModel)]="configuracion.empdescripcion" name="empdescripcion"
                                 class="form-control form-control-sm input-large mb-2" type="text" />
                         </td>
@@ -42,7 +44,7 @@
                             <span class="mr-2">Dirección:</span>
                         </td>
                         <td>
-                            <input [disabled]="edit"
+                            <input [disabled]="edit" maxlength="256"
                             input [(ngModel)]="configuracion.empdireccion" name="empdireccion"
                                 class="mb-2 form-control form-control-sm input-large" type="text" />
                         </td>
@@ -60,7 +62,7 @@
                             <span class="mr-2">E-mail:</span>
                         </td>
                         <td>
-                            <input [disabled]="edit"
+                            <input [disabled]="edit" maxlength="128"
                              [(ngModel)]="configuracion.empemail" name="empemail"
                                 class="mb-2 form-control form-control-sm input-large" type="text" />
                         </td>

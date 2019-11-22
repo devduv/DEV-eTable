@@ -7,4 +7,5 @@ public interface ConfiguracionRepository {
 	Configuracion getConfiguracion();
 	Configuracion actualizarById(Configuracion configuracion);
 	Configuracion getParametrosGenerales();
+	Configuracion actualizarParametrosById(Configuracion configuracion);
 }

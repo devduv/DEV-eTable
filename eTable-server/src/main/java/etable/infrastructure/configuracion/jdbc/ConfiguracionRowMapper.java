@@ -44,10 +44,12 @@ public class ConfiguracionRowMapper implements RowMapper{
 		 for(Map<String, Object> row: rows) {
 			 int cant_max_mesas = Integer.parseInt(row.get("CANT_MAX_MESAS").toString());
 			 int cant_max_us_registrados = Integer.parseInt(row.get("CANT_MAX_US_REGISTRADOS").toString());
-			 String horario_atencion = row.get("HORARIO_ATENCION").toString();
+			 String horario_ini_atencion = row.get("HORARIO_INI_ATENCION").toString();
+			 String horario_fin_atencion = row.get("HORARIO_FIN_ATENCION").toString();
+			 String dias_atencion = row.get("DIAS_ATENCION").toString();
 			 int max_us_trab_conectados = Integer.parseInt(row.get("MAX_US_TRAB_CONECTADOS").toString());
 			 
-			 configuracion = new Configuracion(cant_max_mesas, cant_max_us_registrados, horario_atencion, max_us_trab_conectados);
+			 configuracion = new Configuracion(cant_max_mesas, cant_max_us_registrados, horario_ini_atencion, horario_fin_atencion, dias_atencion, max_us_trab_conectados);
 		 }
 		 return configuracion;
 	}

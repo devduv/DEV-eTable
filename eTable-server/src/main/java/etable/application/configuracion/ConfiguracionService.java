@@ -7,4 +7,5 @@ public interface ConfiguracionService {
 	Configuracion getConfiguracion();
 	Configuracion actualizarConfiguracion(Configuracion configuracion);
 	Configuracion getParametros();
+	Configuracion actualizarParametrosById(Configuracion configuracion);
 }

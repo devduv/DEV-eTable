@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SistemaGeneralService } from 'src/app/services/administracion/sistema/sistema-general.service';
 import { Configuracion } from 'src/app/domain/Configuracion';
 import { Path } from 'src/app/infrastructure/constans/Path';
+import { Mensaje } from 'src/app/infrastructure/constans/Mensaje';
 
 @Component({
   selector: 'app-general',
@@ -19,7 +20,8 @@ export class GeneralComponent implements OnInit {
   btn: string;
   empty: boolean;
   emptyText: string;
-
+  success: boolean;
+  successText: string;
 
   constructor(private service: SistemaGeneralService) {
     this.configuracion = new Configuracion();
@@ -30,6 +32,8 @@ export class GeneralComponent implements OnInit {
     this.saving = false;
     this.btn = 'Editar';
     this.empty = false;
+    this.success = false;
+    this.successText = Mensaje.successText;
   }
 
   ngOnInit() {
@@ -51,6 +55,7 @@ export class GeneralComponent implements OnInit {
   editar() {
     this.edit = !this.edit;
     this.btn = 'Guardar';
+    this.success = false;
   }
 
 
@@ -117,6 +122,8 @@ export class GeneralComponent implements OnInit {
       this.service.actualizarConfiguracionSistemaGeneral(this.configuracion).subscribe(data => {
         this.saving = false;
         if (data != null) {
+          this.success = true;
+          this.empty = false;
           this.edit = !this.edit;
           this.btn = 'Editar';
           console.log('Guardado.');

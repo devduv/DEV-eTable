@@ -208,3 +208,8 @@
     width: 35px;
     height: 35px;
 }
+
+.action-success{
+    font-size: 13px;
+    color: green;
+}
