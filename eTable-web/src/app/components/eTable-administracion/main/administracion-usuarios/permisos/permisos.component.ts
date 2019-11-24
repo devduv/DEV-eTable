@@ -5,6 +5,7 @@ import { Permiso } from 'src/app/domain/Permiso';
 import { Path } from 'src/app/infrastructure/constans/Path';
 import { MainMenuService } from 'src/app/services/administracion/sistema/main-menu.service';
 import { MenuItem, MenuSubItem } from 'src/app/domain/MainMenu';
+import { Mensaje } from 'src/app/infrastructure/constans/Mensaje';
 
 @Component({
   selector: 'app-permisos',
@@ -24,6 +25,8 @@ export class PermisosComponent implements OnInit {
   loading: string;
   moduloSelected: boolean;
   onEdit: boolean;
+  editSuccess: boolean;
+  successText: string;
 
   constructor(private router: Router, private servicePermiso: PermisosService, private serviceMainMenu: MainMenuService) {
     this.load = true;
@@ -32,6 +35,7 @@ export class PermisosComponent implements OnInit {
     this.permisosLoad = false;
     this.loading = Path.loading;
     this.onEdit = false;
+    this.editSuccess = false;
   }
 
   ngOnInit() {
@@ -39,8 +43,15 @@ export class PermisosComponent implements OnInit {
   }
 
   getLocalStorage() {
+    const editSuccess = localStorage.getItem('editSuccess');
+    localStorage.removeItem('editSuccess');
+    if (editSuccess === 'true') {
+      this.editSuccess = true;
+      this.successText = Mensaje.successEdit;
+    }
     const menuItemId = localStorage.getItem('menuItemId');
-    if (menuItemId !== undefined || menuItemId.length !== 0) {
+    localStorage.removeItem('menuItemId');
+    if (menuItemId !== null) {
       this.moduloSelected = true;
       this.load = true;
       this.selectedItemId = +menuItemId;

@@ -13,6 +13,12 @@
                         <div class="mb-4">
                             <h4><b>eTable - Reservaciones</b></h4>
                         </div>
+                        <div class="not-user" *ngIf="!serverConected">
+                            <span id="notuser">No está conectado el servidor</span>
+                            <button class="btn-close" (click)="closeSpan()">
+                                <i class="mdi mdi-close-circle-outline"></i>
+                            </button>
+                        </div>
                         <div class="not-user" *ngIf="notuser">
                             <span id="notuser">{{notUserEmpty}}</span>
                             <button class="btn-close" (click)="closeSpan()">

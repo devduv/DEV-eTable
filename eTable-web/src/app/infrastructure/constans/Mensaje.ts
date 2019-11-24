@@ -4,4 +4,5 @@ export class Mensaje {
     public static notUserExist = 'Usuario no registrado en el sistema';
 
     public static successText = 'Se guardó la configuración';
+    public static successEdit = 'Se editó correctamente el permiso';
 }

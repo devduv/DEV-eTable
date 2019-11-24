@@ -2,6 +2,9 @@
     <button class="btn-nuevo ml-1 mr-1" [disabled]="true">
         <i class="mdi mdi-plus-box-multiple-outline f-16"></i> Permisos de los diferentes módulos del Sistema
     </button>
+    <span *ngIf="editSuccess" class="ml-3 action-success">
+        <i class="mdi mdi-check-circle mr-1"></i>
+        {{successText}} <br/></span>
 </div>
 <div *ngIf="load" class="div-loading" style="position:absolute"><img class="loading" src="{{loading}}" /></div>
 <div class="ml-4 mt-2">

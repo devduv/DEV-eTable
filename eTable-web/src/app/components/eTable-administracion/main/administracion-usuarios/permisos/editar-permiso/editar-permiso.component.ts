@@ -46,6 +46,7 @@ export class EditarPermisoComponent implements OnInit {
     this.service.actualizarPermiso(this.permiso).subscribe(data => {
       if ( data !== null) {
         this.load = false;
+        localStorage.setItem('editSuccess', 'true');
         this.router.navigate(['usuarios/permisos']);
       }
     });

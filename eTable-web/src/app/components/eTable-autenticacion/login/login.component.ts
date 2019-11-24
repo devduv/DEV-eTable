@@ -24,6 +24,7 @@ export class LoginComponent implements OnInit {
   public user: User;
   public loading: string;
   public load: boolean;
+  public serverConected: boolean;
 
   constructor(private router: Router, private service: LoginService) {
     this.logo = Path.logo;
@@ -31,6 +32,7 @@ export class LoginComponent implements OnInit {
     this.notpass = false;
     this.notuserexist = false;
     this.load = false;
+    this.serverConected = true;
     this.notUserEmpty = Mensaje.notUserEmpty;
     this.notPassEmpty = Mensaje.notPassEmpty;
     this.notUserExist = Mensaje.notUserExist;
@@ -55,6 +57,7 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
+    this.serverConected = true;
     if (this.user.nickname === undefined || this.user.nickname.trim() === '' || this.user.nickname.length === 0) {
       this.notUser(1);
     } else if (this.user.password === undefined || this.user.password.trim() === '' || this.user.password.length === 0) {
@@ -78,7 +81,10 @@ export class LoginComponent implements OnInit {
         this.load = false;
         this.notUser(2);
       }
-    });
+    }, error => {
+      this.load = false;
+      this.serverConected = false;
+  });
   }
 
   authenticationLogin(user: User) {
@@ -118,6 +124,7 @@ export class LoginComponent implements OnInit {
     this.user.nickname = '';
     this.user.password = '';
     this.notuserexist = false;
+    this.serverConected = true;
     this.notuser = false;
     this.notpass = false;
   }

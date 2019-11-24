@@ -24,6 +24,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { CreatePerfilMesaComponent } from './components/eTable-administracion/main/administracion-mesas/perfil-mesa/create-perfil-mesa/create-perfil-mesa.component';
 import { EditarPermisoComponent } from './components/eTable-administracion/main/administracion-usuarios/permisos/editar-permiso/editar-permiso.component';
+import { CrearTipoUsuarioComponent } from './components/eTable-administracion/main/administracion-usuarios/tipos-usuario/crear-tipo-usuario/crear-tipo-usuario.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { EditarPermisoComponent } from './components/eTable-administracion/main/
     ReservacionesComponent,
     ImportarExportarComponent,
     CreatePerfilMesaComponent,
-    EditarPermisoComponent
+    EditarPermisoComponent,
+    CrearTipoUsuarioComponent
   ],
   imports: [
     BrowserModule,
