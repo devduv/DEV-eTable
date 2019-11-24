@@ -82,5 +82,5 @@ export class PermisosComponent implements OnInit {
     localStorage.setItem('permisoId', id.toString());
     this.router.navigate(['usuarios/permisos/editar']);
   }
-  
+
 }

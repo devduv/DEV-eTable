@@ -12,8 +12,10 @@ export class EditarPermisoComponent implements OnInit {
 
   public permiso: Permiso;
 
+  duvan: boolean;
+
   constructor(private router: Router, private service: PermisosService) {
-    
+    this.permiso = new Permiso();
    }
 
   ngOnInit() {
