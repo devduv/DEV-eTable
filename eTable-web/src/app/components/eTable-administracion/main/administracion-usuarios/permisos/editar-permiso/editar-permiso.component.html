@@ -1,5 +1,5 @@
 <div class="header-user-list">
-    <button class="btn-nuevo ml-1 mr-1">
+    <button class="btn-nuevo ml-1 mr-1" (click)="guardar()">
         <i class="mdi mdi-plus-box-multiple-outline f-16"></i> Guardar
     </button>
 </div>
@@ -27,6 +27,16 @@
                         <input input [(ngModel)]="permiso.descripcion" name="descripcion"
                          class="mb-2 form-control form-control-sm descripcion-lg"
                              type="text" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="mr-2">Estado:</span>
+                    </td>
+                    <td>
+                        <button id="sistreservacioncliente" (click)="habilitar()" 
+                        [ngClass]="(permiso.estado ? 
+                        'btn-habilitado': 'btn-deshabilitado')" class="mb-3">{{btn}}</button>
                     </td>
                 </tr>
             </tbody>

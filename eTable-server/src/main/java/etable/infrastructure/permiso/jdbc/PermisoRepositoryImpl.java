@@ -39,7 +39,7 @@ public class PermisoRepositoryImpl implements PermisoRepository {
 
 	@Override
 	public Permiso editPermisoById(Permiso permiso) {
-		String query = "UPDATE " + Query.table_permisos + " PERMISO = ?, DESCRIPCION = ? ESTADO = ? WHERE CPERMISO = ? ";
+		String query = "UPDATE " + Query.table_permisos + " SET PERMISO = ? , DESCRIPCION = ? , ESTADO = ? WHERE CPERMISO = ? ";
 		int update = this.jdbctemplate.update(query, permiso.getPermiso(), permiso.getDescripcion(),
 				permiso.isEstado()? 1 : 0, permiso.getCpermiso());
 

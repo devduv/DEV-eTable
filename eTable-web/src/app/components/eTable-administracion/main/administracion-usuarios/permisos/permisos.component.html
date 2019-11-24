@@ -17,16 +17,13 @@
         <span class="ml-4 f-13">{{i+1}}. {{subitem.subitem}}</span>
         <div *ngIf="permisosLoad">
             <div>
-                <div class="mt-3 card card-table">
+                <div class="mt-2 mb-4 card card-table">
                     <table class="table-hover">
                         <thead class="header-table card-header">
                             <tr>
                                 <td></td>
                                 <td>
                                     <div class="center-head">Permiso</div>
-                                </td>
-                                <td>
-                                    <div class="center-head">Módulo</div>
                                 </td>
                                 <td>
                                     <div class="center-head">Descripción</div>
@@ -39,24 +36,21 @@
                         <tbody class="header-body">
                             <tr *ngFor="let permiso of permisos[i]">
                                 <td style="width: 50px;">
-                                    <button class="btn-edit mt-1 ml-2" (click)="editarPermiso(permiso.cpermiso)">
+                                    <button class="btn-edit mt-1 ml-2" (click)="editarPermiso(permiso.cpermiso, subitem.citem)">
                                         <i class="mdi mdi-border-color" style="font-size: 20px;"></i>
                                     </button>
                                 </td>
                                 <td style="width: 250px;">
                                     <div class="center-body">{{permiso.permiso}}</div>
                                 </td>
-                                <td style="width: 200px;">
-                                    <div class="center-body">{{permiso.csubitem}}</div>
-                                </td>
-                                <td style="width: 400px;">
+                                <td style="width: 450px;">
                                     <div class="center-body">{{permiso.descripcion}}</div>
                                 </td>
                                 <td>
-                                    <div class="center-body" *ngIf="permiso.estado">
-                                        <button class="btn-habilitado">Habilitado</button></div>
+                                    <div class="center-body" *ngIf="permiso.estado" >
+                                        <button [disabled]="true" class="btn-habilitado">Habilitado</button></div>
                                     <div class="center-body" *ngIf="!permiso.estado">
-                                        <button class="btn-deshabilitado">Deshabilitado</button></div>
+                                        <button [disabled]="true" class="btn-deshabilitado">Deshabilitado</button></div>
                                 </td>
                             </tr>
                         </tbody>

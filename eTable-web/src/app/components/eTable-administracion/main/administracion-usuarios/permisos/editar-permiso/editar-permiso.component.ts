@@ -14,6 +14,7 @@ export class EditarPermisoComponent implements OnInit {
   permiso: Permiso;
   load: boolean;
   loading: string;
+  btn: string;
 
   constructor(private router: Router, private service: PermisosService) {
     this.permiso = new Permiso();
@@ -35,15 +36,27 @@ export class EditarPermisoComponent implements OnInit {
       if (data !== null) {
         this.load = false;
         this.permiso = data;
+        this.setBtnText();
       }
     });
   }
 
-  actualizarPermiso(permiso: Permiso) {
-    this.service.actualizarPermiso(permiso).subscribe(data => {
+  guardar() {
+    this.load = true;
+    this.service.actualizarPermiso(this.permiso).subscribe(data => {
       if ( data !== null) {
-
+        this.load = false;
+        this.router.navigate(['usuarios/permisos']);
       }
     });
+  }
+
+  habilitar() {
+    this.permiso.estado = !this.permiso.estado;
+    this.setBtnText();
+  }
+
+  setBtnText() {
+    this.btn = (this.permiso.estado ? 'Habilitado' : 'Deshabilitado');
   }
 }

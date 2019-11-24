@@ -38,11 +38,21 @@ export class PermisosComponent implements OnInit {
     this.getModuloMenuItems();
   }
 
+  getLocalStorage() {
+    const menuItemId = localStorage.getItem('menuItemId');
+    if (menuItemId !== undefined || menuItemId.length !== 0) {
+      this.moduloSelected = true;
+      this.load = true;
+      this.selectedItemId = +menuItemId;
+      this.getModuloMenuSubItemsByItem(this.selectedItemId);
+    }
+  }
   getModuloMenuItems() {
     this.serviceMainMenu.getListMenuItems().subscribe(data => {
       this.load = false;
       if (data.length !== 0) {
         this.items = data;
+        this.getLocalStorage();
       }
     });
   }
@@ -78,8 +88,9 @@ export class PermisosComponent implements OnInit {
     });
   }
 
-  editarPermiso(id: number) {
-    localStorage.setItem('permisoId', id.toString());
+  editarPermiso(cpermiso: number, citem: number) {
+    localStorage.setItem('menuItemId', citem.toString());
+    localStorage.setItem('permisoId', cpermiso.toString());
     this.router.navigate(['usuarios/permisos/editar']);
   }
 
