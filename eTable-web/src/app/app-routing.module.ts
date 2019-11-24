@@ -23,6 +23,7 @@ import { HistorialClienteComponent } from './components/eTable-administracion/ma
 import { ReservacionesComponent } from './components/eTable-administracion/main/dashboard/reservaciones/reservaciones.component';
 import { ImportarExportarComponent } from './components/eTable-administracion/main/reportes/importar-exportar/importar-exportar.component';
 import { CreatePerfilMesaComponent } from './components/eTable-administracion/main/administracion-mesas/perfil-mesa/create-perfil-mesa/create-perfil-mesa.component';
+import { EditarPermisoComponent } from './components/eTable-administracion/main/administracion-usuarios/permisos/editar-permiso/editar-permiso.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -30,6 +31,7 @@ const routes: Routes = [
   { path: 'sistema/general', component: GeneralComponent},
   { path: 'sistema/configuracion', component: ConfiguracionComponent},
 
+  { path: 'usuarios/permisos/editar', component: EditarPermisoComponent},
   { path: 'usuarios/tipos', component: TiposUsuarioComponent},
   { path: 'usuarios/permisos', component: PermisosComponent},
   { path: 'usuarios/list', component: UsuariosComponent},

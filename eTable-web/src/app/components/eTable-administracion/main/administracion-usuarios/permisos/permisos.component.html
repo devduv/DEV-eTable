@@ -1,60 +1,68 @@
 <div class="header-user-list">
-    <button class="btn-nuevo ml-1 mr-1">
-        <i class="mdi mdi-plus-box-multiple-outline f-16"></i> Nuevo
+    <button class="btn-nuevo ml-1 mr-1" [disabled]="true">
+        <i class="mdi mdi-plus-box-multiple-outline f-16"></i> Permisos de los diferentes módulos del Sistema
     </button>
 </div>
-<div class="mt-3 table-responsive">
-    <table class="table table-hover">
-        <thead class="header-table">
-            <tr>
-                <td style="width: 50px;"></td>
-                <td>
-                    <div class="center-head">Nombre</div>
-                </td>
-                <td>
-                    <div class="center-head">Descripción</div>
-                </td>
-                <td>
-                    <div class="center-head">E-mail</div>
-                </td>
-                <td>
-                    <div class="center-head">Nombres</div>
-                </td>
-                <td>
-                    <div class="center-head">Apellidos</div>
-                </td>
-                <td>
-                    <div class="center-head">Estado</div>
-                </td>
-            </tr>
-        </thead>
-        <tbody class="header-body">
-            <tr>
-                <td>
-                    <button class="btn-edit mt-1">
-                        <i class="mdi mdi-border-color" style="font-size: 20px;"></i>
-                    </button>
-
-                </td>
-                <td>
-                    <div class="center-body">Administrador</div>
-                </td>
-                <td>
-                    <div class="center-body">Administrador</div>
-                </td>
-                <td>
-                    <div class="center-body">duvanbradbrid@gmail.com</div>
-                </td>
-                <td>
-                    <div class="center-body">Brandon Duvan</div>
-                </td>
-                <td>
-                    <div class="center-body">Saenz Falcón</div>
-                </td>
-                <td>
-                    
-                </td>
-            </tr>
-        </tbody>
-    </table>
+<div *ngIf="load" class="div-loading" style="position:absolute"><img class="loading" src="{{loading}}" /></div>
+<div class="ml-4 mt-2">
+    <span class="f-13"><b>Módulo del Sistema:</b></span>
+    <select class="form-control form-control-sm select-sm mt-1" [(ngModel)]="selectedItemId"
+        (change)="getModuloMenuSubItems()">
+        <option [ngValue]="0">Seleccionar módulo</option>
+        <option *ngFor="let item of items" [ngValue]="item.citem">{{item.item}}</option>
+    </select>
+</div>
+<div class="mt-1 mt-3" *ngIf="moduloSelected">
+    <div *ngFor="let subitem of subitems; let i = index">
+        <span class="ml-4 f-13">{{i+1}}. {{subitem.subitem}}</span>
+        <div *ngIf="permisosLoad">
+            <div>
+                <div class="mt-3 card card-table">
+                    <table class="table-hover">
+                        <thead class="header-table card-header">
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <div class="center-head">Permiso</div>
+                                </td>
+                                <td>
+                                    <div class="center-head">Módulo</div>
+                                </td>
+                                <td>
+                                    <div class="center-head">Descripción</div>
+                                </td>
+                                <td>
+                                    <div class="center-head">Estado</div>
+                                </td>
+                            </tr>
+                        </thead>
+                        <tbody class="header-body">
+                            <tr *ngFor="let permiso of permisos[i]">
+                                <td style="width: 50px;">
+                                    <button class="btn-edit mt-1 ml-2" (click)="editarPermiso(permiso.cpermiso)">
+                                        <i class="mdi mdi-border-color" style="font-size: 20px;"></i>
+                                    </button>
+                                </td>
+                                <td style="width: 250px;">
+                                    <div class="center-body">{{permiso.permiso}}</div>
+                                </td>
+                                <td style="width: 200px;">
+                                    <div class="center-body">{{permiso.csubitem}}</div>
+                                </td>
+                                <td style="width: 400px;">
+                                    <div class="center-body">{{permiso.descripcion}}</div>
+                                </td>
+                                <td>
+                                    <div class="center-body" *ngIf="permiso.estado">
+                                        <button class="btn-habilitado">Habilitado</button></div>
+                                    <div class="center-body" *ngIf="!permiso.estado">
+                                        <button class="btn-deshabilitado">Deshabilitado</button></div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

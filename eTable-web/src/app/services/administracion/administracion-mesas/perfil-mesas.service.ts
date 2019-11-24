@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
-export class MesasService {
+export class PerfilMesasService {
 
   private url: string;
   constructor(private http: HttpClient) {

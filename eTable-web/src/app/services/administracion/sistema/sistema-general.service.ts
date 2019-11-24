@@ -29,4 +29,5 @@ export class SistemaGeneralService {
   actualizarParametrosSistemaGeneral(configuracion: Configuracion) {
     return this.http.post<Configuracion>(this.url + '/' + 'actualizarParametros' + '/' + configuracion.cconfiguracion, configuracion);
   }
+
 }

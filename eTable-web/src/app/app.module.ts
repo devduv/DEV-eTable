@@ -23,7 +23,7 @@ import { ImportarExportarComponent } from './components/eTable-administracion/ma
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { CreatePerfilMesaComponent } from './components/eTable-administracion/main/administracion-mesas/perfil-mesa/create-perfil-mesa/create-perfil-mesa.component';
-import { GridsterModule } from 'angular-gridster2';
+import { EditarPermisoComponent } from './components/eTable-administracion/main/administracion-usuarios/permisos/editar-permiso/editar-permiso.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +45,8 @@ import { GridsterModule } from 'angular-gridster2';
     HistorialClienteComponent,
     ReservacionesComponent,
     ImportarExportarComponent,
-    CreatePerfilMesaComponent
+    CreatePerfilMesaComponent,
+    EditarPermisoComponent
   ],
   imports: [
     BrowserModule,

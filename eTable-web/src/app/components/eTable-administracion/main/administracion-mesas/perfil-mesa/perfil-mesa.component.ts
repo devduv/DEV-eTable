@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { MesasService } from 'src/app/services/administracion/administracion-mesas/mesas.service';
+import { PerfilMesasService } from 'src/app/services/administracion/administracion-mesas/perfil-mesas.service';
 import { PerfilMesa } from 'src/app/domain/PerfilMesa';
+import { Path } from 'src/app/infrastructure/constans/Path';
 
 @Component({
   selector: 'app-perfil-mesa',
@@ -10,11 +11,18 @@ import { PerfilMesa } from 'src/app/domain/PerfilMesa';
 })
 export class PerfilMesaComponent implements OnInit {
 
+
   public perfiles: PerfilMesa[];
-  constructor(private router: Router, private service: MesasService) { }
+  load: boolean;
+  loading: string;
+  constructor(private router: Router, private service: PerfilMesasService) {
+    this.load = true;
+    this.loading = Path.loading;
+  }
 
   ngOnInit() {
     this.service.getPerfilesMesa().subscribe(data => {
+      this.load = false;
       if (data.length !== 0) {
         this.perfiles = data;
       }

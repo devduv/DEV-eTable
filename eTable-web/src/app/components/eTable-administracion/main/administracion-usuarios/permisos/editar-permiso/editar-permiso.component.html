@@ -1,0 +1,36 @@
+<div class="header-user-list">
+    <button class="btn-nuevo ml-1 mr-1">
+        <i class="mdi mdi-plus-box-multiple-outline f-16"></i> Guardar
+    </button>
+</div>
+
+<div class="ml-4 mt-3 f-13">
+    <span>{{permiso.permiso}}</span>
+    <hr class="mt-1" />
+    <div class="table-responsive">
+        <table class="mb-4">
+            <tbody>
+                <tr>
+                    <td>
+                        <span class="mr-2">Nombre:</span>
+                    </td>
+                    <td>
+                        <input [(ngModel)]="permiso.permiso" name="permiso"
+                            class="mb-2 form-control input-small form-control-sm" type="text" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="mr-2">Descripcion:</span>
+                    </td>
+                    <td>
+                        <input input [(ngModel)]="permiso.descripcion" name="descripcion"
+                         class="mb-2 form-control form-control-sm"
+                             type="text" />
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <hr class="mt-1" />
+    </div>
+</div>
