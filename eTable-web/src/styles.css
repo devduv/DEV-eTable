@@ -107,7 +107,7 @@
 .center-body{
     border-radius: 8px;
     border: none;
-    padding: 10px;
+    padding: 5px;
 }
 
 .center-head{
@@ -176,9 +176,24 @@
     float: left;
 }
 
+.f-bottom{
+    float: bottom;
+}
 .f-right{
     height: 100%; display:flex; align-items: center;
     float: right;
+}
+
+.btn-asignar {
+    border: 0px;
+    color: white;
+    height: 100%;
+    padding: 5px;
+    background-color: rgb(7, 71, 166);
+}
+
+.btn-asignar:hover{
+    background-color: rgb(14, 82, 185);
 }
 
 .btn-sidenav{

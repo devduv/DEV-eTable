@@ -2,11 +2,15 @@ package etable.web.constants.querys;
 
 public class Query {
 
-	public static String table_configuracion = "TBCONFIGURACIONSISTEMA";
-	public static String table_perfilmesa = "TBPERFILMESA";
-	public static String table_permisos = "TBPERMISOS";
-	public static String table_menuitems = "TBMENUITEMS";
-	public static String table_menusubitems = "TBMENUSUBITEMS";
+	public static final String table_configuracion = "TBCONFIGURACIONSISTEMA";
+	public static final String table_perfilmesa = "TBPERFILMESA";
+	public static final String table_permisos = "TBPERMISOS";
+	public static final String table_menuitems = "TBMENUITEMS";
+	public static final String table_menusubitems = "TBMENUSUBITEMS";
+	public static final String table_tipousuario = "TBTIPOUSUARIO";
+	
+	public static final String insert_tipousuario = 
+			"INSERT INTO " + table_tipousuario + "( TIPONOMBRE, TIPODESCRIPCION) VALUES (?,?)";
 	
 	public static String update_configuracion =  
 			"UPDATE " + Query.table_configuracion + 

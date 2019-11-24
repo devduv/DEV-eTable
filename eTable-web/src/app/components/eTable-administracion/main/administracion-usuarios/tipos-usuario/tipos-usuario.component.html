@@ -1,5 +1,5 @@
 <div class="header-user-list">
-    <button class="btn-nuevo ml-1 mr-1">
+    <button class="btn-nuevo ml-1 mr-1" (click)="nuevoTipoUsuario()">
         <i class="mdi mdi-plus-box-multiple-outline f-16"></i> Nuevo
     </button>
 </div>
@@ -14,45 +14,21 @@
                 <td>
                     <div class="center-head">Descripción</div>
                 </td>
-                <td>
-                    <div class="center-head">E-mail</div>
-                </td>
-                <td>
-                    <div class="center-head">Nombres</div>
-                </td>
-                <td>
-                    <div class="center-head">Apellidos</div>
-                </td>
-                <td>
-                    <div class="center-head">Estado</div>
-                </td>
             </tr>
         </thead>
         <tbody class="header-body">
-            <tr>
+            <tr *ngFor="let tipousuario of tiposUsuario">
                 <td>
                     <button class="btn-edit mt-1">
                         <i class="mdi mdi-border-color" style="font-size: 20px;"></i>
                     </button>
 
                 </td>
-                <td>
-                    <div class="center-body">Administrador</div>
+                <td style="width: 150px;">
+                    <div class="center-body">{{tipousuario.tiponombre}}</div>
                 </td>
                 <td>
-                    <div class="center-body">Administrador</div>
-                </td>
-                <td>
-                    <div class="center-body">duvanbradbrid@gmail.com</div>
-                </td>
-                <td>
-                    <div class="center-body">Brandon Duvan</div>
-                </td>
-                <td>
-                    <div class="center-body">Saenz Falcón</div>
-                </td>
-                <td>
-                    
+                    <div class="center-body">{{tipousuario.tipodescripcion}}</div>
                 </td>
             </tr>
         </tbody>
