@@ -3,7 +3,7 @@
         <i class="mdi mdi-plus-box-multiple-outline f-16"></i> Guardar
     </button>
 </div>
-
+<div *ngIf="load" class="div-loading" style="position:absolute"><img class="loading" src="{{loading}}" /></div>
 <div class="ml-4 mt-3 f-13">
     <span>{{permiso.permiso}}</span>
     <hr class="mt-1" />
@@ -16,7 +16,7 @@
                     </td>
                     <td>
                         <input [(ngModel)]="permiso.permiso" name="permiso"
-                            class="mb-2 form-control input-small form-control-sm" type="text" />
+                            class="mb-2 form-control name-small form-control-sm" type="text" />
                     </td>
                 </tr>
                 <tr>
@@ -25,7 +25,7 @@
                     </td>
                     <td>
                         <input input [(ngModel)]="permiso.descripcion" name="descripcion"
-                         class="mb-2 form-control form-control-sm"
+                         class="mb-2 form-control form-control-sm descripcion-lg"
                              type="text" />
                     </td>
                 </tr>
