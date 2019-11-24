@@ -88,7 +88,7 @@ export class MenuComponent implements OnInit {
         this.setLocalStorageTitle('Admin. del Sistema - Configuración');
         break;
       case 3:
-        this.setLocalStorageTitle('Admin. de Usuarios - Roles');
+        this.setLocalStorageTitle('Admin. de Usuarios - Tipos de Usuario');
         break;
       case 4:
         this.setLocalStorageTitle('Admin. de Usuarios - Usuarios');

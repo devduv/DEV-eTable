@@ -10,7 +10,7 @@ import { MainComponent } from './components/eTable-administracion/main/main.comp
 import { CrearUsuarioComponent } from './components/eTable-administracion/main/administracion-usuarios/usuarios/crear-usuario/crear-usuario.component';
 import { GeneralComponent } from './components/eTable-administracion/main/administracion-sistema/general/general.component';
 import { ConfiguracionComponent } from './components/eTable-administracion/main/administracion-sistema/configuracion/configuracion.component';
-import { RolesComponent } from './components/eTable-administracion/main/administracion-usuarios/roles/roles.component';
+import { TiposUsuarioComponent } from './components/eTable-administracion/main/administracion-usuarios/tipos-usuario/tipos-usuario.component';
 import { PermisosComponent } from './components/eTable-administracion/main/administracion-usuarios/permisos/permisos.component';
 import { MesasComponent } from './components/eTable-administracion/main/administracion-mesas/mesas/mesas.component';
 import { PerfilMesaComponent } from './components/eTable-administracion/main/administracion-mesas/perfil-mesa/perfil-mesa.component';
@@ -22,6 +22,8 @@ import { ReservacionesComponent } from './components/eTable-administracion/main/
 import { ImportarExportarComponent } from './components/eTable-administracion/main/reportes/importar-exportar/importar-exportar.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { CreatePerfilMesaComponent } from './components/eTable-administracion/main/administracion-mesas/perfil-mesa/create-perfil-mesa/create-perfil-mesa.component';
+import { EditarPermisoComponent } from './components/eTable-administracion/main/administracion-usuarios/permisos/editar-permiso/editar-permiso.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,7 @@ import { HttpClientModule } from '@angular/common/http';
     CrearUsuarioComponent,
     GeneralComponent,
     ConfiguracionComponent,
-    RolesComponent,
+    TiposUsuarioComponent,
     PermisosComponent,
     MesasComponent,
     PerfilMesaComponent,
@@ -42,7 +44,9 @@ import { HttpClientModule } from '@angular/common/http';
     TipoClientesComponent,
     HistorialClienteComponent,
     ReservacionesComponent,
-    ImportarExportarComponent
+    ImportarExportarComponent,
+    CreatePerfilMesaComponent,
+    EditarPermisoComponent
   ],
   imports: [
     BrowserModule,

@@ -59,7 +59,7 @@
     border: none;
     padding: 10px;
     text-align: center;
-    width: 95px;
+    width: 100px;
 }
 
 .btn-load{
@@ -77,17 +77,31 @@
 }
 
 .btn-deshabilitado{
-    background-color: silver;
+    background-color: rgb(202, 202, 202);
     color: white;
     border-radius: 5px;
     border: none;
     padding: 10px;
     text-align: center;
-    width: 95px;
+    width: 100px;
 }
 
 .btn-deshabilitado:hover{
     background-color: rgb(160, 160, 160);
+}
+
+.btn-disabled{
+    background-color: rgb(211, 212, 214);
+    color: black;
+    border-radius: 5px;
+    border: none;
+    padding: 10px;
+    text-align: center;
+    width: 95px; 
+}
+
+.btn-disabled:hover{
+    background-color: rgb(231, 231, 231);
 }
 
 .center-body{
@@ -171,4 +185,31 @@
   background: transparent;
   border: 0px;
   color: white;
+}
+
+.btn-close{
+    border: 0px;
+    color: white;
+    height: 100%;
+    background-color: rgb(7, 71, 166);
+}
+
+.btn-close:hover{
+    background-color: rgb(14, 82, 185);
+}
+
+.div-loading{
+    margin-top: 10px;
+    width: 100%;
+    text-align: center;
+    align-content: center;
+}
+.loading{
+    width: 35px;
+    height: 35px;
+}
+
+.action-success{
+    font-size: 13px;
+    color: green;
 }

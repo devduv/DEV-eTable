@@ -23,7 +23,7 @@
         <i *ngIf="authentication" class="ml-2 mdi mdi-menu white f-20"></i>
         <div class="f-left"><span class="text-header">{{title}}</span></div></button>
         <div class="f-right" *ngIf="authentication">
-          <button (click)="!navOpen ? nothing() : snav.toggle(); logout()" class="btn-sidenav" style="font-size: 13px;">Cerrar Sesión</button>
+          <button (click)="!navOpen ? nothing() : snav.toggle(); logout()" class="btn-close" style="font-size: 13px;">Cerrar Sesión</button>
         </div>
         
       </div>
