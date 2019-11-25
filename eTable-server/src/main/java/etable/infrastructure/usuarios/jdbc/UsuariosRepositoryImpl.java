@@ -14,6 +14,7 @@ import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Component;
 
 import etable.domain.usuarios.model.TipoUsuario;
+import etable.domain.usuarios.model.TipoUsuarioPermiso;
 import etable.domain.usuarios.repository.UsuariosRepository;
 import etable.web.constants.querys.Query;
 
@@ -28,21 +29,28 @@ public class UsuariosRepositoryImpl implements UsuariosRepository{
 	
 	@Override
 	public TipoUsuario agregarTipoUsuario(TipoUsuario tipousuario) {
-		final String query = Query.insert_tipousuario;
-		KeyHolder keyHolder = new GeneratedKeyHolder();
-		jdbcTemplate.update(new PreparedStatementCreator() {
-			public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
-				PreparedStatement ps =
-						connection.prepareStatement(query, new String[] {"id"});
-					ps.setString(1, tipousuario.getTiponombre());
-					ps.setString(2, tipousuario.getTipodescripcion());
-					return ps;
-				}
-			},
-			keyHolder);
-			tipousuario.setCtipousuario(keyHolder.getKey().intValue());
-		
-		return tipousuario;
+		String q = Query.selectFromWhere(Query.table_tipousuario, "TIPONOMBRE", tipousuario.getTiponombre());
+		List<Map<String, Object>> rows = this.jdbcTemplate.queryForList(q);
+		List<TipoUsuario> list = this.row.mapRowTipoUsuario(rows);
+		if(list.size() > 0) {
+			return null;
+		} else { 
+			final String query = Query.insert_tipousuario;
+			KeyHolder keyHolder = new GeneratedKeyHolder();
+			jdbcTemplate.update(new PreparedStatementCreator() {
+				public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
+					PreparedStatement ps =
+							connection.prepareStatement(query, new String[] {"id"});
+						ps.setString(1, tipousuario.getTiponombre());
+						ps.setString(2, tipousuario.getTipodescripcion());
+						return ps;
+					}
+				},
+				keyHolder);
+				tipousuario.setCtipousuario(keyHolder.getKey().intValue());
+			
+			return tipousuario;
+		}
 	}
 
 	@Override
@@ -66,8 +74,50 @@ public class UsuariosRepositoryImpl implements UsuariosRepository{
 
 	@Override
 	public TipoUsuario editTipoUsuario(TipoUsuario tipousuario) {
-		// TODO Auto-generated method stub
+		String query = "UPDATE " + Query.table_tipousuario + " SET TIPONOMBRE = ? , TIPODESCRIPCION = ? WHERE CTIPOUSUARIO = ?";
+		int success = this.jdbcTemplate.update(query, tipousuario.getTiponombre(), tipousuario.getTipodescripcion(), tipousuario.getCtipousuario());
+		if(success == 1) {
+			return tipousuario;
+		}
 		return null;
+	}
+
+	@Override
+	public List<TipoUsuarioPermiso> getPermisosDeTipoUsuario(int ctipousuario) {
+		String query = Query.selectFromWhere(Query.table_tipouspermiso, "CTIPOUSUARIO", ctipousuario);
+		List<Map<String, Object>> rows = this.jdbcTemplate.queryForList(query);
+		List<TipoUsuarioPermiso> list = this.row.mapRowTipoUsuarioPermiso(rows);
+		return list;
+	}
+
+	@Override
+	public boolean asignarPermisosParaTipoUsuario(List<TipoUsuarioPermiso> tipouspermisos) {
+		String query = "INSERT INTO " + Query.table_tipouspermiso + " SET CTIPOUSUARIO = ?, CPERMISO = ?";
+		int size = tipouspermisos.size();
+		int i = 0;
+		while(i < size) {
+			int success = this.jdbcTemplate.update(query, tipouspermisos.get(i).getCtipousuario(), tipouspermisos.get(i).getCpermiso());
+			if(success == 1) {
+				i++;
+			}
+		}
+		return true;
+	}
+
+	@Override
+	public boolean editarPermisosDeTipoUsuario(List<TipoUsuarioPermiso> tipouspermisos) {
+		String query = "UPDATE " + Query.table_tipouspermiso + " SET CTIPOUSUARIO = ?, CPERMISO = ? WHERE CTIPOUSPERMISO = ?";
+		int size = tipouspermisos.size();
+		int i = 0;
+		while(i < size) {
+			int success = this.jdbcTemplate.update(query, 
+					tipouspermisos.get(i).getCtipousuario(), tipouspermisos.get(i).getCpermiso(), 
+					tipouspermisos.get(i).getCtipousuario());
+			if(success == 1) {
+				i++;
+			}
+		}
+		return true;
 	}
 
 }

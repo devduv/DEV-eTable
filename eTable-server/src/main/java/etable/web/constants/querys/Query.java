@@ -8,6 +8,7 @@ public class Query {
 	public static final String table_menuitems = "TBMENUITEMS";
 	public static final String table_menusubitems = "TBMENUSUBITEMS";
 	public static final String table_tipousuario = "TBTIPOUSUARIO";
+	public static final String table_tipouspermiso = "TBTIPOUSUARIOPERMISO";
 	
 	public static final String insert_tipousuario = 
 			"INSERT INTO " + table_tipousuario + "( TIPONOMBRE, TIPODESCRIPCION) VALUES (?,?)";
@@ -29,5 +30,9 @@ public class Query {
 	
 	public static String selectFromWhere(String table, String field, int id) {
 		return "SELECT * FROM " + table + " WHERE " + field + " = " + id;
+	}
+	
+	public static String selectFromWhere(String table, String field, String val) {
+		return "SELECT * FROM " + table + " WHERE " + field + " = '" + val + "'";
 	}
 }

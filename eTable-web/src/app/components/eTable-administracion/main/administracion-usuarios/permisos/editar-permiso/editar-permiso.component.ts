@@ -60,4 +60,8 @@ export class EditarPermisoComponent implements OnInit {
   setBtnText() {
     this.btn = (this.permiso.estado ? 'Habilitado' : 'Deshabilitado');
   }
+
+  cancelar() {
+    this.router.navigate(['usuarios/permisos']);
+  }
 }

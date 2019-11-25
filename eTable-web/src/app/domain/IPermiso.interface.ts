@@ -1,4 +1,4 @@
-export class Permiso {
+export interface IPermiso {
     cpermiso: number;
     csubitem: number;
     permiso: string;

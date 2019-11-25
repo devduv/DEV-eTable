@@ -10,6 +10,7 @@ import javax.swing.tree.TreePath;
 import org.springframework.stereotype.Component;
 
 import etable.domain.usuarios.model.TipoUsuario;
+import etable.domain.usuarios.model.TipoUsuarioPermiso;
 
 @Component
 public class UsuariosRowMapper implements RowMapper {
@@ -22,6 +23,18 @@ public class UsuariosRowMapper implements RowMapper {
 			String tipodescripcion = row.get("TIPODESCRIPCION").toString();
 			TipoUsuario tu = new TipoUsuario(ctipousuario, tiponombre, tipodescripcion);
 			list.add(tu);
+		}
+		return list;
+	}
+	
+	public List<TipoUsuarioPermiso> mapRowTipoUsuarioPermiso(List<Map<String, Object>> rows) {
+		List<TipoUsuarioPermiso> list = new ArrayList<TipoUsuarioPermiso>();
+		for(Map<String, Object> row: rows) {
+			int ctipouspermiso = Integer.parseInt(row.get("CTIPOUSPERMISO").toString()); 
+			int ctipousuario = Integer.parseInt(row.get("CTIPOUSUARIO").toString());
+			int cpermiso = Integer.parseInt(row.get("CPERMISO").toString());
+			TipoUsuarioPermiso tipouspermiso = new TipoUsuarioPermiso(ctipouspermiso, ctipousuario, cpermiso);
+			list.add(tipouspermiso);
 		}
 		return list;
 	}
