@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import etable.application.usuarios.UsuariosService;
 import etable.domain.usuarios.model.TipoUsuario;
+import etable.domain.usuarios.model.TipoUsuarioPermiso;
 
 @CrossOrigin(origins = "localhost:4200")
 @RestController
@@ -41,6 +42,21 @@ public class UsuarioController {
 	@PutMapping(path = {"/tipoUsuario/editarTipoUsuario"})
 	public TipoUsuario editTipoUsuario(@RequestBody TipoUsuario tipousuario) {
 		return this.service.editTipoUsuario(tipousuario);
+	}
+	
+	@GetMapping(path = {"/tipoUsuarioPermiso/{id}"})
+	public List<TipoUsuarioPermiso> getPermisosDeTipoUsuario(@PathVariable int id){
+		return this.service.getPermisosDeTipoUsuario(id);
+	}
+	
+	@PostMapping(path = {"/tipoUsuarioPermiso/asignarPermisos"})
+	public boolean asignarPermisosParaTipoUsuario(@RequestBody List<TipoUsuarioPermiso> tipouspermisos) {
+		return this.service.asignarPermisosParaTipoUsuario(tipouspermisos);
+	}
+	
+	@PutMapping(path = {"/tipoUsuarioPermiso/editarPermisos"})
+	public boolean editarPermisosDeTipoUsuario(@RequestBody List<TipoUsuarioPermiso> tipouspermisos) {
+		return this.service.editarPermisosDeTipoUsuario(tipouspermisos);
 	}
 
 }

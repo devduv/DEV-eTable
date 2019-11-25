@@ -14,10 +14,12 @@ export class TiposUsuarioComponent implements OnInit {
   load: boolean;
   loading: string;
   tiposUsuario: TipoUsuario[];
+  sinTipos: boolean;
 
   constructor(private router: Router, private service: UsuariosService) {
     this.load = true;
     this.loading = Path.loading;
+    this.sinTipos = false;
    }
 
   ngOnInit() {
@@ -32,9 +34,11 @@ export class TiposUsuarioComponent implements OnInit {
     this.service.getTiposUsuario().subscribe(data => {
       this.load = false;
       if (data.length !== 0) {
+        this.sinTipos = false;
         this.tiposUsuario = data;
+      } else{
+        this.sinTipos = true;
       }
-      
     });
   }
 }

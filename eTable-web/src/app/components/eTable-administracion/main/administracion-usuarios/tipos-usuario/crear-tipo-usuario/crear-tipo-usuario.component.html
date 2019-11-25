@@ -2,12 +2,12 @@
     <div class="header-user-list">
         <button type="submit" class="btn-nuevo ml-1 mr-1" (click)="crearTipoUsuario()">
             <i class="mdi mdi-plus-box-multiple-outline f-16"></i> Guardar
-        </button>
+        </button>   
     </div>
     <div *ngIf="load" class="div-loading" style="position:absolute"><img class="loading" src="{{loading}}" /></div>
-    <div *ngIf="empty" class="mt-3"><span class="not-complete">{{emptyText}}</span></div>
+
     <div class="ml-3 f-13 mt-2">
-        <table class="mb-4">
+        <table>
             <tbody>
                 <tr>
                     <td>
@@ -31,3 +31,61 @@
         </table>
     </div>
 </form>
+<div *ngIf="empty" class="mt-3 f-13"><span class="not-complete">{{emptyText}}</span></div>
+<div class="mt-3 ml-3 f-13">
+    <span><b>Asignar permisos</b></span>
+    <hr class="mt-1" />
+    <div class="row m-0 mb-5">
+        <div class="col-lg-6">
+            <div class="card">
+                <span class="card-header">Permisos del Sistema</span>
+                <div class="card-body card-permiso">
+                    <select class="form-control form-control-sm select-sm" [(ngModel)]="selectedItemId"
+                        (change)="getModuloMenuSubItems()">
+                        <option [ngValue]="0">Seleccionar módulo</option>
+                        <option *ngFor="let item of items" [ngValue]="item.citem">{{item.item}}</option>
+                    </select>
+                    <div class="mt-1 mt-3" *ngIf="moduloSelected && permisosLoad">
+                        <div *ngFor="let subitem of subitems; let i = index;" class="card">
+                            <div class="header-modulo">
+                                <button class="mr-1 btn-nuevo">
+                                    <i class="mdi mdi-plus-box-outline"></i> {{subitem.subitem}}
+                                </button>
+                            </div>
+                            <div class="mt-2 mb-4 ml-3">
+                                <table>
+                                    <tbody>
+                                        <tr *ngFor="let permiso of permisos[i]; let j = index">
+                                            <td>
+                                                <button *ngIf="!permiso.selected"
+                                                 (click)="agregarPermiso(i, permiso)"
+                                                    class="btn-permiso mr-1 btn-block">
+                                                    <i class="mdi mdi-plus-box-outline"></i>
+                                                    {{permiso.permiso}}</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <div class="col-lg-6">
+            <div class="card">
+                <span class="card-header">Permisos asignados</span>
+                <div class="card-body card-permiso">
+                    <div class="btn-permiso-asignado row"
+                    *ngFor="let permiso of permisosSelects">
+                    <button class="btn-remove-permiso" (click)="removerPermiso(permiso)"><i class="mdi mdi-delete"></i></button>
+                        <div>{{permiso.permiso}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

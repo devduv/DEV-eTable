@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { forkJoin, Observable } from 'rxjs';
 import { MenuSubItem } from 'src/app/domain/MainMenu';
 import { TipoUsuario } from 'src/app/domain/TipoUsuario';
+import { TipoUsuarioPermiso } from 'src/app/domain/TipoUsuarioPermiso';
 
 @Injectable({
   providedIn: 'root'
@@ -26,7 +27,7 @@ export class UsuariosService {
     return forkJoin(obs);
   } */
 
-  actualizatTipoUsuario(tipoUsuario: TipoUsuario) {
+  actualizarTipoUsuario(tipoUsuario: TipoUsuario) {
     return this.http.put<TipoUsuario>(this.url + '/' + 'tipoUsuario' + '/' + 'editarTipoUsuario', tipoUsuario);
   }
 
@@ -36,5 +37,10 @@ export class UsuariosService {
 
   crearTipoUsuario(tipoUsuario: TipoUsuario) {
     return this.http.post<TipoUsuario>(this.url + '/' + 'tipoUsuario' + '/' + 'agregarTipoUsuario', tipoUsuario);
+  }
+
+  asignarPermisos(tipouspermisos: TipoUsuarioPermiso[]) {
+    return this.http.post<boolean>(this.url + '/' + 'tipoUsuarioPermiso' + '/' +
+    'asignarPermisos', tipouspermisos);
   }
 }
