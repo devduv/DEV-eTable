@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -45,8 +46,13 @@ public class UsuarioController {
 	}
 	
 	@GetMapping(path = {"/tipoUsuarioPermiso/{id}"})
-	public List<TipoUsuarioPermiso> getPermisosDeTipoUsuario(@PathVariable int id){
-		return this.service.getPermisosDeTipoUsuario(id);
+	public List<TipoUsuarioPermiso> getPermisosAsignados(@PathVariable int id){
+		return this.service.getPermisosAsignadosDeTipoUsuario(id);
+	}
+	
+	@PostMapping(path = {"/tipoUsuarioPermiso/removerPermisos"})
+	public boolean  removerPermisos(@RequestBody List<TipoUsuarioPermiso> list) {
+		return this.service.removerPermisos(list);
 	}
 	
 	@PostMapping(path = {"/tipoUsuarioPermiso/asignarPermisos"})
@@ -54,9 +60,10 @@ public class UsuarioController {
 		return this.service.asignarPermisosParaTipoUsuario(tipouspermisos);
 	}
 	
-	@PutMapping(path = {"/tipoUsuarioPermiso/editarPermisos"})
-	public boolean editarPermisosDeTipoUsuario(@RequestBody List<TipoUsuarioPermiso> tipouspermisos) {
-		return this.service.editarPermisosDeTipoUsuario(tipouspermisos);
+	
+	@DeleteMapping(path = {"/tipoUsuario/eliminarTipoUsuario/{id}"})
+	public boolean eliminarTipoUsuario(@PathVariable int id) {
+		return this.service.eliminarTipoUsuarioById(id);
 	}
 
 }

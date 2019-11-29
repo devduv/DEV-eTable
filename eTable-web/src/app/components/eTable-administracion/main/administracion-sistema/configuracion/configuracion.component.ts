@@ -53,10 +53,10 @@ export class ConfiguracionComponent implements OnInit {
 
   getConfiguracionParametros() {
     this.service.getConfiguracionParametros().subscribe(data => {
-      console.log(data);
       if (data != null) {
         this.load = false;
         this.configuracion.setParametros(data);
+        this.prevconfiguracion.setParametros(this.configuracion);
         this.getDiasAtencion();
         this.mostrarDiasAtencion();
       }
@@ -80,13 +80,11 @@ export class ConfiguracionComponent implements OnInit {
     let i = 0;
     let aux = '';
     while (i < size) {
-      console.log(this.dias[i].activo);
       if (this.dias[i].activo === true) {
         aux = aux + this.dias[i].dia;
         if (i < this.dias.length - 1) {
            aux = aux + ',';
         }
-        console.log(aux);
       }
       i++;
     }
@@ -139,6 +137,7 @@ export class ConfiguracionComponent implements OnInit {
   }
 
   cancelar() {
+    this.configuracion.setParametros(this.prevconfiguracion);
     this.btn = 'Editar';
     this.edit = !this.edit;
     this.empty = false;

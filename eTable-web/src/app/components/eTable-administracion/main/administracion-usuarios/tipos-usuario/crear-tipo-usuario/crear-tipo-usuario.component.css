@@ -1,5 +1,5 @@
 .card-permiso{
-    height: 320px;
+    height: 370px;
     overflow-y: auto;
 }
 
@@ -36,6 +36,29 @@
     text-align: left;
     align-items: center;
     align-content: center;
+    cursor: pointer;
+}
+
+.btn-permiso-asignado:hover {
+    cursor: pointer;
+    background-color: rgb(63, 63, 63);
+}
+
+.btn-remover-all {
+    margin-right: -15px;
+    background-color: rgb(63, 63, 63);
+    color: white;
+    border: none;
+    padding: 4px;
+    border-radius: 3px;
+    margin-bottom: 3px;
+    text-align: left;
+    align-items: center;
+    align-content: center;
+}
+
+.btn-remover-all:hover{
+    background-color: rgb(102, 102, 102);
 }
 
 .btn-remove-permiso{
@@ -43,4 +66,16 @@
     color:white;
     border: 0px;
     font-size: 20px;
+}
+
+.btn-remove-permiso:hover {
+    color: rgb(184, 184, 184);
+}
+
+.input-large{
+    width: 400px;
+}
+
+.input-small{
+    width: 180px;
 }

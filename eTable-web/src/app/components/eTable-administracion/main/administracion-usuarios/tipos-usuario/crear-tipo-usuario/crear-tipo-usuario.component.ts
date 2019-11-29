@@ -8,6 +8,7 @@ import { PermisosService } from 'src/app/services/administracion/administracion-
 import { Permiso } from 'src/app/domain/Permiso';
 import { UsuariosService } from 'src/app/services/administracion/administracion-usuarios/usuarios.service';
 import { TipoUsuarioPermiso } from 'src/app/domain/TipoUsuarioPermiso';
+import { forkJoin, Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-crear-tipo-usuario',
@@ -16,23 +17,23 @@ import { TipoUsuarioPermiso } from 'src/app/domain/TipoUsuarioPermiso';
 })
 export class CrearTipoUsuarioComponent implements OnInit {
 
+  public tipousuario: TipoUsuario;
   public items: MenuItem[];
-  public permisos: any[];
-  public listPermisos: any[];
-  public permisosSelects: Permiso[];
   public subitems: MenuSubItem[];
+  public permisos: any[];
+  public permisosAsignados: Permiso[];
   public selectedItemId: number;
-  public permisoSelected: boolean[];
   public listTipoUsuarioPermiso: TipoUsuarioPermiso[];
-
-  empty: boolean;
-  load: boolean;
-  loading: string;
-  permisosLoad: boolean;
-  moduloSelected: boolean;
-  tipousuario: TipoUsuario;
-  emptyText: string;
-  permisoItemSelected: boolean;
+  public id: number;
+  public onEdit: boolean;
+  public empty: boolean;
+  public load: boolean;
+  public loading: string;
+  public permisosLoad: boolean;
+  public moduloSelected: boolean;
+  public emptyText: string;
+  public listDelete: TipoUsuarioPermiso[];
+  public listAdd: TipoUsuarioPermiso[];
 
   constructor(
     private router: Router,
@@ -43,44 +44,51 @@ export class CrearTipoUsuarioComponent implements OnInit {
     this.loading = Path.loading;
     this.selectedItemId = 0;
     this.tipousuario = new TipoUsuario();
-    this.permisosSelects = [];
+    this.permisosAsignados = [];
     this.permisos = [];
     this.subitems = [];
-    this.emptyText = 'Cargando...';
     this.empty = false;
-    this.permisoItemSelected = false;
-    this.permisoSelected = [];
-    this.listPermisos = [];
+    this.listDelete = [];
+    this.listAdd = [];
   }
 
   ngOnInit() {
-    this.getModuloMenuItems();
+    if (this.isEdit()) {
+      this.onEdit = true;
+      this.serviceUsuario.getTipoUsuarioById(this.id)
+        .subscribe(data => {
+          if (data !== null) {
+            this.tipousuario = data;
+            this.getModuloMenuItems();
+            this.getPermisosAsignadosDeTipoUsuario();
+          }
+        });
+    } else { this.getModuloMenuItems(); }
   }
 
-  getModuloMenuItems() {
+  private isEdit() {
+    this.id = +(localStorage.getItem('tipousuarioId'));
+    if (this.id === 0) { return false;
+    } else { return true; }
+  }
+
+  private getModuloMenuItems() {
     this.serviceMainMenu.getListMenuItems().subscribe(data => {
       this.load = false;
-      if (data.length !== 0) {
-        this.items = data;
-      }
+      if (data.length !== 0) { this.items = data; }
     });
   }
 
-  getModuloMenuSubItems() {
+  public getModuloMenuSubItems() {
     if (this.selectedItemId === 0) {
-      this.permisosLoad = false;
-      this.moduloSelected = false;
+      this.permisosLoad = false; this.moduloSelected = false;
     } else {
-      this.permisosLoad = false;
-      this.moduloSelected = true;
-      this.load = true;
-      this.permisoSelected = [];
-      this.listPermisos = [];
+      this.permisosLoad = false; this.moduloSelected = true; this.load = true;
       this.getModuloMenuSubItemsByItem(this.selectedItemId);
     }
   }
 
-  getModuloMenuSubItemsByItem(id: number) {
+  private getModuloMenuSubItemsByItem(id: number) {
     this.serviceMainMenu.getListMenuSubItemsByItem(id).subscribe(data => {
       if (data.length !== 0) {
         this.subitems = data;
@@ -89,47 +97,35 @@ export class CrearTipoUsuarioComponent implements OnInit {
     });
   }
 
-  getPermisosBySubItems(subitems: MenuSubItem[]) {
+  private getPermisosBySubItems(subitems: MenuSubItem[]) {
     this.servicePermiso.getPermisosBySubItemForkJoin(subitems).subscribe(data => {
       this.load = false;
       if (data.length !== 0) {
         this.permisosLoad = true;
-        data.forEach(val => {
-          val.forEach(v => {
-            v.selected = false;
-          });
-        });
+        data.forEach(val => { val.forEach(v => { v.selected = false; v.action = false; }); });
         this.permisos = data;
         this.setPermisosSelected();
       }
-
     });
   }
 
-  setPermisosSelected() {
+  private setPermisosSelected() {
     this.permisos.forEach(val => {
       val.forEach(v => {
-        this.permisosSelects.forEach(p => {
-          if (p.cpermiso === v.cpermiso) {
-            v.selected = true;
-          }
+        this.permisosAsignados.forEach(p => {
+          if (p.cpermiso === v.cpermiso) { v.selected = true; }
         });
       });
     });
   }
 
-  seleccionarPermiso(citem: number) {
-    this.permisoItemSelected = !this.permisoItemSelected;
-  }
-
-  crearTipoUsuario() {
+  public crear() {
     if (!this.estaVacio()) {
       this.load = true;
       this.serviceUsuario.crearTipoUsuario(this.tipousuario).subscribe(data => {
         if (data !== null) {
-          this.load = false;
           this.tipousuario = data;
-          this.asignarPermisosAlTipoUsuario();
+          this.asignarPermisos();
         } else {
           this.load = false;
           this.empty = true;
@@ -139,7 +135,45 @@ export class CrearTipoUsuarioComponent implements OnInit {
     }
   }
 
-  estaVacio() {
+  actualizar() {
+    this.actualizarTipoUsuario();
+  }
+
+  actualizarTipoUsuario() {
+    const obs = [];
+    if (this.listDelete.length > 0) {
+      this.desasignarListPermisos().subscribe(o => {
+
+      });
+    }
+    if (this.listAdd.length > 0) {
+      this.asignarListPermisos().subscribe( o => {
+
+      });
+    }
+  }
+
+  desasignarListPermisos(): Observable<any> {
+    const obs = [];
+    obs.push(this.serviceUsuario.removerPermisos(this.listDelete).subscribe(data => {
+      if (data) {
+        console.log('eliminados...');
+      }
+    }));
+    return forkJoin(obs[0]);
+  }
+
+  asignarListPermisos(): Observable<any> {
+    const obs = [];
+    obs.push(this.serviceUsuario.asignarPermisos(this.listAdd).subscribe(data => {
+      if (data) {
+        console.log('Agregados...');
+      }
+    }));
+    return forkJoin(obs[0]);
+  }
+
+  private estaVacio() {
     if (this.tipousuario.tiponombre === undefined || this.tipousuario.tiponombre.trim().length === 0) {
       this.empty = true;
       this.emptyText = 'Ingrese nombre del tipo de usuario';
@@ -150,36 +184,148 @@ export class CrearTipoUsuarioComponent implements OnInit {
       this.emptyText = 'Ingrese descripción del tipo de usuario';
       return true;
     }
-    if (this.permisosSelects.length === 0) {
+    if (this.permisosAsignados.length === 0) {
       this.empty = true;
       this.emptyText = 'Asigne permisos al tipo de usuario';
       return true;
     }
   }
 
-  agregarPermiso(id: number, permiso: Permiso) {
+  public agregarPermiso(id: number, permiso: Permiso) {
     const index: number = this.permisos[id].indexOf(permiso);
     this.permisos[id].splice(index, 1);
-    this.permisosSelects.push(permiso);
+    this.permisosAsignados.push(permiso);
+    if (this.onEdit) {
+      this.agregarPermisoOnEdit(permiso);
+    }
   }
 
-  removerPermiso(permiso: Permiso) {
-    const index: number = this.permisosSelects.indexOf(permiso);
-    this.permisosSelects.splice(index, 1);
+  private agregarPermisoOnEdit(permiso: Permiso) {
+    const tipouspermiso = new TipoUsuarioPermiso();
+    tipouspermiso.cpermiso = permiso.cpermiso;
+    tipouspermiso.ctipousuario = this.id;
+    this.listAdd.push(tipouspermiso);
   }
 
-  asignarPermisosAlTipoUsuario() {
+  public removerPermiso(permiso: Permiso) {
+    const index: number = this.permisosAsignados.indexOf(permiso);
+    this.permisosAsignados.splice(index, 1);
+    if (this.onEdit) { this.removeOnEdit(permiso); }
+  }
+
+  private removeOnEdit(permiso: Permiso) {
+    if (permiso.action) {
+      let i = -1;
+      this.listTipoUsuarioPermiso.forEach(o => {
+        if (o.cpermiso === permiso.cpermiso) {
+          i = this.listTipoUsuarioPermiso.indexOf(o);
+          o.cpermiso = -1;
+          o.ctipousuario = -1;
+          this.listDelete.push(o);
+        }
+      });
+      if (i !== -1) { this.listTipoUsuarioPermiso.splice(i, 1); }
+    } else {
+      let i = -1;
+      this.listAdd.forEach(o => {
+        if (o.cpermiso === permiso.cpermiso) { i = this.listAdd.indexOf(o); }
+      });
+      if (i !== -1) { this.listAdd.splice(i, 1); }
+    }
+  }
+
+  public removerPermisos() {
+    if (this.onEdit) { this.removeAllOnEdit(); }
+    this.permisosAsignados = [];
     this.listTipoUsuarioPermiso = [];
+  }
+
+  private removeAllOnEdit() {
+    this.listAdd = [];
+    this.listTipoUsuarioPermiso.forEach(o => {
+      if (o.ctipouspermiso !== undefined) {
+        o.ctipousuario = -1;
+        o.cpermiso = -1;
+        this.listDelete.push(o);
+      }
+    });
+  }
+
+  private asignarPermisos() {
+    this.listTipoUsuarioPermiso = [];
+    this.guardarPermisosDeTipoUsuario();
+  }
+
+  private createTipoUsuarioPermiso() {
     let tipouspermiso: TipoUsuarioPermiso;
-    this.permisosSelects.forEach(value => {
+    this.permisosAsignados.forEach(value => {
       tipouspermiso = new TipoUsuarioPermiso();
       tipouspermiso.ctipousuario = this.tipousuario.ctipousuario;
       tipouspermiso.cpermiso = value.cpermiso;
       this.listTipoUsuarioPermiso.push(tipouspermiso);
     });
-    console.log(this.listTipoUsuarioPermiso);
+  }
+
+  private guardarPermisosDeTipoUsuario() {
+    this.createTipoUsuarioPermiso();
     this.serviceUsuario.asignarPermisos(this.listTipoUsuarioPermiso).subscribe(data => {
-      this.router.navigate(['usuarios/tipos']);
+      if (data) {
+        this.load = false;
+        this.removeItemFromLocalStorage();
+        this.navigateList();
+      }
     });
   }
+
+  getPermisosAsignadosDeTipoUsuario() {
+    this.serviceUsuario.getPermisosAsigadosDeTipoUsuario(this.tipousuario.ctipousuario)
+      .subscribe(data => {
+        this.setPermisosAsignadosDeTipoUsuario(data);
+      });
+  }
+
+  private setPermisosAsignadosDeTipoUsuario(data: any[]) {
+    if (data.length !== 0) {
+      this.load = true;
+      this.listTipoUsuarioPermiso = data;
+      this.getPermisos();
+    }
+  }
+
+  private getPermisos() {
+    this.servicePermiso.getListPermisosById(this.listTipoUsuarioPermiso)
+      .subscribe(data => { this.setPermisos(data); });
+  }
+
+  private setPermisos(data: any[]) {
+    this.load = false;
+    if (data.length !== 0) {
+      data.forEach(o => { o.action = true; });
+      this.permisosAsignados = data;
+    }
+  }
+
+  public cancelar() {
+    this.removeItemFromLocalStorage();
+    this.navigateList();
+  }
+
+  private removeItemFromLocalStorage() {
+    localStorage.removeItem('tipousuarioId');
+  }
+
+  private navigateList() {
+    this.router.navigate(['usuarios/tipos']);
+  }
+
+  public eliminar() {
+    this.load = true;
+    this.serviceUsuario.eliminarTipoUsuario(this.id).subscribe(data => {
+      this.load = false;
+      if (data) {
+        this.navigateList();
+      }
+    });
+  }
+
 }

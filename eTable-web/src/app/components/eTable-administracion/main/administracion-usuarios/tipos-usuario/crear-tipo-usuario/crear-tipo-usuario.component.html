@@ -1,8 +1,14 @@
 <form novalidate>
     <div class="header-user-list">
-        <button type="submit" class="btn-nuevo ml-1 mr-1" (click)="crearTipoUsuario()">
+        <button *ngIf="onEdit" type="button" class="btn-nuevo ml-1 mr-1" (click)="eliminar()">
+            <i class="mdi mdi-delete f-16"></i> Eliminar
+        </button>
+        <button (click)="(onEdit ? actualizar() : crear())" type="submit" class="btn-nuevo ml-1 mr-1">
             <i class="mdi mdi-plus-box-multiple-outline f-16"></i> Guardar
-        </button>   
+        </button>
+        <button  type="button" class="btn-nuevo ml-1 mr-1" (click)="cancelar()">
+            <i class="mdi mdi-close-circle f-16"></i> Cancelar
+        </button>
     </div>
     <div *ngIf="load" class="div-loading" style="position:absolute"><img class="loading" src="{{loading}}" /></div>
 
@@ -15,7 +21,7 @@
                     </td>
                     <td>
                         <input name="tiponombre" [(ngModel)]="tipousuario.tiponombre"
-                            class="mb-2 form-control name-small form-control-sm" type="text" />
+                            class="mb-2 form-control input-small form-control-sm" type="text" />
                     </td>
                 </tr>
                 <tr>
@@ -24,7 +30,7 @@
                     </td>
                     <td>
                         <input input name="tipodescripcion" [(ngModel)]="tipousuario.tipodescripcion"
-                            class="mb-2 form-control form-control-sm descripcion-lg" type="text" />
+                            class="mb-2 form-control form-control-sm input-large" type="text" />
                     </td>
                 </tr>
             </tbody>
@@ -36,7 +42,7 @@
     <span><b>Asignar permisos</b></span>
     <hr class="mt-1" />
     <div class="row m-0 mb-5">
-        <div class="col-lg-6">
+        <div class="col-lg-6 col-sm-6">
             <div class="card">
                 <span class="card-header">Permisos del Sistema</span>
                 <div class="card-body card-permiso">
@@ -57,8 +63,7 @@
                                     <tbody>
                                         <tr *ngFor="let permiso of permisos[i]; let j = index">
                                             <td>
-                                                <button *ngIf="!permiso.selected"
-                                                 (click)="agregarPermiso(i, permiso)"
+                                                <button *ngIf="!permiso.selected" (click)="agregarPermiso(i, permiso)"
                                                     class="btn-permiso mr-1 btn-block">
                                                     <i class="mdi mdi-plus-box-outline"></i>
                                                     {{permiso.permiso}}</button>
@@ -75,13 +80,21 @@
             </div>
 
         </div>
-        <div class="col-lg-6">
+        <div class="col-lg-6 col-sm-6">
             <div class="card">
-                <span class="card-header">Permisos asignados</span>
+                <div class="row m-0 card-header">
+                    <div class="col-lg-6 col-sm-6 col-6 f-left">
+                        <span>Permisos asignados</span>
+                    </div>
+                    <div class="col-lg-6 col-sm-6 col-6">
+                        <button class="btn-remover-all f-right" (click)="removerPermisos()">
+                            <i class="mdi mdi-delete f-16"></i> Remover todos</button>
+                    </div>
+                </div>
                 <div class="card-body card-permiso">
-                    <div class="btn-permiso-asignado row"
-                    *ngFor="let permiso of permisosSelects">
-                    <button class="btn-remove-permiso" (click)="removerPermiso(permiso)"><i class="mdi mdi-delete"></i></button>
+                    <div class="btn-permiso-asignado row" title="Eliminar" (click)="removerPermiso(permiso)" *ngFor="let permiso of permisosAsignados">
+                        <button class="btn-remove-permiso"><i
+                                class="mdi mdi-delete"></i></button>
                         <div>{{permiso.permiso}}</div>
                     </div>
                 </div>

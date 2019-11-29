@@ -11,9 +11,9 @@ import { UsuariosService } from 'src/app/services/administracion/administracion-
 })
 export class TiposUsuarioComponent implements OnInit {
 
-  load: boolean;
-  loading: string;
-  tiposUsuario: TipoUsuario[];
+  public load: boolean;
+  public loading: string;
+  public list: TipoUsuario[];
   sinTipos: boolean;
 
   constructor(private router: Router, private service: UsuariosService) {
@@ -26,19 +26,24 @@ export class TiposUsuarioComponent implements OnInit {
     this.getTiposUsuario();
   }
 
-  nuevoTipoUsuario() {
-    this.router.navigate(['usuarios/tipos/crear']);
-  }
-
   getTiposUsuario() {
     this.service.getTiposUsuario().subscribe(data => {
       this.load = false;
       if (data.length !== 0) {
         this.sinTipos = false;
-        this.tiposUsuario = data;
+        this.list = data;
       } else{
         this.sinTipos = true;
       }
     });
+  }
+
+  nuevo() {
+    this.router.navigate(['usuarios/tipos/crear']);
+  }
+
+  editar(tipousuario: TipoUsuario) {
+    localStorage.setItem('tipousuarioId', tipousuario.ctipousuario.toString());
+    this.router.navigate(['usuarios/tipos/crear']);
   }
 }

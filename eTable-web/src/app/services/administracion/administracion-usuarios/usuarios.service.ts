@@ -19,14 +19,6 @@ export class UsuariosService {
     return this.http.get<TipoUsuario[]>(this.url + '/' + 'tipoUsuario' + '/' + 'list');
   }
 
-   /* getPermisosBySubItemForkJoin(subitems: MenuSubItem[]): Observable<any[]> {
-    const obs = [];
-    subitems.forEach(value => {
-      obs.push(this.http.get<Permiso[]>(this.url + '/' + 'permisosBySubItem' + '/' + value.csubitem));
-    });
-    return forkJoin(obs);
-  } */
-
   actualizarTipoUsuario(tipoUsuario: TipoUsuario) {
     return this.http.put<TipoUsuario>(this.url + '/' + 'tipoUsuario' + '/' + 'editarTipoUsuario', tipoUsuario);
   }
@@ -39,8 +31,22 @@ export class UsuariosService {
     return this.http.post<TipoUsuario>(this.url + '/' + 'tipoUsuario' + '/' + 'agregarTipoUsuario', tipoUsuario);
   }
 
-  asignarPermisos(tipouspermisos: TipoUsuarioPermiso[]) {
+  asignarPermisos(list: TipoUsuarioPermiso[]) {
     return this.http.post<boolean>(this.url + '/' + 'tipoUsuarioPermiso' + '/' +
-    'asignarPermisos', tipouspermisos);
+    'asignarPermisos', list);
+  }
+
+  removerPermisos(list: TipoUsuarioPermiso[]) {
+    return this.http.post<boolean>(this.url + '/' + 'tipoUsuarioPermiso' + '/' +
+    'removerPermisos', list);
+  }
+
+  getPermisosAsigadosDeTipoUsuario(id: number) {
+    return this.http.get<TipoUsuarioPermiso[]>(this.url + '/' + 'tipoUsuarioPermiso' +
+     '/' + id);
+  }
+
+  eliminarTipoUsuario(tipousuarioId: number) {
+    return this.http.delete<boolean>(this.url + '/' + 'tipoUsuario' + '/' + 'eliminarTipoUsuario' + '/' + tipousuarioId);
   }
 }

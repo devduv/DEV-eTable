@@ -11,8 +11,10 @@ public interface UsuariosService {
 	TipoUsuario getTipoUsuarioById(int ctipousuario);
 	List<TipoUsuario> getTiposUsuario();
 	TipoUsuario editTipoUsuario(TipoUsuario tipousuario);
+	boolean eliminarTipoUsuarioById(int id);
 	
-	List<TipoUsuarioPermiso> getPermisosDeTipoUsuario(int ctipousuario);
+	List<TipoUsuarioPermiso> getPermisosAsignadosDeTipoUsuario(int ctipousuario);
 	boolean asignarPermisosParaTipoUsuario(List<TipoUsuarioPermiso> tipouspermisos);
 	boolean editarPermisosDeTipoUsuario(List<TipoUsuarioPermiso> tipouspermisos);
+	boolean removerPermisos(List<TipoUsuarioPermiso> tipouspermisos);
 }

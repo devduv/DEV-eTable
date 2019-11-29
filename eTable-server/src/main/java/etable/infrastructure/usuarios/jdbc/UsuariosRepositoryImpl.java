@@ -83,7 +83,7 @@ public class UsuariosRepositoryImpl implements UsuariosRepository{
 	}
 
 	@Override
-	public List<TipoUsuarioPermiso> getPermisosDeTipoUsuario(int ctipousuario) {
+	public List<TipoUsuarioPermiso> getPermisosAsignadosDeTipoUsuario(int ctipousuario) {
 		String query = Query.selectFromWhere(Query.table_tipouspermiso, "CTIPOUSUARIO", ctipousuario);
 		List<Map<String, Object>> rows = this.jdbcTemplate.queryForList(query);
 		List<TipoUsuarioPermiso> list = this.row.mapRowTipoUsuarioPermiso(rows);
@@ -117,6 +117,37 @@ public class UsuariosRepositoryImpl implements UsuariosRepository{
 				i++;
 			}
 		}
+		return true;
+	}
+
+	@Override
+	public boolean eliminarTipoUsuarioById(TipoUsuario tipousuario) {
+		if (this.eliminarPermisosDeTipoUsuarioById(tipousuario.getCtipousuario())) {
+			String query = "DELETE FROM " + Query.table_tipousuario + " WHERE CTIPOUSUARIO = ? ";
+			int success = this.jdbcTemplate.update(query, tipousuario.getCtipousuario());
+			if (success != 0) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	@Override
+	public boolean eliminarPermisosDeTipoUsuarioById(int id) {
+		String query = "DELETE FROM " + Query.table_tipouspermiso + " WHERE CTIPOUSUARIO = ?";
+		int success = this.jdbcTemplate.update(query, id);
+		if (success >= 0) {
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public boolean removerPermisos(List<TipoUsuarioPermiso> tipouspermisos) {
+		String query = "DELETE FROM " + Query.table_tipouspermiso + " WHERE CTIPOUSPERMISO = ?";
+		tipouspermisos.forEach(o -> {
+			this.jdbcTemplate.update(query, o.getCtipouspermiso());
+		});
 		return true;
 	}
 

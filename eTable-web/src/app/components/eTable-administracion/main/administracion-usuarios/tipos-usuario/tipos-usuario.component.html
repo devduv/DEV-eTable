@@ -1,5 +1,5 @@
 <div class="header-user-list">
-    <button class="btn-nuevo ml-1 mr-1" (click)="nuevoTipoUsuario()">
+    <button class="btn-nuevo ml-1 mr-1" (click)="nuevo()">
         <i class="mdi mdi-plus-box-multiple-outline f-16"></i> Nuevo
     </button>
 </div>
@@ -19,9 +19,9 @@
             </tr>
         </thead>
         <tbody class="header-body">
-            <tr *ngFor="let tipousuario of tiposUsuario">
+            <tr *ngFor="let tipousuario of list">
                 <td>
-                    <button class="btn-edit mt-1">
+                    <button class="btn-edit mt-1" (click)="editar(tipousuario)">
                         <i class="mdi mdi-border-color" style="font-size: 20px;"></i>
                     </button>
 

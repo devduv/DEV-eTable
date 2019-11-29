@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Permiso } from 'src/app/domain/Permiso';
 import { forkJoin, Observable } from 'rxjs';
 import { MenuSubItem } from 'src/app/domain/MainMenu';
+import { TipoUsuarioPermiso } from 'src/app/domain/TipoUsuarioPermiso';
 
 @Injectable({
   providedIn: 'root'
@@ -36,5 +37,9 @@ export class PermisosService {
 
   getPermisoById(id: number) {
     return this.http.get<Permiso>(this.url + '/' + id);
+  }
+
+  getListPermisosById(tiposuspermiso: TipoUsuarioPermiso[]) {
+    return this.http.post<Permiso[]>(this.url + '/' + 'permisos' + '/' + 'tipousuario', tiposuspermiso);
   }
 }

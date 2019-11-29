@@ -11,8 +11,11 @@ public interface UsuariosRepository {
 	TipoUsuario getTipoUsuarioById(int ctipousuario);
 	List<TipoUsuario> getTiposUsuario();
 	TipoUsuario editTipoUsuario(TipoUsuario tipousuario);
+	boolean eliminarTipoUsuarioById(TipoUsuario tipousuario);
 	
-	List<TipoUsuarioPermiso> getPermisosDeTipoUsuario(int ctipousuario);
+	List<TipoUsuarioPermiso> getPermisosAsignadosDeTipoUsuario(int ctipousuario);
 	boolean asignarPermisosParaTipoUsuario(List<TipoUsuarioPermiso> tipouspermisos);
 	boolean editarPermisosDeTipoUsuario(List<TipoUsuarioPermiso> tipouspermisos);
+	boolean eliminarPermisosDeTipoUsuarioById(int id);
+	boolean removerPermisos(List<TipoUsuarioPermiso> tipouspermisos);
 }

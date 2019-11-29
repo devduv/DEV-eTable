@@ -36,8 +36,8 @@ public class UsuariosServiceImpl implements UsuariosService{
 	}
 
 	@Override
-	public List<TipoUsuarioPermiso> getPermisosDeTipoUsuario(int ctipousuario) {
-		return this.repository.getPermisosDeTipoUsuario(ctipousuario);
+	public List<TipoUsuarioPermiso> getPermisosAsignadosDeTipoUsuario(int ctipousuario) {
+		return this.repository.getPermisosAsignadosDeTipoUsuario(ctipousuario);
 	}
 
 	@Override
@@ -48,6 +48,21 @@ public class UsuariosServiceImpl implements UsuariosService{
 	@Override
 	public boolean editarPermisosDeTipoUsuario(List<TipoUsuarioPermiso> tipouspermisos) {
 		return this.repository.editarPermisosDeTipoUsuario(tipouspermisos);
+	}
+	
+	@Override
+	public boolean eliminarTipoUsuarioById(int id) {
+		TipoUsuario tipousuario = this.getTipoUsuarioById(id);
+		if (tipousuario != null) {
+			return this.repository.eliminarTipoUsuarioById(tipousuario);
+		}
+		return false;
+		
+	}
+
+	@Override
+	public boolean removerPermisos(List<TipoUsuarioPermiso> tipouspermisos) {
+		return this.repository.removerPermisos(tipouspermisos);
 	}
 
 }

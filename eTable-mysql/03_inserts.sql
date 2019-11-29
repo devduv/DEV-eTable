@@ -71,9 +71,6 @@ INSERT INTO TBPERMISOS (CSUBITEM, PERMISO, DESCRIPCION, ESTADO) VALUES
 (12, 'Acceso al Sistema de Reservación de Mesas', 'Este permiso permite el ingreso al Sistema de Reservación de Mesas para clientes y Atención de Cliente para los trabajadores del Restaurante.', 1),
 (13, 'Importar reportes', 'Este permiso permite importar datos al sistema.', 1),
 (13, 'Exportar reportes', 'Este permiso permite exportar datos al sistema.', 1);
-drop table tbtipousuariopermiso;
-drop table tbtipousuario;
-drop table tbpermisos;
 
 
 INSERT INTO TBUSUARIOS (NICKNAME, PASSWORD, USNOMBRE, USAPELLIDOS, ESTADO, USTIPO)
