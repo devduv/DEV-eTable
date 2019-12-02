@@ -13,9 +13,9 @@ import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Component;
 
-import etable.domain.usuarios.model.TipoUsuario;
-import etable.domain.usuarios.model.TipoUsuarioPermiso;
-import etable.domain.usuarios.repository.UsuariosRepository;
+import etable.domain.tipousuario.model.TipoUsuario;
+import etable.domain.tipousuario.model.TipoUsuarioPermiso;
+import etable.domain.tipousuario.repository.UsuariosRepository;
 import etable.web.constants.querys.Query;
 
 @Component

@@ -73,8 +73,8 @@ INSERT INTO TBPERMISOS (CSUBITEM, PERMISO, DESCRIPCION, ESTADO) VALUES
 (13, 'Exportar reportes', 'Este permiso permite exportar datos al sistema.', 1);
 
 
-INSERT INTO TBUSUARIOS (NICKNAME, PASSWORD, USNOMBRE, USAPELLIDOS, ESTADO, USTIPO)
-VALUES ('administrador', '$2a$10$ov5FpWF2fd6TmezlBz7PEuijaixY6EpQI4./6X.d6NyE.rwyCnXJO', 'Nataly Grace', 'Vasquez Saenz', 1, 1);
+INSERT INTO TBUSUARIOS (NICKNAME, PASSWORD, USNOMBRE, USAPELLIDOS, ESTADO)
+VALUES ('administrador', '$2a$10$ov5FpWF2fd6TmezlBz7PEuijaixY6EpQI4./6X.d6NyE.rwyCnXJO', 'Nataly Grace', 'Vasquez Saenz', 1);
 
 
 -- INSERT INTO TBPERFILMESA (PMNOMBRE, PMDESCRIPCION, PMCAPACIDAD, PMCOMPUESTA) VALUES ('Personal', 'Tipo de Mesa para 1 persona', 1, 1);

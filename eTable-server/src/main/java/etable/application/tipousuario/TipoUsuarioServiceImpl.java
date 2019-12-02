@@ -1,16 +1,15 @@
-package etable.application.usuarios;
+package etable.application.tipousuario;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import etable.domain.usuarios.model.TipoUsuario;
-import etable.domain.usuarios.model.TipoUsuarioPermiso;
-import etable.domain.usuarios.repository.UsuariosRepository;
+import etable.domain.tipousuario.model.TipoUsuario;
+import etable.domain.tipousuario.model.TipoUsuarioPermiso;
+import etable.domain.tipousuario.repository.UsuariosRepository;
 
 @Service
-public class UsuariosServiceImpl implements UsuariosService{
+public class TipoUsuarioServiceImpl implements TipoUsuarioService{
 
 	@Autowired
 	private UsuariosRepository repository;
@@ -57,7 +56,6 @@ public class UsuariosServiceImpl implements UsuariosService{
 			return this.repository.eliminarTipoUsuarioById(tipousuario);
 		}
 		return false;
-		
 	}
 
 	@Override

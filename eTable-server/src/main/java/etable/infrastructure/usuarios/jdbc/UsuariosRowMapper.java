@@ -9,8 +9,8 @@ import javax.swing.tree.TreePath;
 
 import org.springframework.stereotype.Component;
 
-import etable.domain.usuarios.model.TipoUsuario;
-import etable.domain.usuarios.model.TipoUsuarioPermiso;
+import etable.domain.tipousuario.model.TipoUsuario;
+import etable.domain.tipousuario.model.TipoUsuarioPermiso;
 
 @Component
 public class UsuariosRowMapper implements RowMapper {

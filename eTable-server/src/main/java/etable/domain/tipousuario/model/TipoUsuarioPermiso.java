@@ -1,4 +1,4 @@
-package etable.domain.usuarios.model;
+package etable.domain.tipousuario.model;
 
 public class TipoUsuarioPermiso {
 
