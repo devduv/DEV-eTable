@@ -140,37 +140,34 @@ export class CrearTipoUsuarioComponent implements OnInit {
   }
 
   actualizarTipoUsuario() {
-    const obs = [];
-    if (this.listDelete.length > 0) {
-      this.desasignarListPermisos().subscribe(o => {
-
+    if (this.listDelete.length > 0 && this.listAdd.length > 0) {
+      this.actualizarListPermisos().subscribe(o => {
+        if (o) {
+          this.navigateList();
+        }
       });
-    }
-    if (this.listAdd.length > 0) {
-      this.asignarListPermisos().subscribe( o => {
-
+    } else if (this.listDelete.length > 0) {
+      this.serviceUsuario.removerPermisos(this.listDelete).subscribe(data => {
+        if (data) {
+          this.navigateList();
+        }
       });
+    } else if (this.listAdd.length > 0) {
+      this.serviceUsuario.asignarPermisos(this.listAdd).subscribe(data => {
+        if (data) {
+          this.navigateList();
+        }
+      });
+    } else {
+      this.navigateList();
     }
   }
 
-  desasignarListPermisos(): Observable<any> {
+  actualizarListPermisos(): Observable<any> {
     const obs = [];
-    obs.push(this.serviceUsuario.removerPermisos(this.listDelete).subscribe(data => {
-      if (data) {
-        console.log('eliminados...');
-      }
-    }));
-    return forkJoin(obs[0]);
-  }
-
-  asignarListPermisos(): Observable<any> {
-    const obs = [];
-    obs.push(this.serviceUsuario.asignarPermisos(this.listAdd).subscribe(data => {
-      if (data) {
-        console.log('Agregados...');
-      }
-    }));
-    return forkJoin(obs[0]);
+    obs.push(this.serviceUsuario.asignarPermisos(this.listAdd),
+    this.serviceUsuario.removerPermisos(this.listDelete));
+    return forkJoin(obs);
   }
 
   private estaVacio() {
@@ -271,7 +268,6 @@ export class CrearTipoUsuarioComponent implements OnInit {
     this.serviceUsuario.asignarPermisos(this.listTipoUsuarioPermiso).subscribe(data => {
       if (data) {
         this.load = false;
-        this.removeItemFromLocalStorage();
         this.navigateList();
       }
     });
@@ -306,7 +302,6 @@ export class CrearTipoUsuarioComponent implements OnInit {
   }
 
   public cancelar() {
-    this.removeItemFromLocalStorage();
     this.navigateList();
   }
 
@@ -315,6 +310,7 @@ export class CrearTipoUsuarioComponent implements OnInit {
   }
 
   private navigateList() {
+    this.removeItemFromLocalStorage();
     this.router.navigate(['usuarios/tipos']);
   }
 

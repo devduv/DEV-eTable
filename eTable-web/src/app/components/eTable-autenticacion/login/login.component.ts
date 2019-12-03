@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output } from '@angular/core';
+import { Component, OnInit, Input, Output} from '@angular/core';
 import { Router } from '@angular/router';
 import { Path } from 'src/app/infrastructure/constans/Path';
 import { User } from 'src/app/domain/User';
@@ -12,8 +12,8 @@ import { LoginService } from 'src/app/services/authentication/login.service';
 })
 export class LoginComponent implements OnInit {
 
-  @Input() @Output()
   public authentication: boolean;
+  public registration: boolean;
   public notuser: boolean;
   public notuserexist: boolean;
   public notpass: boolean;
@@ -21,9 +21,9 @@ export class LoginComponent implements OnInit {
   public notPassEmpty: string;
   public notUserExist: string;
   public logo: string;
-  public user: User;
   public loading: string;
   public load: boolean;
+  public user: User;
   public serverConected: boolean;
 
   constructor(private router: Router, private service: LoginService) {
@@ -32,12 +32,13 @@ export class LoginComponent implements OnInit {
     this.notpass = false;
     this.notuserexist = false;
     this.load = false;
+    this.loading = Path.loading;
     this.serverConected = true;
     this.notUserEmpty = Mensaje.notUserEmpty;
     this.notPassEmpty = Mensaje.notPassEmpty;
     this.notUserExist = Mensaje.notUserExist;
-    this.loading = Path.loading;
     this.user = new User();
+    this.registration = false;
   }
 
   ngOnInit() {
@@ -48,7 +49,7 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  getAuth(auth: string) {
+  private getAuth(auth: string) {
     if (auth === 'true') {
       this.authentication = true;
     } else {
@@ -56,7 +57,7 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  login() {
+  public login() {
     this.serverConected = true;
     if (this.user.nickname === undefined || this.user.nickname.trim() === '' || this.user.nickname.length === 0) {
       this.notUser(1);
@@ -66,6 +67,13 @@ export class LoginComponent implements OnInit {
       this.load = true;
       this.authenticationByNickname(this.user.nickname, this.user.password);
     }
+  }
+
+  public prueba(event: any) {
+
+  }
+  public register() {
+    this.registration = true;
   }
 
   authenticationByNickname(nickname: string, password: string) {
