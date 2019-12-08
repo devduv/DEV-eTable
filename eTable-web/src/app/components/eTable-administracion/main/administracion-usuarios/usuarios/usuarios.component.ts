@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { TipoUsuarioService } from 'src/app/services/administracion/administracion-usuarios/tipo-usuario.service';
+import { User } from 'src/app/domain/User';
+import { UsuarioService } from 'src/app/services/administracion/administracion-usuarios/usuarios.service';
+import { Path } from 'src/app/infrastructure/constans/Path';
 
 @Component({
   selector: 'app-usuarios',
@@ -8,12 +12,20 @@ import { Router } from '@angular/router';
 })
 export class UsuariosComponent implements OnInit {
 
+  public usuarios: User[];
   estado: boolean;
-  constructor(private router: Router) {
+  sinUsuarios: boolean;
+  public load: boolean;
+  public loading: string;
+  constructor(private router: Router, private service: UsuarioService) {
     this.estado = false;
+    this.sinUsuarios = false;
+    this.load = true;
+    this.loading = Path.loading;
    }
 
   ngOnInit() {
+    this.getUsuarios();
   }
 
   cambiarEstadoUsuario(id: number, estado: boolean) {
@@ -22,5 +34,15 @@ export class UsuariosComponent implements OnInit {
 
   nuevoUsuario() {
     this.router.navigate(['usuarios/crear']);
+  }
+
+  private getUsuarios() {
+    this.service.getUsarios().subscribe(data => {
+      this.load = false;
+      this.usuarios = data;
+      if (this.usuarios.length !== 0) {
+        this.sinUsuarios = false;
+      }
+    });
   }
 }

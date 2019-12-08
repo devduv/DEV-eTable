@@ -25,10 +25,12 @@ import { ImportarExportarComponent } from './components/eTable-administracion/ma
 import { CreatePerfilMesaComponent } from './components/eTable-administracion/main/administracion-mesas/perfil-mesa/create-perfil-mesa/create-perfil-mesa.component';
 import { EditarPermisoComponent } from './components/eTable-administracion/main/administracion-usuarios/permisos/editar-permiso/editar-permiso.component';
 import { CrearTipoUsuarioComponent } from './components/eTable-administracion/main/administracion-usuarios/tipos-usuario/crear-tipo-usuario/crear-tipo-usuario.component';
+import { RegisterComponent } from './components/eTable-autenticacion/register/register.component';
 
 const routes: Routes = [
-  { path: 'login', component: LoginComponent },
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: 'eTable', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: '', redirectTo: 'eTable', pathMatch: 'full' },
   { path: 'sistema/general', component: GeneralComponent},
   { path: 'sistema/configuracion', component: ConfiguracionComponent},
 

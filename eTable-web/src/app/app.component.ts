@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 })
 export class AppComponent implements OnInit, DoCheck {
   authentication: boolean;
+  register: boolean;
   navOpen: boolean;
   title: string;
   public date: number;
@@ -27,7 +28,6 @@ export class AppComponent implements OnInit, DoCheck {
     this.title = localStorage.getItem('title');
     const auth = localStorage.getItem('authentication');
     this.getAuth(auth);
-
   }
 
   getAuth(auth: string) {

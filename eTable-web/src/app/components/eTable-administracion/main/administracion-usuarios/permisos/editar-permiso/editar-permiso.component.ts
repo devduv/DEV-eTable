@@ -42,6 +42,7 @@ export class EditarPermisoComponent implements OnInit {
   }
 
   guardar() {
+    this.removeLocalStorage();
     this.load = true;
     this.service.actualizarPermiso(this.permiso).subscribe(data => {
       if ( data !== null) {
@@ -59,5 +60,14 @@ export class EditarPermisoComponent implements OnInit {
 
   setBtnText() {
     this.btn = (this.permiso.estado ? 'Habilitado' : 'Deshabilitado');
+  }
+
+  cancelar() {
+    this.removeLocalStorage();
+    this.router.navigate(['usuarios/permisos']);
+  }
+
+  removeLocalStorage() {
+    localStorage.removeItem('permisoId');
   }
 }

@@ -189,7 +189,7 @@
     color: white;
     height: 100%;
     padding: 5px;
-    background-color: rgb(7, 71, 166);
+    background-color: rgb(13, 76, 172);
 }
 
 .btn-asignar:hover{
@@ -227,4 +227,15 @@
 .action-success{
     font-size: 13px;
     color: green;
+}
+
+.not-complete{
+    margin-left: 15px;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 5px;
+    padding: 5px;
+    border-color: #cc0000;
+    font-size: 13px;
+    color: #cc0000;
 }

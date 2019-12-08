@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output } from '@angular/core';
+import { Component, OnInit, Input, Output, DoCheck} from '@angular/core';
 import { Router } from '@angular/router';
 import { Path } from 'src/app/infrastructure/constans/Path';
 import { User } from 'src/app/domain/User';
@@ -10,10 +10,10 @@ import { LoginService } from 'src/app/services/authentication/login.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, DoCheck {
 
-  @Input() @Output()
   public authentication: boolean;
+  public registration: boolean;
   public notuser: boolean;
   public notuserexist: boolean;
   public notpass: boolean;
@@ -21,9 +21,9 @@ export class LoginComponent implements OnInit {
   public notPassEmpty: string;
   public notUserExist: string;
   public logo: string;
-  public user: User;
   public loading: string;
   public load: boolean;
+  public user: User;
   public serverConected: boolean;
 
   constructor(private router: Router, private service: LoginService) {
@@ -32,12 +32,13 @@ export class LoginComponent implements OnInit {
     this.notpass = false;
     this.notuserexist = false;
     this.load = false;
+    this.loading = Path.loading;
     this.serverConected = true;
     this.notUserEmpty = Mensaje.notUserEmpty;
     this.notPassEmpty = Mensaje.notPassEmpty;
     this.notUserExist = Mensaje.notUserExist;
-    this.loading = Path.loading;
     this.user = new User();
+    this.registration = false;
   }
 
   ngOnInit() {
@@ -48,7 +49,16 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  getAuth(auth: string) {
+  ngDoCheck() {
+    const register = localStorage.getItem('registration');
+    if (register === 'true') {
+      this.registration = true;
+    } else {
+      this.registration = false;
+    }
+  }
+
+  private getAuth(auth: string) {
     if (auth === 'true') {
       this.authentication = true;
     } else {
@@ -56,7 +66,7 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  login() {
+  public login() {
     this.serverConected = true;
     if (this.user.nickname === undefined || this.user.nickname.trim() === '' || this.user.nickname.length === 0) {
       this.notUser(1);
@@ -68,9 +78,15 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  public prueba(event: any) {
+
+  }
+  public register() {
+    localStorage.setItem('registration', 'true');
+  }
+
   authenticationByNickname(nickname: string, password: string) {
     this.service.findUserByNickname(nickname).subscribe(data => {
-      console.log(data);
       if (data !== null) {
         const user = new User();
         user.cusuario = data.cusuario;
@@ -91,6 +107,7 @@ export class LoginComponent implements OnInit {
     this.service.authenticationLogin(user).subscribe(data => {
       this.load = false;
       if (data != null) {
+        this.user = data;
         this.setAuthentication();
       } else {
         this.notUser(2);
@@ -100,6 +117,8 @@ export class LoginComponent implements OnInit {
 
   setAuthentication() {
     this.authentication = true;
+    localStorage.setItem('nickname', this.user.nickname);
+    localStorage.setItem('password', this.user.password);
     localStorage.setItem('authentication', 'true');
     this.router.navigate(['main']);
   }

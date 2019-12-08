@@ -4,4 +4,6 @@ export class Permiso {
     permiso: string;
     descripcion: string;
     estado: boolean;
+    selected: boolean;
+    action: boolean;
 }
