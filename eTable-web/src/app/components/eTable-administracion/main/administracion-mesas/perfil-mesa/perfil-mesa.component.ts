@@ -12,21 +12,44 @@ import { Path } from 'src/app/infrastructure/constans/Path';
 export class PerfilMesaComponent implements OnInit {
 
 
+    // configuracion: Configuracion;
+    // prevconfiguracion: Configuracion;
+    // load: boolean;
+     edit: boolean;
+    // saving: boolean;
+    // loading: string;
+     btn: string;
+    // empty: boolean;
+    // emptyText: string;
+    // diasAtencion: any[];
+    // dias: any[];
+    success: boolean;
+    // successText: string;
+
+
   public perfiles: PerfilMesa[];
   load: boolean;
   loading: string;
   constructor(private router: Router, private service: PerfilMesasService) {
     this.load = true;
     this.loading = Path.loading;
+    console.log("path",this.loading);
   }
 
   ngOnInit() {
     this.service.getPerfilesMesa().subscribe(data => {
       this.load = false;
+      console.log("data",data);
       if (data.length !== 0) {
         this.perfiles = data;
       }
     });
+  }
+
+  editar() {
+    this.edit = !this.edit;
+    this.success = false;
+    this.btn = 'Guardar';
   }
 
   nuevoPerfil() {

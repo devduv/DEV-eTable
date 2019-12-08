@@ -58,6 +58,7 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.serverConected = true;
+    console.log( "user", this.user) ; 
     if (this.user.nickname === undefined || this.user.nickname.trim() === '' || this.user.nickname.length === 0) {
       this.notUser(1);
     } else if (this.user.password === undefined || this.user.password.trim() === '' || this.user.password.length === 0) {

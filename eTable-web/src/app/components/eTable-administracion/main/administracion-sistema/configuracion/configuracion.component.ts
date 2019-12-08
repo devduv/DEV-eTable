@@ -53,7 +53,7 @@ export class ConfiguracionComponent implements OnInit {
 
   getConfiguracionParametros() {
     this.service.getConfiguracionParametros().subscribe(data => {
-      console.log(data);
+      console.log("data",data);
       if (data != null) {
         this.load = false;
         this.configuracion.setParametros(data);

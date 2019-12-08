@@ -1,0 +1,65 @@
+<div class="header-user-list">
+    <button class="btn-nuevo ml-2 mr-1" (click)="guardarCambios()">
+            <i  class="mdi f-16  mdi-plus-box-multiple-outline "></i> Guardar
+        </button>
+
+    <span *ngIf="success" class="ml-3 action-success">
+        <i class="mdi mdi-check-circle mr-1"></i>
+        {{successText}} <br/></span>
+    <button  class="btn-nuevo ml-1 mr-1" (click)="cancelar()">
+        <i class="mdi mdi-close-circle f-16"></i> Cancelar
+    </button>
+</div>
+ <!-- <div *ngIf="empty" class="mt-3"><span class="not-complete">{{emptyText}}</span></div>  -->
+<div *ngIf="load || saving" class="div-loading" style="position:absolute"><img class="loading" src="{{loading}}" />
+</div>
+<div class="ml-4 mt-3 f-13">
+    <span><b>Agregar un nuevo Perfil de Mesa</b></span>
+    <hr class="mt-1" />
+    <div class="table-responsive">
+        <table class="mb-4">
+        
+             <tbody>
+                    <tr>
+                            <td>
+                                <span class="mr-2">Nombre de Mesa</span>
+                            </td>
+                            <td>
+                                <input  [(ngModel)]= "perfil.pmnombre"     class="mb-2 form-control input-small form-control-sm"  />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="mr-2">Descripcion de Mesa:</span>
+                            </td>
+                            <td>
+                                <input  [(ngModel)]= "perfil.pmdescripcion"    class="mb-2 form-control form-control-sm input-small" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="mr-2">Capacidad de Mesa:</span>
+                            </td>
+                            <td>
+                                <input  [(ngModel)]= "perfil.pmcapacidad"    class="mb-2 form-control form-control-sm input-small" min="1"
+                                    max="10" type="number" />
+                            </td>
+                        </tr>
+                <!-- <tr>
+                    <td>
+                        <span class="mr-2">Composición: </span>
+                    </td>
+                    <td>
+                            <button [disabled]="edit" (click) = "activarDia(dia.id)"
+                                [ngClass]="dia.activo ? 'btn-dias-selected': 'btn-dias-no-selected'"
+                                *ngFor="let dia of dias; let i = index"
+                                class="mb-2">{{dia.dia}}</button>
+
+                    </td>
+                </tr> -->
+            </tbody>
+
+        </table>
+               
+    </div>
+</div>
