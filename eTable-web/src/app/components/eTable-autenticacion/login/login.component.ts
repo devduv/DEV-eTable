@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output} from '@angular/core';
+import { Component, OnInit, Input, Output, DoCheck} from '@angular/core';
 import { Router } from '@angular/router';
 import { Path } from 'src/app/infrastructure/constans/Path';
 import { User } from 'src/app/domain/User';
@@ -10,7 +10,7 @@ import { LoginService } from 'src/app/services/authentication/login.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, DoCheck {
 
   public authentication: boolean;
   public registration: boolean;
@@ -49,6 +49,15 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  ngDoCheck() {
+    const register = localStorage.getItem('registration');
+    if (register === 'true') {
+      this.registration = true;
+    } else {
+      this.registration = false;
+    }
+  }
+
   private getAuth(auth: string) {
     if (auth === 'true') {
       this.authentication = true;
@@ -73,12 +82,11 @@ export class LoginComponent implements OnInit {
 
   }
   public register() {
-    this.registration = true;
+    localStorage.setItem('registration', 'true');
   }
 
   authenticationByNickname(nickname: string, password: string) {
     this.service.findUserByNickname(nickname).subscribe(data => {
-      console.log(data);
       if (data !== null) {
         const user = new User();
         user.cusuario = data.cusuario;
@@ -99,6 +107,7 @@ export class LoginComponent implements OnInit {
     this.service.authenticationLogin(user).subscribe(data => {
       this.load = false;
       if (data != null) {
+        this.user = data;
         this.setAuthentication();
       } else {
         this.notUser(2);
@@ -108,6 +117,8 @@ export class LoginComponent implements OnInit {
 
   setAuthentication() {
     this.authentication = true;
+    localStorage.setItem('nickname', this.user.nickname);
+    localStorage.setItem('password', this.user.password);
     localStorage.setItem('authentication', 'true');
     this.router.navigate(['main']);
   }

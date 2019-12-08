@@ -4,28 +4,45 @@ public class User{
 
 	private int cusuario;
 	private String nickname;
-	private String email;
-	private String phone;
-	private String dni;
-	private String date;
-	private int estado;
-	private int ustipo;
+	private String password;
+	private String usnombres;
+	private String usapellidos;
+	private boolean estado;
+	private int ctipousuario;
 	
 	public User() {
 		
 	}
 
-	public User(int cusuario, String nickname, String email, String phone, String dni, String date, int estado,
-			int ustipo) {
+	public User(int cusuario, String nickname, String usnombres, String usapellidos, boolean estado, int ctipousuario) {
 		super();
 		this.cusuario = cusuario;
 		this.nickname = nickname;
-		this.email = email;
-		this.phone = phone;
-		this.dni = dni;
-		this.date = date;
+		this.usnombres = usnombres;
+		this.usapellidos = usapellidos;
 		this.estado = estado;
-		this.ustipo = ustipo;
+		this.ctipousuario = ctipousuario;
+	}
+
+	
+	public User(int cusuario, String nickname, String password, String usnombres, String usapellidos, boolean estado,
+			int ctipousuario) {
+		super();
+		this.cusuario = cusuario;
+		this.nickname = nickname;
+		this.password = password;
+		this.usnombres = usnombres;
+		this.usapellidos = usapellidos;
+		this.estado = estado;
+		this.ctipousuario = ctipousuario;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public int getCusuario() {
@@ -44,52 +61,43 @@ public class User{
 		this.nickname = nickname;
 	}
 
-	public String getEmail() {
-		return email;
+	public String getUsnombres() {
+		return usnombres;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setUsnombres(String usnombres) {
+		this.usnombres = usnombres;
 	}
 
-	public String getPhone() {
-		return phone;
+	public String getUsapellidos() {
+		return usapellidos;
 	}
 
-	public void setPhone(String phone) {
-		this.phone = phone;
+	public void setUsapellidos(String usapellidos) {
+		this.usapellidos = usapellidos;
 	}
 
-	public String getDni() {
-		return dni;
-	}
-
-	public void setDni(String dni) {
-		this.dni = dni;
-	}
-
-	public String getDate() {
-		return date;
-	}
-
-	public void setDate(String date) {
-		this.date = date;
-	}
-
-	public int getEstado() {
+	public boolean isEstado() {
 		return estado;
 	}
 
-	public void setEstado(int estado) {
+	public void setEstado(boolean estado) {
 		this.estado = estado;
 	}
 
-	public int getUstipo() {
-		return ustipo;
+	public int getCtipousuario() {
+		return ctipousuario;
 	}
 
-	public void setUstipo(int ustipo) {
-		this.ustipo = ustipo;
+	public void setCtipousuario(int ctipousuario) {
+		this.ctipousuario = ctipousuario;
+	}
+
+	@Override
+	public String toString() {
+		return "User [cusuario=" + cusuario + ", nickname=" + nickname + ", password=" + password + ", usnombres="
+				+ usnombres + ", usapellidos=" + usapellidos + ", estado=" + estado + ", ctipousuario=" + ctipousuario
+				+ "]";
 	}
 
 }

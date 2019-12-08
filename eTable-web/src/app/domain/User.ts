@@ -4,10 +4,7 @@ export class User {
     password: string;
     usnombres: string;
     usapellidos: string;
-    email: string;
-    phone: string;
-    date: string;
-    dni: string;
     ctipousuario: number;
+    tiponombre: string;
     estado: boolean;
 }

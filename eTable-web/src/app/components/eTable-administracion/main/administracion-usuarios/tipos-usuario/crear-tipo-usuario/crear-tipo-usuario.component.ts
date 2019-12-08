@@ -6,7 +6,7 @@ import { MenuItem, MenuSubItem } from 'src/app/domain/MainMenu';
 import { MainMenuService } from 'src/app/services/administracion/sistema/main-menu.service';
 import { PermisosService } from 'src/app/services/administracion/administracion-usuarios/permisos.service';
 import { Permiso } from 'src/app/domain/Permiso';
-import { UsuariosService } from 'src/app/services/administracion/administracion-usuarios/usuarios.service';
+import { TipoUsuarioService } from 'src/app/services/administracion/administracion-usuarios/tipo-usuario.service';
 import { TipoUsuarioPermiso } from 'src/app/domain/TipoUsuarioPermiso';
 import { forkJoin, Observable, Subscription } from 'rxjs';
 
@@ -37,7 +37,7 @@ export class CrearTipoUsuarioComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private serviceUsuario: UsuariosService,
+    private serviceUsuario: TipoUsuarioService,
     private servicePermiso: PermisosService,
     private serviceMainMenu: MainMenuService) {
     this.load = true;

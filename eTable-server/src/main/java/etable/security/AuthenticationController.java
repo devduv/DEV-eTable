@@ -21,7 +21,7 @@ public class AuthenticationController {
 	private AuthenticationService service;
 	
 	
-	@GetMapping(path = {"/finduserbynickname/{nickname}"})
+	@GetMapping(path = {"/finduserbynickname/{nickname:.+}"})
 	public Authentication buscarUsuarioSiExiste(@PathVariable String nickname) {
 		return this.service.buscarUsuarioSiExiste(nickname);
 	}

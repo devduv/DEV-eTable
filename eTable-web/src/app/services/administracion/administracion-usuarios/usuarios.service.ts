@@ -4,49 +4,32 @@ import { forkJoin, Observable } from 'rxjs';
 import { MenuSubItem } from 'src/app/domain/MainMenu';
 import { TipoUsuario } from 'src/app/domain/TipoUsuario';
 import { TipoUsuarioPermiso } from 'src/app/domain/TipoUsuarioPermiso';
+import { Cliente } from 'src/app/domain/Cliente';
+import { User } from 'src/app/domain/User';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UsuariosService {
+export class UsuarioService {
 
   private url: string;
   constructor(private http: HttpClient) {
-    this.url = 'etable/api/usuarios';
+    this.url = 'etable/api/user';
   }
 
-  getTiposUsuario() {
-    return this.http.get<TipoUsuario[]>(this.url + '/' + 'tipoUsuario' + '/' + 'list');
+  public crearUsuario(user: User) {
+    return this.http.post<User>(this.url + '/' + 'crearUsuario', user);
   }
 
-  actualizarTipoUsuario(tipoUsuario: TipoUsuario) {
-    return this.http.put<TipoUsuario>(this.url + '/' + 'tipoUsuario' + '/' + 'editarTipoUsuario', tipoUsuario);
+  public crearCliente(user: User, cliente: Cliente) {
+    return this.http.post<Cliente>(this.url + '/crearCliente', {'user': user, 'cliente': cliente});
   }
 
-  getTipoUsuarioById(id: number) {
-    return this.http.get<TipoUsuario>(this.url + '/' + 'tipoUsuario' + '/' + id);
+  public getUsuarioByAuthentication(user: User) {
+    return this.http.post<User>(this.url + '/obtenerUsuario', user);
   }
 
-  crearTipoUsuario(tipoUsuario: TipoUsuario) {
-    return this.http.post<TipoUsuario>(this.url + '/' + 'tipoUsuario' + '/' + 'agregarTipoUsuario', tipoUsuario);
-  }
-
-  asignarPermisos(list: TipoUsuarioPermiso[]) {
-    return this.http.post<boolean>(this.url + '/' + 'tipoUsuarioPermiso' + '/' +
-    'asignarPermisos', list);
-  }
-
-  removerPermisos(list: TipoUsuarioPermiso[]) {
-    return this.http.post<boolean>(this.url + '/' + 'tipoUsuarioPermiso' + '/' +
-    'removerPermisos', list);
-  }
-
-  getPermisosAsigadosDeTipoUsuario(id: number) {
-    return this.http.get<TipoUsuarioPermiso[]>(this.url + '/' + 'tipoUsuarioPermiso' +
-     '/' + id);
-  }
-
-  eliminarTipoUsuario(tipousuarioId: number) {
-    return this.http.delete<boolean>(this.url + '/' + 'tipoUsuario' + '/' + 'eliminarTipoUsuario' + '/' + tipousuarioId);
+  public getUsarios() {
+    return this.http.get<User[]>(this.url + '/' + 'obtenerUsuarios');
   }
 }

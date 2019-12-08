@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { UsuariosService } from 'src/app/services/administracion/administracion-usuarios/usuarios.service';
+import { TipoUsuarioService } from 'src/app/services/administracion/administracion-usuarios/tipo-usuario.service';
 import { User } from 'src/app/domain/User';
+import { UsuarioService } from 'src/app/services/administracion/administracion-usuarios/usuarios.service';
+import { Path } from 'src/app/infrastructure/constans/Path';
 
 @Component({
   selector: 'app-usuarios',
@@ -13,9 +15,13 @@ export class UsuariosComponent implements OnInit {
   public usuarios: User[];
   estado: boolean;
   sinUsuarios: boolean;
-  constructor(private router: Router, private service: UsuariosService) {
+  public load: boolean;
+  public loading: string;
+  constructor(private router: Router, private service: UsuarioService) {
     this.estado = false;
-    this.sinUsuarios = true;
+    this.sinUsuarios = false;
+    this.load = true;
+    this.loading = Path.loading;
    }
 
   ngOnInit() {
@@ -31,17 +37,12 @@ export class UsuariosComponent implements OnInit {
   }
 
   private getUsuarios() {
-    const user = new User();
-    user.ctipousuario = 1;
-    user.nickname = 'Admin';
-    user.usnombres = 'DUvan';
-    user.usapellidos = 'saenz';
-    this.usuarios = [user];
-    if (this.usuarios.length !== 0) {
-      this.sinUsuarios = false;
-    }
-    /*this.service.getUsuarios().subscribe(data => {
-
-    });*/
+    this.service.getUsarios().subscribe(data => {
+      this.load = false;
+      this.usuarios = data;
+      if (this.usuarios.length !== 0) {
+        this.sinUsuarios = false;
+      }
+    });
   }
 }

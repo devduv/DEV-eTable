@@ -8,10 +8,18 @@ public class Query {
 	public static final String table_menuitems = "TBMENUITEMS";
 	public static final String table_menusubitems = "TBMENUSUBITEMS";
 	public static final String table_tipousuario = "TBTIPOUSUARIO";
+	public static final String table_usuarios = "TBUSUARIOS";
 	public static final String table_tipouspermiso = "TBTIPOUSUARIOPERMISO";
+	public static final String table_clientes = "TBCLIENTES";
 	
 	public static final String insert_tipousuario = 
 			"INSERT INTO " + table_tipousuario + "( TIPONOMBRE, TIPODESCRIPCION) VALUES (?,?)";
+	
+	public static final String insert_usuario =
+			"INSERT INTO " + table_usuarios + "(NICKNAME, PASSWORD, CTIPOUSUARIO, USNOMBRE, USAPELLIDOS, ESTADO) VALUES (?, ?, ?, ? ,? ,?)";
+	
+	public static final String insert_cliente = 
+			"INSERT INTO " + table_clientes + "(DNI, CUSUARIO, EMAIL, PHONE, DATE) VALUES (?, ?, ?, ?, ?)";
 	
 	public static String update_configuracion =  
 			"UPDATE " + Query.table_configuracion + 

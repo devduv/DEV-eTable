@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Path } from 'src/app/infrastructure/constans/Path';
 import { TipoUsuario } from 'src/app/domain/TipoUsuario';
-import { UsuariosService } from 'src/app/services/administracion/administracion-usuarios/usuarios.service';
+import { TipoUsuarioService } from 'src/app/services/administracion/administracion-usuarios/tipo-usuario.service';
 
 @Component({
   selector: 'app-tiposusuario',
@@ -16,7 +16,7 @@ export class TiposUsuarioComponent implements OnInit {
   public list: TipoUsuario[];
   sinTipos: boolean;
 
-  constructor(private router: Router, private service: UsuariosService) {
+  constructor(private router: Router, private service: TipoUsuarioService) {
     this.load = true;
     this.loading = Path.loading;
     this.sinTipos = false;
