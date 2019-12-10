@@ -3,7 +3,7 @@ import { SistemaGeneralService } from 'src/app/services/administracion/sistema/s
 import { Configuracion } from 'src/app/domain/Configuracion';
 import { Path } from 'src/app/infrastructure/constans/Path';
 import { Mensaje } from 'src/app/infrastructure/constans/Mensaje';
-
+import { ImageSelected } from 'src/app/infrastructure/plugins/ImageSelected';
 @Component({
   selector: 'app-general',
   templateUrl: './general.component.html',
@@ -11,6 +11,7 @@ import { Mensaje } from 'src/app/infrastructure/constans/Mensaje';
 })
 export class GeneralComponent implements OnInit {
 
+  image: ImageSelected ;
   configuracion: Configuracion;
   prevconfiguracion: Configuracion;
   load: boolean;
@@ -179,11 +180,20 @@ export class GeneralComponent implements OnInit {
     this.initConfig();
   }
 
-  cancelar() {
+  public cancelar() {
     this.configuracion.setConfiguracion(this.prevconfiguracion);
     this.initConfig();
     this.btn = 'Editar';
     this.edit = !this.edit;
     this.empty = false;
+    this.image = null;
   }
+
+  public onUploadFinish(event) {
+    this.image = new ImageSelected;
+    this.image.image = event.src;
+    this.image.name = event.file.name;
+    console.log('image: ', this.image.image);
+    console.log('name: ', this.image.name);
+   }
 }

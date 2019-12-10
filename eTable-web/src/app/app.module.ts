@@ -26,8 +26,12 @@ import { CreatePerfilMesaComponent } from './components/eTable-administracion/ma
 import { EditarPermisoComponent } from './components/eTable-administracion/main/administracion-usuarios/permisos/editar-permiso/editar-permiso.component';
 import { CrearTipoUsuarioComponent } from './components/eTable-administracion/main/administracion-usuarios/tipos-usuario/crear-tipo-usuario/crear-tipo-usuario.component';
 import { RegisterComponent } from './components/eTable-autenticacion/register/register.component';
+<<<<<<< HEAD
 import { EditarUsuarioComponent } from './components/eTable-administracion/main/administracion-usuarios/usuarios/editar-usuario/editar-usuario.component';
 
+=======
+import { ImageUploadModule } from 'angular2-image-upload';
+>>>>>>> 52d5c351ed898a5325692420b18d5206eb619e59
 @NgModule({
   declarations: [
     AppComponent,
@@ -58,7 +62,8 @@ import { EditarUsuarioComponent } from './components/eTable-administracion/main/
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ImageUploadModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
