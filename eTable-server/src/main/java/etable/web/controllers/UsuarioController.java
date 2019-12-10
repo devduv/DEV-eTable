@@ -7,6 +7,7 @@ import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -49,4 +50,8 @@ public class UsuarioController {
 		return this.service.getUsuarios();
 	}
 
+	@GetMapping(path= {"/obtenerUsuario/{id}"})
+	public User obtenerUsuarioById(@PathVariable int id) {
+		return this.service.getUsuarioById(id);
+	}
 }

@@ -26,6 +26,7 @@ import { CreatePerfilMesaComponent } from './components/eTable-administracion/ma
 import { EditarPermisoComponent } from './components/eTable-administracion/main/administracion-usuarios/permisos/editar-permiso/editar-permiso.component';
 import { CrearTipoUsuarioComponent } from './components/eTable-administracion/main/administracion-usuarios/tipos-usuario/crear-tipo-usuario/crear-tipo-usuario.component';
 import { RegisterComponent } from './components/eTable-autenticacion/register/register.component';
+import { EditarUsuarioComponent } from './components/eTable-administracion/main/administracion-usuarios/usuarios/editar-usuario/editar-usuario.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { RegisterComponent } from './components/eTable-autenticacion/register/re
     CreatePerfilMesaComponent,
     EditarPermisoComponent,
     CrearTipoUsuarioComponent,
-    RegisterComponent
+    RegisterComponent,
+    EditarUsuarioComponent
   ],
   imports: [
     BrowserModule,

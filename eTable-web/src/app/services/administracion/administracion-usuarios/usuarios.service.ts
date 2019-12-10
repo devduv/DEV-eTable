@@ -32,4 +32,8 @@ export class UsuarioService {
   public getUsarios() {
     return this.http.get<User[]>(this.url + '/' + 'obtenerUsuarios');
   }
+
+  public getUsuarioById(id: number) {
+    return this.http.get<User>(this.url + '/' + 'obtenerUsuario' + '/' + id);
+  }
 }

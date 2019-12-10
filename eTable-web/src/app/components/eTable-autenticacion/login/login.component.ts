@@ -110,7 +110,7 @@ export class LoginComponent implements OnInit, DoCheck {
         this.user = data;
         this.setAuthentication();
       } else {
-        this.notUser(2);
+        this.notUser(4);
       }
     });
   }
@@ -136,6 +136,11 @@ export class LoginComponent implements OnInit, DoCheck {
       this.notuser = false;
       this.notpass = true;
       this.notuserexist = false;
+    } else if (id === 4) {
+      this.notuser = false;
+      this.notpass = false;
+      this.notuserexist = true;
+      this.notUserExist = Mensaje.wrongPass;
     }
   }
 

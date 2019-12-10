@@ -24,6 +24,8 @@ export class CrearUsuarioComponent implements OnInit {
   public cliente: Cliente;
   public load: boolean;
   public loading: string;
+  public passDiferente: boolean;
+  public passw: string;
 
   constructor(
     private router: Router,
@@ -36,6 +38,7 @@ export class CrearUsuarioComponent implements OnInit {
     this.selectedTypeId = 0;
     this.load = true;
     this.loading = Path.loading;
+    this.passDiferente = false;
   }
 
   ngOnInit() {
@@ -48,15 +51,29 @@ export class CrearUsuarioComponent implements OnInit {
 
   public guardar() {
     this.user.ctipousuario = this.selectedTypeId;
+    this.user.estado = true;
     this.empty = this.isEmpty();
     if (!this.empty) {
       this.load = true;
-      if (!this.esCliente) {
-        this.crearUsuario();
+      this.passDiferente = this.passwordDiferente();
+      if (!this.passDiferente) {
+        if (!this.esCliente) {
+          this.crearUsuario();
+        } else {
+          this.crearCliente();
+        }
       } else {
-        this.crearCliente();
+        this.load = false;
       }
+
     }
+  }
+
+  private passwordDiferente() {
+    if (this.user.password === this.passw) {
+      return false;
+    }
+    return true;
   }
 
   private crearUsuario() {

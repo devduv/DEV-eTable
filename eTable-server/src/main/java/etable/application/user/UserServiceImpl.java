@@ -48,4 +48,9 @@ public class UserServiceImpl implements UserService{
 		return this.repository.getUsuarioByAuthentication(user.getNickname(), user.getPassword());
 	}
 
+	@Override
+	public User getUsuarioById(int id) {
+		return this.repository.getUsuarioById(id);
+	}
+
 }

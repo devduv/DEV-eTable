@@ -13,6 +13,6 @@ public interface UserRepository {
 	List<UserDTO> getUsuarios();
 	User getUsuarioByAuthentication(String nickname, String password);
 	boolean eliminarUsuarioById(int id);
-	
+	User getUsuarioById(int id);
 	Cliente crearCliente(User user, Cliente cliente);
 }

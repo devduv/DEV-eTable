@@ -30,7 +30,7 @@
         <tbody class="header-body">
             <tr *ngFor="let usuario of usuarios">
                 <td>
-                    <button class="btn-edit mt-1">
+                    <button class="btn-edit mt-1" (click)="editarUsuario(usuario.cusuario)">
                         <i class="mdi mdi-border-color" style="font-size: 20px;"></i>
                     </button>
 
@@ -48,10 +48,10 @@
                     <div class="center-body">{{usuario.usapellidos}}</div>
                 </td>
                 <td>
-                    <button *ngIf="estado" class="btn-habilitado"
-                        >Habilitado</button>
-                    <button *ngIf="!estado" class="btn-deshabilitado"
-                        >Deshabilitado</button>
+                    <button
+                    [ngClass]="usuario.estado ? 'btn-habilitado' : 'btn-deshabilitado'">
+                    {{ usuario.estado ? 'Habilitado' : 'Deshabilitado'}}
+                    </button>
                 </td>
             </tr>
         </tbody>

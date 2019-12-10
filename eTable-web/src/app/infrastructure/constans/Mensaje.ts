@@ -2,6 +2,7 @@ export class Mensaje {
     public static notUserEmpty = 'Ingrese nombre de usuario';
     public static notPassEmpty = 'Ingrese contraseña de usuario';
     public static notUserExist = 'Usuario no registrado en el sistema';
+    public static wrongPass = 'La contraseña es incorrecta';
 
     public static successText = 'Se guardó la configuración';
     public static successEdit = 'Se editó correctamente el permiso';

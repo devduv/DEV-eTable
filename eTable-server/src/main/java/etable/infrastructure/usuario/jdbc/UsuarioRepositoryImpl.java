@@ -108,5 +108,15 @@ public class UsuarioRepositoryImpl implements UserRepository{
 		return null;
 	}
 
+	@Override
+	public User getUsuarioById(int id) {
+		String findUser = Query.selectFromWhere(Query.table_usuarios, "CUSUARIO", id);
+		List<User> user = this.row.getUser(this.jdbcTemplate.queryForList(findUser));
+		if (user.size() > 0) {
+			return user.get(0);
+		}
+		return null;
+	}
+
 
 }

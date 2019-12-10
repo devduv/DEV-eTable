@@ -17,7 +17,10 @@ export class UsuariosComponent implements OnInit {
   sinUsuarios: boolean;
   public load: boolean;
   public loading: string;
-  constructor(private router: Router, private service: UsuarioService) {
+
+  constructor(
+    private router: Router,
+    private service: UsuarioService) {
     this.estado = false;
     this.sinUsuarios = false;
     this.load = true;
@@ -34,6 +37,10 @@ export class UsuariosComponent implements OnInit {
 
   nuevoUsuario() {
     this.router.navigate(['usuarios/crear']);
+  }
+
+  editarUsuario(id: number) {
+    this.router.navigate(['usuarios/editar/' + id]);
   }
 
   private getUsuarios() {
