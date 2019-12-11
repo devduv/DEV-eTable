@@ -21,6 +21,7 @@
     "@angular/platform-browser": "~8.2.4",
     "@angular/platform-browser-dynamic": "~8.2.4",
     "@angular/router": "~8.2.4",
+    "@material/dialog": "^4.0.0",
     "@mdi/font": "^4.5.95",
     "angular2-image-upload": "^1.0.0-rc.2",
     "bootstrap": "^4.3.1",

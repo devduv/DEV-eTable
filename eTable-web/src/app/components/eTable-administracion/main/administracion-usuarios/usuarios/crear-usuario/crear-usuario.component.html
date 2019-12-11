@@ -14,7 +14,7 @@
     <span><b>Tipo de usuario</b></span>
     <hr class="mt-1" />
     <div class="row mt-2 mb-3">
-        <div class="col-lg-4 col-md-4 col-sm-4">
+        <div class="col-lg-4 col-md-6 col-sm-6">
             <select class="form-control form-control-sm" [(ngModel)]="selectedTypeId" (change)="selectedTipoUsuario()">
                 <option [ngValue]="0">Seleccionar tipo de usuario</option>
                 <option [ngValue]="tipos.ctipousuario" *ngFor="let tipos of tiposUsuario">{{tipos.tiponombre}}

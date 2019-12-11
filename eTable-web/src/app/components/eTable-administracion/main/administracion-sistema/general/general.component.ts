@@ -118,6 +118,7 @@ export class GeneralComponent implements OnInit {
   }
 
   guardarCambios() {
+    this.configuracion.emplogo = 'prueba';
     if (this.camposCompletos()) {
       this.saving = true;
       this.service.actualizarConfiguracionSistemaGeneral(this.configuracion).subscribe(data => {

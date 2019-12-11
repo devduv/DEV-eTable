@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MenuComponent } from './components/eTable-administracion/main/menu/menu.component';
@@ -28,6 +27,10 @@ import { CrearTipoUsuarioComponent } from './components/eTable-administracion/ma
 import { RegisterComponent } from './components/eTable-autenticacion/register/register.component';
 import { EditarUsuarioComponent } from './components/eTable-administracion/main/administracion-usuarios/usuarios/editar-usuario/editar-usuario.component';
 import { ImageUploadModule } from 'angular2-image-upload';
+import {MatDialogModule} from '@angular/material/dialog';
+import { UsuarioDeshabilitadoComponent } from './components/eTable-modals/usuario/usuario-deshabilitado/usuario-deshabilitado.component';
+import { MatNativeDateModule } from '@angular/material/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,15 +55,20 @@ import { ImageUploadModule } from 'angular2-image-upload';
     EditarPermisoComponent,
     CrearTipoUsuarioComponent,
     RegisterComponent,
-    EditarUsuarioComponent
+    EditarUsuarioComponent,
+    UsuarioDeshabilitadoComponent
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
-    FormsModule,
     HttpClientModule,
+    FormsModule,
+    MatNativeDateModule,
+    MatDialogModule,
     ImageUploadModule.forRoot()
   ],
+  entryComponents: [UsuarioDeshabilitadoComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

@@ -66,4 +66,19 @@ public class UsuarioController {
 	public boolean deleteUserById(@PathVariable int id) {
 		return this.service.deleteUser(id);
 	}
+	
+	@PutMapping(path = {"/editarCliente"})
+	public Cliente editCliente(@RequestBody Cliente cliente){
+		return this.service.actualizarCliente(cliente);
+	}
+	
+	@GetMapping(path = {"/clientes"})
+	public List<Cliente> listClientes() {
+		return this.service.getClientes();
+	}
+	
+	@GetMapping(path = {"/clientes/{id}"})
+	public Cliente listClientes(@PathVariable int id) {
+		return this.service.getClienteById(id);
+	}
 }

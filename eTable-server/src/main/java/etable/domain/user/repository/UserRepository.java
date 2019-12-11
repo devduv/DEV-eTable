@@ -16,4 +16,7 @@ public interface UserRepository {
 	User getUsuarioById(int id);
 	boolean deleteUser(int id);
 	Cliente crearCliente(User user, Cliente cliente);
+	Cliente getClienteById(int id);
+	List<Cliente> getClientes();
+	Cliente editCliente(Cliente cliente);
 }

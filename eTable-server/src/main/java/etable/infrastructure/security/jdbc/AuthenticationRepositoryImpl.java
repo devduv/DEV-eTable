@@ -54,6 +54,7 @@ public class AuthenticationRepositoryImpl implements AuthenticationRepository{
 					auth.setCusuario(authentication.get(0).getCusuario());
 					auth.setNickname(authentication.get(0).getNickname());
 					auth.setPassword(authentication.get(0).getPassword());
+					auth.setEstado(authentication.get(0).isEstado());
 					return auth;
 				}else {
 					return null;

@@ -1,9 +1,14 @@
-import { Component, OnInit, Input, Output, DoCheck} from '@angular/core';
+import { Component, OnInit, Input, Output, DoCheck } from '@angular/core';
 import { Router } from '@angular/router';
 import { Path } from 'src/app/infrastructure/constans/Path';
 import { User } from 'src/app/domain/User';
 import { Mensaje } from 'src/app/infrastructure/constans/Mensaje';
 import { LoginService } from 'src/app/services/authentication/login.service';
+import { SistemaGeneralService } from 'src/app/services/administracion/sistema/sistema-general.service';
+import { Configuracion } from 'src/app/domain/Configuracion';
+import { MatDialog } from '@angular/material/dialog';
+import { UsuarioDeshabilitadoComponent } from '../../eTable-modals/usuario/usuario-deshabilitado/usuario-deshabilitado.component';
+import { UsuarioService } from 'src/app/services/administracion/administracion-usuarios/usuarios.service';
 
 @Component({
   selector: 'app-login',
@@ -25,13 +30,19 @@ export class LoginComponent implements OnInit, DoCheck {
   public load: boolean;
   public user: User;
   public serverConected: boolean;
+  public config: Configuracion;
 
-  constructor(private router: Router, private service: LoginService) {
+  constructor(
+    private router: Router,
+    private service: LoginService,
+    private serviceConfig: SistemaGeneralService,
+    private dialog: MatDialog,
+    private serviceUser: UsuarioService) {
     this.logo = Path.logo;
     this.notuser = false;
     this.notpass = false;
     this.notuserexist = false;
-    this.load = false;
+    this.load = true;
     this.loading = Path.loading;
     this.serverConected = true;
     this.notUserEmpty = Mensaje.notUserEmpty;
@@ -39,9 +50,11 @@ export class LoginComponent implements OnInit, DoCheck {
     this.notUserExist = Mensaje.notUserExist;
     this.user = new User();
     this.registration = false;
+    this.config = new Configuracion();
   }
 
   ngOnInit() {
+    this.getConfiguracion();
     const auth = localStorage.getItem('authentication');
     this.getAuth(auth);
     if (this.authentication) {
@@ -78,73 +91,92 @@ export class LoginComponent implements OnInit, DoCheck {
     }
   }
 
-  public prueba(event: any) {
+  public openDialog(data: User) {
+    const dialogRef = this.dialog.open(UsuarioDeshabilitadoComponent, {
+      width: '250px',
+      data: data
+    });
 
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
   }
+
   public register() {
     localStorage.setItem('registration', 'true');
   }
 
-  authenticationByNickname(nickname: string, password: string) {
+  private authenticationByNickname(nickname: string, password: string) {
     this.service.findUserByNickname(nickname).subscribe(data => {
       if (data !== null) {
         const user = new User();
         user.cusuario = data.cusuario;
         user.nickname = data.nickname;
         user.password = password;
-        this.authenticationLogin(user);
+        this.authenticationLogin(user, password);
       } else {
         this.load = false;
         this.notUser(2);
       }
     }, error => {
-      this.load = false;
-      this.serverConected = false;
-  });
+      if (error) {
+        this.load = false;
+        this.serverConected = false;
+      }
+    });
   }
 
-  authenticationLogin(user: User) {
+  private authenticationLogin(user: User, password: string) {
     this.service.authenticationLogin(user).subscribe(data => {
       this.load = false;
       if (data != null) {
         this.user = data;
-        this.setAuthentication();
+        this.setAuthentication(password);
       } else {
         this.notUser(4);
       }
     });
   }
 
-  setAuthentication() {
-    this.authentication = true;
-    localStorage.setItem('nickname', this.user.nickname);
-    localStorage.setItem('password', this.user.password);
-    localStorage.setItem('authentication', 'true');
-    this.router.navigate(['main']);
+  private setAuthentication(password: string) {
+    const passwordHash = this.user.password;
+    this.user.password = password;
+    if (this.user.estado) {
+      this.authentication = true;
+      localStorage.setItem('nickname', this.user.nickname);
+      localStorage.setItem('password', passwordHash);
+      localStorage.setItem('authentication', 'true');
+      this.router.navigate(['main']);
+    } else {
+      const us = new User();
+      us.nickname = this.user.nickname;
+      us.password = passwordHash;
+      this.serviceUser.getUsuarioByAuthentication(us).subscribe(data => {
+      this.openDialog(data);
+      }); 
+    }
   }
 
-  notUser(id: number) {
+  private notUser(id: number) {
     if (id === 1) {
-      this.notuserexist = false;
-      this.notpass = false;
-      this.notuser = true;
+      this.setBoolean(true, false, false);
     } else if (id === 2) {
-      this.notuser = false;
-      this.notpass = false;
-      this.notuserexist = true;
+      this.setBoolean(false, false, true);
     } else if (id === 3) {
-      this.notuser = false;
-      this.notpass = true;
-      this.notuserexist = false;
+      this.setBoolean(false, true, false);
     } else if (id === 4) {
-      this.notuser = false;
-      this.notpass = false;
-      this.notuserexist = true;
+      this.setBoolean(false, false, true);
       this.notUserExist = Mensaje.wrongPass;
     }
   }
 
-  closeSpan() {
+  private setBoolean(notus: boolean, notp: boolean, notuse: boolean) {
+    this.notuser = notus;
+    this.notpass = notp;
+    this.notuserexist = notuse;
+  }
+
+  public closeSpan() {
     this.user.nickname = '';
     this.user.password = '';
     this.notuserexist = false;
@@ -152,4 +184,17 @@ export class LoginComponent implements OnInit, DoCheck {
     this.notuser = false;
     this.notpass = false;
   }
+
+  private getConfiguracion() {
+    this.serviceConfig.getConfiguracionSistemaGeneral().subscribe(data => {
+      this.config = data;
+      this.load = false;
+    }, error => {
+      if (error) {
+        this.load = false;
+        this.serverConected = false;
+      }
+    });
+  }
+
 }

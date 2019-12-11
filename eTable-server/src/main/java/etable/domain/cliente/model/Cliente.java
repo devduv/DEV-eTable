@@ -9,6 +9,10 @@ public class Cliente {
 	private String phone;
 	private String date;
 	
+	public Cliente() {
+		
+	}
+	
 	public Cliente(int ccliente, int dni, int cusuario, String email, String phone, String date) {
 		super();
 		this.ccliente = ccliente;

@@ -6,11 +6,13 @@ public class Authentication {
 	private int cusuario;
 	private String nickname;
 	private String password;
+	private boolean estado;
 	
-	public Authentication(int cusuario, String nickname, String password){
+	public Authentication(int cusuario, String nickname, String password, boolean estado){
 		this.cusuario = cusuario;
 		this.nickname = nickname;
 		this.password = password;
+		this.estado = estado;
 	}
 
 	public Authentication() {
@@ -40,5 +42,12 @@ public class Authentication {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
+
+	public boolean isEstado() {
+		return estado;
+	}
+
+	public void setEstado(boolean estado) {
+		this.estado = estado;
+	}
 }

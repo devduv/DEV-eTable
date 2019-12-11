@@ -144,7 +144,6 @@ export class CrearUsuarioComponent implements OnInit {
         return true;
       }
     }
-
   }
 
   private isEmpytText(info: string, msg: string) {

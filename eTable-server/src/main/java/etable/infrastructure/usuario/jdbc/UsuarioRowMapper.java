@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.springframework.stereotype.Component;
 
+import etable.domain.cliente.model.Cliente;
 import etable.domain.user.model.User;
 import etable.domain.user.model.UserDTO;
 
@@ -59,5 +60,21 @@ public class UsuarioRowMapper {
 			users.add(user);
 		}
 		return users;
+	}
+	
+	public List<Cliente> mapRowCliente(List<Map<String, Object>> rows) {
+		List<Cliente> clientes = new ArrayList<Cliente>();
+		
+		for(Map<String, Object> row : rows) {
+			int ccliente = Integer.parseInt(row.get("CCLIENTE").toString());
+			int dni = Integer.parseInt(row.get("DNI").toString());
+			int cusuario = Integer.parseInt(row.get("CUSUARIO").toString());
+			String email = row.get("EMAIL").toString();
+			String phone = row.get("PHONE").toString();
+			String date = row.get("DATE").toString();
+			Cliente cliente = new Cliente(ccliente, dni, cusuario, email, phone, date);
+			clientes.add(cliente);
+		}
+		return clientes;
 	}
 }

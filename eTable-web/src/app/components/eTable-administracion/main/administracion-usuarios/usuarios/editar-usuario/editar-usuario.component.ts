@@ -55,6 +55,7 @@ export class EditarUsuarioComponent implements OnInit {
           if (o !== null) {
             this.user = o;
             this.selectedTypeId = this.user.ctipousuario;
+            this.selectedTipoUsuario();
             this.passw = this.user.password;
             this.load = false;
           } else {
@@ -78,15 +79,35 @@ export class EditarUsuarioComponent implements OnInit {
   public guardar() {
     this.success = this.isEmpty();
     if (!this.success) {
+      this.load = true;
+      this.user.ctipousuario = this.selectedTypeId;
       this.serviceUsuario.editUserById(this.user).subscribe(data => {
         if (data != null) {
-          this.navigateList();
+          if (this.esCliente) {
+            this.guardarCliente();
+          } else {
+            this.navigateList();
+          }
         } else {
+          this.load = false;
           this.success = true;
           this.successText = 'Nombre de usuario ya existe';
         }
       });
     }
+  }
+
+  private guardarCliente() {
+    this.cliente.cusuario = this.user.cusuario;
+    console.log(this.cliente);
+    this.serviceUsuario.editCliente(this.cliente).subscribe(data => {
+      if (data != null) {
+        this.navigateList();
+      } else {
+        this.success = true;
+        this.successText = 'No se pudo editar o crear el usuario de tipo cliente';
+      }
+    });
   }
 
   public eliminar() {
@@ -127,6 +148,20 @@ export class EditarUsuarioComponent implements OnInit {
     if (this.isEmpytText(this.user.password, Mensaje.emptyPass)) {
       return true;
     }
+    if (this.esCliente) {
+      if (this.isEmpytText(this.cliente.email, Mensaje.emptyEmail)) {
+        return true;
+      }
+      if (this.isEmpytText(this.cliente.phone, Mensaje.emptyPhone)) {
+        return true;
+      }
+      if (this.isEmpytText(this.cliente.date, Mensaje.emptyDate)) {
+        return true;
+      }
+      if (this.isEmpytText(this.cliente.dni.toString(), Mensaje.emptyDNI)) {
+        return true;
+      }
+    }
   }
 
   private isEmpytText(info: string, msg: string) {
@@ -154,5 +189,9 @@ export class EditarUsuarioComponent implements OnInit {
     this.changePassword = true;
     this.user.password = '';
     this.passw = '';
+  }
+
+  public cambiarEstado() {
+    this.user.estado = !this.user.estado;
   }
 }

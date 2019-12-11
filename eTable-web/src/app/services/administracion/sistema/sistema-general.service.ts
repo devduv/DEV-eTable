@@ -14,19 +14,19 @@ export class SistemaGeneralService {
     this.url = 'etable/api/configuracion';
   }
 
-  getConfiguracionSistemaGeneral() {
+  public getConfiguracionSistemaGeneral() {
     return this.http.get<Configuracion>(this.url + '/' + 'configuracionSistema');
   }
 
-  actualizarConfiguracionSistemaGeneral(configuracion: Configuracion) {
+  public actualizarConfiguracionSistemaGeneral(configuracion: Configuracion) {
     return this.http.put<Configuracion>(this.url + '/' + 'actualizarConfiguracion' + '/' + configuracion.cconfiguracion, configuracion);
   }
 
-  getConfiguracionParametros() {
+  public getConfiguracionParametros() {
     return this.http.get<Configuracion>(this.url + '/' + 'configuracionParametros');
   }
 
-  actualizarParametrosSistemaGeneral(configuracion: Configuracion) {
+  public actualizarParametrosSistemaGeneral(configuracion: Configuracion) {
     return this.http.post<Configuracion>(this.url + '/' + 'actualizarParametros' + '/' + configuracion.cconfiguracion, configuracion);
   }
 

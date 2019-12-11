@@ -168,4 +168,49 @@ public class UsuarioRepositoryImpl implements UserRepository{
 		return false;
 	}
 
+
+	@Override
+	public Cliente getClienteById(int id) {
+		String query = Query.selectFromWhere(Query.table_clientes, "CUSUARIO", id);
+		List<Cliente> list = this.row.mapRowCliente(this.jdbcTemplate.queryForList(query));
+		if (list.size() > 0) {
+			return list.get(0);
+		}
+		return null;
+	}
+
+
+	@Override
+	public List<Cliente> getClientes() {
+		String query = Query.selectFrom(Query.table_clientes);
+		List<Cliente> list = this.row.mapRowCliente(this.jdbcTemplate.queryForList(query));
+		return list;
+	}
+
+
+	@Override
+	public Cliente editCliente(Cliente cliente) {
+		Cliente aux = this.getClienteById(cliente.getCusuario());
+		System.out.println(aux);
+		if (aux != null) {
+			System.out.println("Actualiza");
+			String editCliente = "UPDATE " + Query.table_clientes + " SET DNI = ?, EMAIL = ?, PHONE = ?, DATE = ? WHERE CUSUARIO = ?";
+			int success = this.jdbcTemplate.update(editCliente, cliente.getDni(), cliente.getEmail(), cliente.getPhone(), cliente.getDate(), cliente.getCusuario());
+			if (success == 1) {
+				return cliente;
+			} else {
+				return null;
+			}
+		} else {
+			System.out.println("Inserta");
+			String insert = Query.insert_cliente;
+			int success = this.jdbcTemplate.update(insert, cliente.getDni(), cliente.getCusuario(), cliente.getEmail(), cliente.getPhone(), cliente.getDate());
+			if (success != 0) {
+				return cliente;
+			} else {
+				return null;
+			}
+		}
+	}
+
 }
