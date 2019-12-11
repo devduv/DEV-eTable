@@ -72,7 +72,11 @@ INSERT INTO TBPERMISOS (CSUBITEM, PERMISO, DESCRIPCION, ESTADO) VALUES
 (13, 'Importar reportes', 'Este permiso permite importar datos al sistema.', 1),
 (13, 'Exportar reportes', 'Este permiso permite exportar datos al sistema.', 1);
 
+-- Tipos de usuario: Administrador key: 1. Cliente key: 2
+INSERT INTO TBTIPOUSUARIO (CTIPOUSUARIO, TIPONOMBRE, TIPODESCRIPCION) VALUES ('1', 'Administrador', 'El Administrador tiene todos los permisos del Sistema');
+INSERT INTO TBTIPOUSUARIO (CTIPOUSUARIO, TIPONOMBRE, TIPODESCRIPCION) VALUES ('2', 'Cliente', 'El Cliente puede realizar reservaciones de mesas');
 
+-- Usuario 
 INSERT INTO TBUSUARIOS (NICKNAME, PASSWORD, USNOMBRE, USAPELLIDOS, ESTADO, CTIPOUSUARIO)
 VALUES ('administrador', '$2a$10$ov5FpWF2fd6TmezlBz7PEuijaixY6EpQI4./6X.d6NyE.rwyCnXJO', 'Nataly Grace', 'Vasquez Saenz', 1, 1);
 
