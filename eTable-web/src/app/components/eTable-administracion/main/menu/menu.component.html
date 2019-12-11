@@ -5,9 +5,9 @@
 </div>
 <button (click)="show(2)" class="list-group-item btn-item">Administración de Usuarios</button>
 <div *ngIf="admus" class="ele">
-    <button class="list-group-item btn-light subitem" (click)="setTitle(3)" mat-list-item [routerLink]="['usuarios/roles']">Roles de Usuario</button>
-    <button class="list-group-item btn-light subitem" (click)="setTitle(4)" mat-list-item [routerLink]="['usuarios/list']">Usuarios</button>
     <button class="list-group-item btn-light subitem" (click)="setTitle(5)" mat-list-item [routerLink]="['usuarios/permisos']">Permisos</button>
+    <button class="list-group-item btn-light subitem" (click)="setTitle(3)" mat-list-item [routerLink]="['usuarios/tipos']">Tipos de Usuario</button>
+    <button class="list-group-item btn-light subitem" (click)="setTitle(4)" mat-list-item [routerLink]="['usuarios/list']">Usuarios</button>
 </div>
 <button (click)="show(3)" class="list-group-item btn-item">Administración de Mesas</button>
 <div *ngIf="admme" class="ele">

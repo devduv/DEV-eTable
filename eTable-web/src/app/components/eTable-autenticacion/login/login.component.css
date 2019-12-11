@@ -57,13 +57,14 @@
     color: #ca3939;
 }
 
-.div-loading{
-    margin-top: 10px;
-    width: 100%;
+.error-404{
+    background-color: #19191a;
+    padding: 5px;
+    margin: 5px;
+    color: white;
+    align-items: center;
     text-align: center;
-    align-content: center;
-}
-.loading{
-    width: 45px;
-    height: 45px;
+    font-size: 14px;
+    border-radius: 1px;
+    height: 100%;
 }

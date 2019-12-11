@@ -12,7 +12,7 @@ import { MainComponent } from './components/eTable-administracion/main/main.comp
 import { CrearUsuarioComponent } from './components/eTable-administracion/main/administracion-usuarios/usuarios/crear-usuario/crear-usuario.component';
 import { GeneralComponent } from './components/eTable-administracion/main/administracion-sistema/general/general.component';
 import { ConfiguracionComponent } from './components/eTable-administracion/main/administracion-sistema/configuracion/configuracion.component';
-import { RolesComponent } from './components/eTable-administracion/main/administracion-usuarios/roles/roles.component';
+import { TiposUsuarioComponent } from './components/eTable-administracion/main/administracion-usuarios/tipos-usuario/tipos-usuario.component';
 import { PermisosComponent } from './components/eTable-administracion/main/administracion-usuarios/permisos/permisos.component';
 import { MesasComponent } from './components/eTable-administracion/main/administracion-mesas/mesas/mesas.component';
 import { PerfilMesaComponent } from './components/eTable-administracion/main/administracion-mesas/perfil-mesa/perfil-mesa.component';
@@ -22,20 +22,31 @@ import { TipoClientesComponent } from './components/eTable-administracion/main/a
 import { HistorialClienteComponent } from './components/eTable-administracion/main/administracion-clientes/historial-cliente/historial-cliente.component';
 import { ReservacionesComponent } from './components/eTable-administracion/main/dashboard/reservaciones/reservaciones.component';
 import { ImportarExportarComponent } from './components/eTable-administracion/main/reportes/importar-exportar/importar-exportar.component';
+import { CreatePerfilMesaComponent } from './components/eTable-administracion/main/administracion-mesas/perfil-mesa/create-perfil-mesa/create-perfil-mesa.component';
+import { EditarPermisoComponent } from './components/eTable-administracion/main/administracion-usuarios/permisos/editar-permiso/editar-permiso.component';
+import { CrearTipoUsuarioComponent } from './components/eTable-administracion/main/administracion-usuarios/tipos-usuario/crear-tipo-usuario/crear-tipo-usuario.component';
+import { RegisterComponent } from './components/eTable-autenticacion/register/register.component';
+import { EditarUsuarioComponent } from './components/eTable-administracion/main/administracion-usuarios/usuarios/editar-usuario/editar-usuario.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 const routes: Routes = [
-  { path: 'login', component: LoginComponent },
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: 'eTable', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: '', redirectTo: 'eTable', pathMatch: 'full' },
   { path: 'sistema/general', component: GeneralComponent},
   { path: 'sistema/configuracion', component: ConfiguracionComponent},
 
-  { path: 'usuarios/roles', component: RolesComponent},
   { path: 'usuarios/permisos', component: PermisosComponent},
+  { path: 'usuarios/permisos/editar', component: EditarPermisoComponent},
+  { path: 'usuarios/tipos', component: TiposUsuarioComponent},
+  { path: 'usuarios/tipos/crear', component: CrearTipoUsuarioComponent},
   { path: 'usuarios/list', component: UsuariosComponent},
   { path: 'usuarios/crear', component: CrearUsuarioComponent},
+  { path: 'usuarios/editar/:id', component: EditarUsuarioComponent},
 
   { path: 'mesas/list', component: MesasComponent},
   { path: 'mesas/perfiles', component: PerfilMesaComponent},
+  { path: 'mesas/perfiles/crear', component: CreatePerfilMesaComponent},
   { path: 'mesas/programacion', component: ProgramacionMesaComponent},
 
   { path: 'clientes/list', component: ClientesComponent},

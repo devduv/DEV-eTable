@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MenuComponent } from './components/eTable-administracion/main/menu/menu.component';
@@ -10,7 +9,7 @@ import { MainComponent } from './components/eTable-administracion/main/main.comp
 import { CrearUsuarioComponent } from './components/eTable-administracion/main/administracion-usuarios/usuarios/crear-usuario/crear-usuario.component';
 import { GeneralComponent } from './components/eTable-administracion/main/administracion-sistema/general/general.component';
 import { ConfiguracionComponent } from './components/eTable-administracion/main/administracion-sistema/configuracion/configuracion.component';
-import { RolesComponent } from './components/eTable-administracion/main/administracion-usuarios/roles/roles.component';
+import { TiposUsuarioComponent } from './components/eTable-administracion/main/administracion-usuarios/tipos-usuario/tipos-usuario.component';
 import { PermisosComponent } from './components/eTable-administracion/main/administracion-usuarios/permisos/permisos.component';
 import { MesasComponent } from './components/eTable-administracion/main/administracion-mesas/mesas/mesas.component';
 import { PerfilMesaComponent } from './components/eTable-administracion/main/administracion-mesas/perfil-mesa/perfil-mesa.component';
@@ -22,7 +21,16 @@ import { ReservacionesComponent } from './components/eTable-administracion/main/
 import { ImportarExportarComponent } from './components/eTable-administracion/main/reportes/importar-exportar/importar-exportar.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-
+import { CreatePerfilMesaComponent } from './components/eTable-administracion/main/administracion-mesas/perfil-mesa/create-perfil-mesa/create-perfil-mesa.component';
+import { EditarPermisoComponent } from './components/eTable-administracion/main/administracion-usuarios/permisos/editar-permiso/editar-permiso.component';
+import { CrearTipoUsuarioComponent } from './components/eTable-administracion/main/administracion-usuarios/tipos-usuario/crear-tipo-usuario/crear-tipo-usuario.component';
+import { RegisterComponent } from './components/eTable-autenticacion/register/register.component';
+import { EditarUsuarioComponent } from './components/eTable-administracion/main/administracion-usuarios/usuarios/editar-usuario/editar-usuario.component';
+import { ImageUploadModule } from 'angular2-image-upload';
+import {MatDialogModule} from '@angular/material/dialog';
+import { UsuarioDeshabilitadoComponent } from './components/eTable-modals/usuario/usuario-deshabilitado/usuario-deshabilitado.component';
+import { MatNativeDateModule } from '@angular/material/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,7 +41,7 @@ import { HttpClientModule } from '@angular/common/http';
     CrearUsuarioComponent,
     GeneralComponent,
     ConfiguracionComponent,
-    RolesComponent,
+    TiposUsuarioComponent,
     PermisosComponent,
     MesasComponent,
     PerfilMesaComponent,
@@ -42,14 +50,25 @@ import { HttpClientModule } from '@angular/common/http';
     TipoClientesComponent,
     HistorialClienteComponent,
     ReservacionesComponent,
-    ImportarExportarComponent
+    ImportarExportarComponent,
+    CreatePerfilMesaComponent,
+    EditarPermisoComponent,
+    CrearTipoUsuarioComponent,
+    RegisterComponent,
+    EditarUsuarioComponent,
+    UsuarioDeshabilitadoComponent
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
+    HttpClientModule,
     FormsModule,
-    HttpClientModule
+    MatNativeDateModule,
+    MatDialogModule,
+    ImageUploadModule.forRoot()
   ],
+  entryComponents: [UsuarioDeshabilitadoComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

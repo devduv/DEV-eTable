@@ -14,7 +14,7 @@ export class LoginService {
   }
 
   findUserByNickname(nickname: string) {
-    return this.http.get<User>(this.url + '/' + 'finduserbynickname' + '/' + nickname, nickname);
+    return this.http.get<User>(this.url + '/' + 'finduserbynickname' + '/' + nickname);
   }
   authenticationLogin(user: User) {
     return this.http.post<User>(this.url + '/' + 'authenticationLogin', user);
