@@ -25,7 +25,7 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public User actualizarUsuario(User user) {
-		return this.repository.actualizarUsuario(user);
+		return this.repository.editUser(user);
 	}
 
 	@Override
@@ -52,5 +52,16 @@ public class UserServiceImpl implements UserService{
 	public User getUsuarioById(int id) {
 		return this.repository.getUsuarioById(id);
 	}
+
+	@Override
+	public boolean deleteUser(int id) {
+		User user = this.getUsuarioById(id);
+		if (user != null) {
+			return this.repository.deleteUser(id);
+		} else {
+			return false;
+		}
+	}
+
 
 }

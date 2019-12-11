@@ -21,12 +21,12 @@ export class PerfilMesaComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.service.getPerfilesMesa().subscribe(data => {
+   /* this.service.getPerfilesMesa().subscribe(data => {
       this.load = false;
       if (data.length !== 0) {
         this.perfiles = data;
       }
-    });
+    });*/
   }
 
   nuevoPerfil() {

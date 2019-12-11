@@ -14,6 +14,6 @@ public interface UserService {
 	User getUsuarioByAuthentication(User user);
 	boolean eliminarUsuarioById(User user);
 	User getUsuarioById(int id);
-	
+	boolean deleteUser(int id);
 	Cliente crearCliente(User user , Cliente cliente);
 }

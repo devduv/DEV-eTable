@@ -6,6 +6,7 @@ import { Cliente } from 'src/app/domain/Cliente';
 import { TipoUsuario } from 'src/app/domain/TipoUsuario';
 import { UsuarioService } from 'src/app/services/administracion/administracion-usuarios/usuarios.service';
 import { TipoUsuarioService } from 'src/app/services/administracion/administracion-usuarios/tipo-usuario.service';
+import { Mensaje } from 'src/app/infrastructure/constans/Mensaje';
 
 @Component({
   selector: 'app-editar-usuario',
@@ -24,19 +25,22 @@ export class EditarUsuarioComponent implements OnInit {
   public esCliente: boolean;
   public passw: string;
   public changePassword: boolean;
+  public success: boolean;
+  public successText: string;
 
   constructor(
     private router: Router,
     private activedRouter: ActivatedRoute,
     private servicesTipoUsuario: TipoUsuarioService,
     private serviceUsuario: UsuarioService) {
-      this.load = true;
-      this.loading = Path.loading;
-      this.passDiferente = false;
-      this.user = new User();
-      this.cliente = new Cliente();
-      this.changePassword = false;
-     }
+    this.load = true;
+    this.loading = Path.loading;
+    this.passDiferente = false;
+    this.user = new User();
+    this.cliente = new Cliente();
+    this.changePassword = false;
+    this.success = false;
+  }
 
   ngOnInit() {
     this.getTiposUsuario();
@@ -52,6 +56,7 @@ export class EditarUsuarioComponent implements OnInit {
             this.user = o;
             this.selectedTypeId = this.user.ctipousuario;
             this.passw = this.user.password;
+            this.load = false;
           } else {
             this.navigateList();
           }
@@ -71,9 +76,64 @@ export class EditarUsuarioComponent implements OnInit {
   }
 
   public guardar() {
-    /*this.serviceUsuario.editUserById().subscribe(data => {
+    this.success = this.isEmpty();
+    if (!this.success) {
+      this.serviceUsuario.editUserById(this.user).subscribe(data => {
+        if (data != null) {
+          this.navigateList();
+        } else {
+          this.success = true;
+          this.successText = 'Nombre de usuario ya existe';
+        }
+      });
+    }
+  }
 
-    });*/
+  public eliminar() {
+    const c = confirm('Eliminar usuario');
+    if (c === true) {
+      this.load = true;
+      this.serviceUsuario.deleteUserById(this.user.cusuario).subscribe(data => {
+        if (data) {
+          this.navigateList();
+        } else {
+          this.load = false;
+          this.success = true;
+          this.successText = 'No se puede eliminar este usuario';
+        }
+      }, error => {
+        if (error) {
+          this.load = false;
+          this.success = true;
+          this.successText = 'Sucedió un error con el servidor';
+        }
+      });
+    }
+  }
+  private isEmpty() {
+    if (this.selectedTypeId === 0) {
+      this.successText = 'Seleccione el tipo de usuario';
+      return true;
+    }
+    if (this.isEmpytText(this.user.usnombres, Mensaje.emptyName)) {
+      return true;
+    }
+    if (this.isEmpytText(this.user.usapellidos, Mensaje.emptyName)) {
+      return true;
+    }
+    if (this.isEmpytText(this.user.nickname, Mensaje.notUserEmpty)) {
+      return true;
+    }
+    if (this.isEmpytText(this.user.password, Mensaje.emptyPass)) {
+      return true;
+    }
+  }
+
+  private isEmpytText(info: string, msg: string) {
+    if (info === undefined || info.trim().length === 0) {
+      this.successText = msg;
+      return true;
+    }
   }
 
   public cancelar() {
@@ -87,7 +147,6 @@ export class EditarUsuarioComponent implements OnInit {
   private getTiposUsuario() {
     this.servicesTipoUsuario.getTiposUsuario().subscribe(data => {
       this.tiposUsuario = data;
-      this.load = false;
     });
   }
 

@@ -36,4 +36,12 @@ export class UsuarioService {
   public getUsuarioById(id: number) {
     return this.http.get<User>(this.url + '/' + 'obtenerUsuario' + '/' + id);
   }
+
+  public editUserById(user: User) {
+    return this.http.put<User>(this.url + '/' + 'editarUsuario', user);
+  }
+
+  public deleteUserById(id: number) {
+    return this.http.delete<boolean>(this.url + '/' + 'eliminarUsuario' + '/' + id);
+  }
 }

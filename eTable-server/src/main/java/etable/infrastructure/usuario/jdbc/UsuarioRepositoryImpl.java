@@ -34,9 +34,7 @@ public class UsuarioRepositoryImpl implements UserRepository{
 
 	@Override
 	public User crearUsuario(User user, String password) {
-		String foundNickname = Query.selectFromWhere(Query.table_usuarios, "NICKNAME", user.getNickname());
-		List<Map<String, Object>> rows = this.jdbcTemplate.queryForList(foundNickname);
-		List<User> list = this.row.mapRowUsuario(rows);
+		List<User> list = foundNickname(user.getNickname());
 		if(list.size() > 0) {
 			return null;
 		} else { 
@@ -62,11 +60,6 @@ public class UsuarioRepositoryImpl implements UserRepository{
 		}
 	}
 
-	@Override
-	public User actualizarUsuario(User user) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public List<UserDTO> getUsuarios() {
@@ -118,5 +111,61 @@ public class UsuarioRepositoryImpl implements UserRepository{
 		return null;
 	}
 
+	@Override
+	public User editUser(User user) {
+		User userBefore = this.getUsuarioById(user.getCusuario());
+		
+		List<User> list = foundNickname(user.getNickname());
+		if(list.size() > 0) {
+			if (!userBefore.getNickname().equalsIgnoreCase(user.getNickname())) {
+				return null;
+			} else {
+				return actualizarUsuario(user, userBefore.getPassword());
+			}
+		} else { 
+			return actualizarUsuario(user, userBefore.getPassword());
+		}
+	}
+
+	public User actualizarUsuario(User user, String passwordBefore) {
+		String updateUser = "";
+		int success = 0;
+		if (user.getPassword().equals(passwordBefore)) {
+			updateUser = "UPDATE " + Query.table_usuarios + " SET CTIPOUSUARIO = ?, NICKNAME = ?, USAPELLIDOS = ?, USNOMBRE = ?, ESTADO = ? WHERE CUSUARIO = ?";
+			success = this.jdbcTemplate.update(
+					updateUser, 
+					user.getCtipousuario(), user.getNickname(), user.getUsapellidos(), user.getUsnombres(), user.isEstado() ? 1 : 0, user.getCusuario());
+			
+		} else {
+			updateUser = "UPDATE " + Query.table_usuarios + " SET CTIPOUSUARIO = ?, NICKNAME = ?, PASSWORD = ?, USAPELLIDOS = ?, USNOMBRE = ?, ESTADO = ? WHERE CUSUARIO = ?";
+			String passwordHash = this.passwordEncoder.encode(user.getPassword());
+			success = this.jdbcTemplate.update(
+					updateUser, 
+					user.getCtipousuario(), user.getNickname(), passwordHash, user.getUsapellidos(), user.getUsnombres(), user.isEstado() ? 1 : 0, user.getCusuario());
+			
+		}
+		if (success == 1) {
+			return user;
+		} else {
+			return null;
+		}
+	}
+	public List<User> foundNickname(String nickname) {
+		String query = Query.selectFromWhere(Query.table_usuarios, "NICKNAME", nickname);
+		List<Map<String, Object>> rows = this.jdbcTemplate.queryForList(query);
+		List<User> list = this.row.mapRowUsuario(rows);
+		return list;
+	}
+
+
+	@Override
+	public boolean deleteUser(int id) {
+		String delete = "DELETE FROM " +Query.table_usuarios + " WHERE CUSUARIO = ?";
+		int success = this.jdbcTemplate.update(delete, id);
+		if (success == 1) {
+			return true;
+		}
+		return false;
+	}
 
 }

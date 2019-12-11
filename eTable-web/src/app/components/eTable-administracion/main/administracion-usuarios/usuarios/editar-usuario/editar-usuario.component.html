@@ -1,4 +1,7 @@
-<div class="header-user-list">
+<div class="header-user-list mb-2">
+    <button type="button" class="btn-nuevo ml-1 mr-1" (click)="eliminar()">
+        <i class="mdi mdi-delete f-16"></i> Eliminar
+    </button>
     <button class="btn-nuevo ml-1 mr-1" (click)="guardar()">
         <i class="mdi mdi-plus-box-multiple-outline f-16"></i> Guardar
     </button>
@@ -7,7 +10,8 @@
     </button>
 </div>
 <div *ngIf="load" class="div-loading" style="position:absolute"><img class="loading" src="{{loading}}" /></div>
-
+<span *ngIf="success" class="not-complete">
+    {{successText}} <br /></span>
 <div class="ml-4 mr-4 mt-3 f-13">
 
         <span><b>Tipo de usuario</b></span>
@@ -84,6 +88,9 @@
             <div class="col-lg-2 col-md-4 col-sm-4 col-6">
                 <button class="btn-habilitado" (click)="newPassword()">Nueva contraseña</button>
             </div>
+        </div>
+        <div>
+            <button class="btn-habilitado">Usuario habilitado</button>
         </div>
     
     </div>
