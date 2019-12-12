@@ -3,6 +3,7 @@ package etable.domain.user.repository;
 import java.util.List;
 
 import etable.domain.cliente.model.Cliente;
+import etable.domain.cliente.model.ClienteDTO;
 import etable.domain.user.model.User;
 import etable.domain.user.model.UserDTO;
 
@@ -17,6 +18,6 @@ public interface UserRepository {
 	boolean deleteUser(int id);
 	Cliente crearCliente(User user, Cliente cliente);
 	Cliente getClienteById(int id);
-	List<Cliente> getClientes();
+	List<ClienteDTO> getClientes();
 	Cliente editCliente(Cliente cliente);
 }

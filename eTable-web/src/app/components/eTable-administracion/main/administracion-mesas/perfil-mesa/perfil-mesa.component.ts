@@ -19,10 +19,13 @@ export class PerfilMesaComponent implements OnInit {
   public success: boolean;
   public successText: string;
 
-  constructor(private router: Router, private servicePerfilMesas: PerfilMesasService  , private activedRouter: ActivatedRoute, private zone: NgZone) {
+  constructor(
+    private router: Router,
+    private servicePerfilMesas: PerfilMesasService,
+    private activedRouter: ActivatedRoute, private zone: NgZone) {
     this.load = true;
     this.loading = Path.loading;
-    this.success=false;
+    this.success = false;
   }
 
   ngOnInit() {
@@ -43,17 +46,20 @@ export class PerfilMesaComponent implements OnInit {
     if (c === true) {
       this.load = true;
       this.servicePerfilMesas.deletePerfilMesaById(id).subscribe(data => {
-        if (data) {  console.log("1");
+        if (data) {
+          console.log("1");
           this.load = false;
           this.navigateList();
-        } else {  console.log("2");
+        } else {
+          console.log("2");
           this.load = false;
           this.navigateList();
           // this.success = true;
           // this.successText = 'No se puede eliminar este perfil Mesa';
         }
       }, error => {
-        if (error) {   console.log("3");
+        if (error) {
+          console.log("3");
           this.load = false;
           this.navigateList();
           // this.success = true;
@@ -61,21 +67,20 @@ export class PerfilMesaComponent implements OnInit {
         }
       });
     }
-    
+
   }
 
 
-  obtenerPerfilesMesa(){
-    this.servicePerfilMesas.getPerfilesMesa().subscribe(data => 
-      { 
-       this.load=false;
-       this.perfiles=data;
-       }
+  obtenerPerfilesMesa() {
+    this.servicePerfilMesas.getPerfilesMesa().subscribe(data => {
+      this.load = false;
+      this.perfiles = data;
+    }
     )
   }
 
   private navigateList() {
-     this.router.navigate(['mesas/perfiles/crear']);
+    this.router.navigate(['mesas/perfiles/crear']);
     // window.location.reload();
     // this.router.navigateByUrl('/mesas/perfiles', {skipLocationChange: true}).then(()=>
     // this.router.navigate(["/mesas/perfiles"])); 

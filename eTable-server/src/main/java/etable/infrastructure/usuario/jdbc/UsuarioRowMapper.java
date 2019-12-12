@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.stereotype.Component;
 
 import etable.domain.cliente.model.Cliente;
+import etable.domain.cliente.model.ClienteDTO;
 import etable.domain.user.model.User;
 import etable.domain.user.model.UserDTO;
 
@@ -73,6 +74,25 @@ public class UsuarioRowMapper {
 			String phone = row.get("PHONE").toString();
 			String date = row.get("DATE").toString();
 			Cliente cliente = new Cliente(ccliente, dni, cusuario, email, phone, date);
+			clientes.add(cliente);
+		}
+		return clientes;
+	}
+	
+	public List<ClienteDTO> mapRowClienteDTO(List<Map<String, Object>> rows) {
+		List<ClienteDTO> clientes = new ArrayList<ClienteDTO>();
+		
+		for(Map<String, Object> row : rows) {
+			int ccliente = Integer.parseInt(row.get("CCLIENTE").toString());
+			int dni = Integer.parseInt(row.get("DNI").toString());
+			int cusuario = Integer.parseInt(row.get("CUSUARIO").toString());
+			String usnombre = row.get("USNOMBRE").toString();
+			String usapellidos = row.get("USAPELLIDOS").toString();
+			String email = row.get("EMAIL").toString();
+			String phone = row.get("PHONE").toString();
+			String date = row.get("DATE").toString();
+			boolean estado = Integer.parseInt(row.get("ESTADO").toString()) == 1 ? true : false;
+			ClienteDTO cliente = new ClienteDTO(ccliente, dni, usnombre, usapellidos, cusuario, email, phone, date, estado);
 			clientes.add(cliente);
 		}
 		return clientes;
