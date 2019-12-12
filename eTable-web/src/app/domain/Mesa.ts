@@ -4,5 +4,5 @@ export class Mesa {
     cperfilmesa: number;
     tipoperfil:string;
     cestadomesa: number;
-    tipoestado:string;
+    tipoestado: string;
 }

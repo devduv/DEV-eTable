@@ -12,6 +12,7 @@ import { EstadoMesasService } from 'src/app/services/administracion/administraci
 })
 export class MesaComponent implements OnInit {
   estado: boolean;
+  prueba : string;
   public id: number;
   mesas: Mesa[];
   estadomesa : EstadoMesa;
@@ -35,27 +36,54 @@ export class MesaComponent implements OnInit {
        console.log(this.mesas);
 
         for (let i = 0; i < this.mesas.length; i++) {
-          console.log("le paso ",this.mesas[i].cmesa)
-          var prueba = this.obtenerEstadoMesas(this.mesas[i].cestadomesa);
-          console.log("pr > " , prueba);
-          this.mesas[i].tipoestado = prueba;
+          console.log("le paso ",this.mesas[i].cestadomesa)
+           this.prueba  = this.obtenerEstadoMesas(this.mesas[i].cestadomesa);
+          console.log("pr > " , this.prueba);
+          this.mesas[i].tipoestado = this.prueba;
 
           console.log(this.mesas[i] );
         } }
     )}
+    /*
   public obtenerEstadoMesas(i : number){
     this.id=i;
-    var descEstado = "A";
-    this.serviceestadomesa.obtenerEstadoMesa(this.id).subscribe(o => {
-      if (o !== null) {
-        this.estadomesa = o;
-        console.log("this.estadomesa",this.estadomesa);
-        descEstado =this.estadomesa.emdescripcion;
-        console.log("this.descEstado",this.estadomesa.emdescripcion);
-      return o;
-  }  });
-     return descEstado;
+    var descEstado ='A';
+    switch (i) {
+    case 1:
+        descEstado='Habilitada';
+        ;
+        break;
+      case 2:
+        descEstado='En re[aracion';
+        
+        break;
+      case 3:
+        descEstado='Desuso';
+       break;
+    }
+    return descEstado;
+}*/
+// obtenerPerfilMesas
+public obtenerEstadoMesas(i : number) : string {
+  this.id=i;
+  var descPerfil ='A';
+   var descEstado = "aaaA";
+  this.serviceestadomesa.obtenerEstadoMesa(this.id).subscribe(o => {
+    if (o !== null) {
+      this.estadomesa = o;
+      console.log("this.estadomesa",this.estadomesa);
+      descEstado =this.estadomesa.emdescripcion;
+      console.log("this.descEstadoooo",typeof descEstado);
+      console.log("this.descEstadoooo", descEstado);
+     
+      return descEstado;
+     } 
+    })
+     
+     ;
+    return descEstado;
 }
+
   cambiarEstadoMesa(id: number, estado: boolean) {
     this.estado = !this.estado;
   }
