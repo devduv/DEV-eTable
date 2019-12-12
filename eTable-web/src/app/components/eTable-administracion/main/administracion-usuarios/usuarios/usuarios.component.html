@@ -1,0 +1,60 @@
+<div class="header-user-list">
+    <button class="btn-nuevo ml-1 mr-1" (click)="nuevoUsuario()">
+        <i class="mdi mdi-plus-box-multiple-outline f-16"></i> Nuevo
+    </button>
+</div>
+<div *ngIf="load" class="div-loading" style="position:absolute"><img class="loading" src="{{loading}}" /></div>
+<div class="mt-3 table-responsive">
+    <div class="f-13 ml-3" *ngIf="sinUsuarios"><span>No se han creado usuarios</span></div>
+
+    <table class="table table-hover" *ngIf="!sinUsuarios">
+        <thead class="header-table">
+            <tr>
+                <td style="width: 50px;"></td>
+                <td>
+                    <div class="center-head">Tipo</div>
+                </td>
+                <td>
+                    <div class="center-head">Nickname</div>
+                </td>
+                <td>
+                    <div class="center-head">Nombres</div>
+                </td>
+                <td>
+                    <div class="center-head">Apellidos</div>
+                </td>
+                <td>
+                    <div class="center-head">Estado</div>
+                </td>
+            </tr>
+        </thead>
+        <tbody class="header-body">
+            <tr *ngFor="let usuario of usuarios">
+                <td>
+                    <button class="btn-edit mt-1" (click)="editarUsuario(usuario.cusuario)">
+                        <i class="mdi mdi-border-color" style="font-size: 20px;"></i>
+                    </button>
+
+                </td>
+                <td>
+                    <div class="center-body"><button (click)="editarUsuario(usuario.cusuario)" class="btn-none">{{usuario.tiponombre}}</button></div>
+                </td>
+                <td>
+                    <div class="center-body">{{usuario.nickname}}</div>
+                </td>
+                <td>
+                    <div class="center-body">{{usuario.usnombres}}</div>
+                </td>
+                <td>
+                    <div class="center-body">{{usuario.usapellidos}}</div>
+                </td>
+                <td>
+                    <button
+                    [ngClass]="usuario.estado ? 'btn-habilitado' : 'btn-deshabilitado'">
+                    {{ usuario.estado ? 'Habilitado' : 'Deshabilitado'}}
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

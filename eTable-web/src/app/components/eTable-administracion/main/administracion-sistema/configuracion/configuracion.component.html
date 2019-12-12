@@ -1,0 +1,88 @@
+<div class="header-user-list">
+    <button class="btn-nuevo ml-2 mr-1" (click)="(edit ? editar() : guardarCambios())">
+        <i [ngClass]="(edit ? 'mdi-pencil' : 'mdi-plus-box-multiple-outline')" class="mdi f-16"></i> {{btn}}
+    </button>
+    <span *ngIf="success" class="ml-3 action-success">
+        <i class="mdi mdi-check-circle mr-1"></i>
+        {{successText}} <br/></span>
+    <button *ngIf="!edit" class="btn-nuevo ml-1 mr-1" (click)="cancelar()">
+        <i class="mdi mdi-close-circle f-16"></i> Cancelar
+    </button>
+</div>
+<div *ngIf="empty" class="mt-3"><span class="not-complete">{{emptyText}}</span></div>
+<div *ngIf="load || saving" class="div-loading" style="position:absolute"><img class="loading" src="{{loading}}" />
+</div>
+<div class="ml-4 mt-3 f-13">
+    <span><b>Configuración General</b></span>
+    <hr class="mt-1" />
+    <div class="table-responsive">
+        <table class="mb-4">
+            <tbody>
+                <tr>
+                    <td>
+                        <span class="mr-2">Cantidad máxima de registro de mesas:</span>
+                    </td>
+                    <td>
+                        <input [disabled]="edit" [(ngModel)]="configuracion.cant_max_mesas" name="cant_max_mesas"
+                            class="mb-2 form-control input-small form-control-sm" min="5" max="200" type="number" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="mr-2">Cantidad máxima de usuarios registrados:</span>
+                    </td>
+                    <td>
+                        <input [disabled]="edit" input [(ngModel)]="configuracion.cant_max_us_registrados"
+                            name="cant_max_us_registrados" class="mb-2 form-control form-control-sm input-small" min="1"
+                            max="99999" type="number" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="mr-2">Máximo de usuarios trabajadores conectados:</span>
+                    </td>
+                    <td>
+                        <input [disabled]="edit" [(ngModel)]="configuracion.max_us_trab_conectados"
+                            name="max_us_trab_conectados" class="mb-2 form-control form-control-sm input-small" min="1"
+                            max="10" type="number" />
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <span><b>Horario de atención del Restaurante:</b></span>
+        <hr class="mt-1" />
+        <div class="table-responsive">
+            <table> 
+                <tbody>
+                    <tr>
+                        <td>
+                            <span class="mr-2">Días:</span>
+                        </td>
+                        <td>
+                            <button [disabled]="edit" (click) = "activarDia(dia.id)"
+                                [ngClass]="dia.activo ? 'btn-dias-selected': 'btn-dias-no-selected'"
+                                *ngFor="let dia of dias; let i = index"
+                                class="mb-2">{{dia.dia}}</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Hora de Inicio:</td>
+                        <td>
+                            <input [disabled]="edit" min="08:00" max="20:00"
+                                [ngModel]="configuracion.horario_ini_atencion" type="time"
+                                class="mb-2 form-control form-control-sm input-m">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Hora de Fin:</td>
+                        <td>
+                            <input [disabled]="edit" min="08:00" max="20:00"
+                                [ngModel]="configuracion.horario_fin_atencion" type="time"
+                                class="mb-2 form-control form-control-sm input-m">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
