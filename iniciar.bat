@@ -1,3 +1,4 @@
-@Echo off
+cd %~d0%~p0/eTable-web
 ng serve --proxy-config proxy.config.json
+PAUSE
 
