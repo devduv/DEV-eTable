@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { MesasService } from 'src/app/services/administracion/administracion-mesas/mesas.service';
+import { Component, OnInit, NgZone } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 import { PerfilMesa } from 'src/app/domain/PerfilMesa';
 import { Path } from 'src/app/infrastructure/constans/Path';
 import { PerfilMesasService } from 'src/app/services/administracion/administracion-mesas/perfil-mesas.service';
@@ -12,13 +11,18 @@ import { PerfilMesasService } from 'src/app/services/administracion/administraci
 })
 export class PerfilMesaComponent implements OnInit {
 
-
+  public id: number;
   public perfiles: PerfilMesa[];
+  perfilMesa: PerfilMesa;
   load: boolean;
   loading: string;
-  constructor(private router: Router, private service: PerfilMesasService) {
+  public success: boolean;
+  public successText: string;
+
+  constructor(private router: Router, private servicePerfilMesas: PerfilMesasService  , private activedRouter: ActivatedRoute, private zone: NgZone) {
     this.load = true;
     this.loading = Path.loading;
+    this.success=false;
   }
 
   ngOnInit() {
@@ -28,9 +32,41 @@ export class PerfilMesaComponent implements OnInit {
   nuevoPerfil() {
     this.router.navigate(['mesas/perfiles/crear']);
   }
+  editarPerfilMesa(id: number) {
+    this.router.navigate(['mesas/perfiles/editar/' + id]);
+  }
+
+
+  public eliminarPerfilMesa(id: number) {
+    console.log(id);
+    const c = confirm('Eliminar perfil Mesa');
+    if (c === true) {
+      this.load = true;
+      this.servicePerfilMesas.deletePerfilMesaById(id).subscribe(data => {
+        if (data) {  console.log("1");
+          this.load = false;
+          this.navigateList();
+        } else {  console.log("2");
+          this.load = false;
+          this.navigateList();
+          // this.success = true;
+          // this.successText = 'No se puede eliminar este perfil Mesa';
+        }
+      }, error => {
+        if (error) {   console.log("3");
+          this.load = false;
+          this.navigateList();
+          // this.success = true;
+          // this.successText = 'Sucedió un error con el servidor';
+        }
+      });
+    }
+    
+  }
+
 
   obtenerPerfilesMesa(){
-    this.service.getPerfilesMesa().subscribe(data => 
+    this.servicePerfilMesas.getPerfilesMesa().subscribe(data => 
       { 
        this.load=false;
        this.perfiles=data;
@@ -38,5 +74,12 @@ export class PerfilMesaComponent implements OnInit {
     )
   }
 
+  private navigateList() {
+     this.router.navigate(['mesas/perfiles/crear']);
+    // window.location.reload();
+    // this.router.navigateByUrl('/mesas/perfiles', {skipLocationChange: true}).then(()=>
+    // this.router.navigate(["/mesas/perfiles"])); 
+
+  }
 
 }

@@ -10,6 +10,7 @@ import javax.swing.tree.TreePath;
 import org.springframework.stereotype.Component;
 
 import etable.domain.mesa.model.PerfilMesa;
+import etable.domain.user.model.User;
 
 @Component
 public class PerfilMesaRowMapper implements RowMapper {
@@ -29,7 +30,20 @@ public class PerfilMesaRowMapper implements RowMapper {
 		return perfilmesas;
 	}
 	
-
+	public List<PerfilMesa> getPerfilMesa(List<Map<String, Object>> rows){
+		List<PerfilMesa> perfilMesa = new ArrayList<PerfilMesa>();
+		
+		for(Map<String, Object> row: rows) {
+			int cperfilmesa = Integer.parseInt(row.get("CPERFILMESA").toString());
+			String pmnombre =row.get("PMNOMBRE").toString();
+			String pmdescripcion = row.get("PMDESCRIPCION").toString();
+			int pmcapacidad = Integer.parseInt(row.get("PMCAPACIDAD").toString());
+			int pmcompuesta = Integer.parseInt(row.get("PMCOMPUESTA").toString());
+			PerfilMesa perfil = new PerfilMesa(cperfilmesa,pmnombre,pmdescripcion, pmcapacidad,pmcompuesta);
+			perfilMesa.add(perfil);
+		}
+		return perfilMesa;
+	}
 	
 	@Override
 	public int[] getRowsForPaths(TreePath[] path) {

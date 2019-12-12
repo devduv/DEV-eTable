@@ -24,4 +24,8 @@ export class MainMenuService {
     getListMenuSubItemsByItem(id: number) {
         return this.http.get<MenuSubItem[]>(this.url + '/' + 'listMenuSubItems' + '/' + id);
     }
+
+    getAccesoByTipoUsuario(id: number){
+      return this.http.get<MenuItem[]>(this.url + '/' + 'listMenuItems' + '/' + 'acceso' + '/' + id);
+    }
 }

@@ -17,6 +17,17 @@ export class PerfilMesasService {
   }
 
   public crearPerfilMesa (perfilMesa: PerfilMesa) {
-    return this.http.post<PerfilMesa>(this.url + '/' + 'perfilMesa', perfilMesa);
+    return this.http.post<PerfilMesa>(this.url + '/' + 'crearPerfilMesa', perfilMesa);
+  }
+
+  public getPerfilMesaById(id: number) {
+    return this.http.get<PerfilMesa>(this.url + '/' + 'obtenerPerfilMesa' + '/' + id);
+  }
+  public deletePerfilMesaById(id: number) {
+    return this.http.delete<boolean>(this.url + '/' + 'eliminarPerfilMesaById' + '/' + id);
+  }
+
+   public editarPerfilMesaById(perfilMesa: PerfilMesa,id: number) {
+    return this.http.put<PerfilMesa>(this.url + '/' + 'actualizarPerfilMesaById'+ '/' + id, perfilMesa);
   }
 }

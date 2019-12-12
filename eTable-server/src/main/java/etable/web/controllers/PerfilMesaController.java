@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import etable.application.mesa.PerfilMesaService;
 import etable.domain.mesa.model.PerfilMesa;
+import etable.domain.user.model.User;
 
 @CrossOrigin(origins = "localhost:4200")
 @RestController
@@ -45,5 +46,9 @@ public class PerfilMesaController {
 		return this.service.crearPerfilMesa(mesa) ;
 	}
 	
+	@GetMapping(path= {"/obtenerPerfilMesa/{id}"})
+	public PerfilMesa obtenerPerfilMesa(@PathVariable int id) {
+		return this.service.getPerfilMesaById(id);
+	}
 
 }

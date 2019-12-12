@@ -7,5 +7,6 @@ import etable.domain.mesa.model.EstadoMesa;
 public interface EstadoMesaService {
 
 	List<EstadoMesa> getEstadoMesas();
-
+	EstadoMesa getEstadoMesaById(int id);
+	
 }

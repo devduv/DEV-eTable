@@ -33,7 +33,7 @@ public class ConfiguracionRepositoryImpl implements ConfiguracionRepository {
 	@Override
 	public Configuracion actualizarById(Configuracion configuracion) {
 		String query = Query.update_configuracion;
-		int update = this.jdbcTemplate.update(query, configuracion.getCempresa(), configuracion.getEmpnombre(), configuracion.getEmpdescripcion(), configuracion.getEmpemail(),
+		int update = this.jdbcTemplate.update(query, configuracion.getCempresa(), configuracion.getEmpnombre(),configuracion.getEmpdireccion() , configuracion.getEmpdescripcion(), configuracion.getEmpemail(),
 						configuracion.getEmpcelular(), configuracion.getEmplogo(),
 						configuracion.isSist_reservacion_cliente() ? 1 : 0,
 						configuracion.isSist_atencion_cliente() ? 1 : 0,
@@ -56,7 +56,7 @@ public class ConfiguracionRepositoryImpl implements ConfiguracionRepository {
 	@Override
 	public Configuracion actualizarParametrosById(Configuracion configuracion) {
 		String query = Query.update_parametros;
-		int update = this.jdbcTemplate.update(query, configuracion.getCant_max_mesas(), configuracion.getHorario_ini_atencion(), 
+		int update = this.jdbcTemplate.update(query, configuracion.getCant_max_mesas(), configuracion.getCant_max_us_registrados(), configuracion.getHorario_ini_atencion(), 
 				configuracion.getHorario_fin_atencion(), configuracion.getDias_atencion(), configuracion.getMax_us_trab_conectados());
 		if( update == 1) {
 			return configuracion;

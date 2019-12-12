@@ -3,5 +3,5 @@ export class PerfilMesa {
     pmnombre: string;
     pmdescripcion: string;
     pmcapacidad: number;
-    pmcompuesta: boolean;
+    pmcompuesta: number;
 }
