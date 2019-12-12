@@ -7,15 +7,13 @@
     <table class="table table-hover">
         <thead class="header-table">
             <tr>
-                <td style="width: 50px;"></td>
+                <td style="width: 100px;"></td>
+                
                 <td>
-                    <div class="center-head">Id</div>
+                    <div class="center-head">Nombre Mesa</div>
                 </td>
                 <td>
                     <div class="center-head">Perfil</div>
-                </td>
-                <td>
-                    <div class="center-head">Nombre Mesa</div>
                 </td>
                 <td>
                     <div class="center-head">Estado</div>
@@ -23,29 +21,39 @@
             </tr>
         </thead>
         <tbody class="header-body">
-            <tr>
-                <td>
-                    <button class="btn-edit mt-1">
-                        <i class="mdi mdi-border-color" style="font-size: 20px;"></i>
-                    </button>
-
-                </td>
-                <td>
-                    <div class="center-body">1</div>
-                </td>
-                <td>
-                    <div class="center-body">Familiar</div>
-                </td>
-                <td>
-                    <div class="center-body">1 A</div>
-                </td>
-                <td>
-                    <button *ngIf="estado" class="btn-habilitado"
-                        (click)="cambiarEstadoMesa(1, true)">Habilitado</button>
-                    <button *ngIf="!estado" class="btn-deshabilitado"
-                        (click)="cambiarEstadoMesa(1, true)">Deshabilitado</button>
-                </td>
-            </tr>
-        </tbody>
+                <tr *ngFor= "let mesa of mesas">
+                    <td >
+                        <div class="row">
+                                <button class="btn-edit mt-1 ml-3 "(click)="editarMesa(mesa.cmesa)">
+                                        <i class="mdi mdi-border-color" style="font-size: 20px; display: inline-block !important;"></i>
+                                    </button>
+                                   
+                                    <button type="button" class="btn-edit mt-1 ml-2" (click)="eliminarMesa(mesa.cmesa)">
+                                            <i class="mdi mdi-delete  " style="font-size: 20px; display: inline-block !important;"></i> 
+                                    </button>
+    
+                        </div>
+                        
+    
+                    </td>
+                    <td>
+                            <div class="center-body"><button (click)="editarMesa(mesa.cmesa)" class="btn-none">{{mesa.nombremesa}}</button></div>
+                            
+                    </td>
+                    <td>
+                            <div class="center-body">{{mesa.perfilmesa}} </div>
+                    </td>
+                    <td>
+                            <div class="center-body"> {{mesa.tipoestado}}  </div>
+                    </td>
+                    <!-- <td>
+                        <div>
+                            <button [ngClass] = "perfil.estadomesa ? 'btn-componer' : 'btn-no-componer'">
+                             {{mesas.estadomesa ? 'ACTIVO' : 'INACTIVO'}}
+                            </button>
+                        </div>
+                    </td> -->
+                </tr>
+            </tbody>
     </table>
 </div>

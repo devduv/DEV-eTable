@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { PerfilMesa } from 'src/app/domain/PerfilMesa';
 import { HttpClient } from '@angular/common/http';
+import { Mesa } from 'src/app/domain/Mesa';
 
 @Injectable({
   providedIn: 'root'
@@ -9,10 +9,14 @@ export class MesasService {
 
   private url: string;
   constructor(private http: HttpClient) {
-    this.url = 'etable/api/perfilMesa';
+    this.url = 'etable/api/mainMesa';
   }
 
-  // getPerfilesMesa() {
-  //   return this.http.get<PerfilMesa[]>(this.url + '/' + 'perfiles');
-  // }
+  getMesas() {
+    return this.http.get<Mesa[]>(this.url + '/' + 'listMesas');
+  }
+
+  
+
+
 }

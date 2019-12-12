@@ -13,4 +13,8 @@ export class Mensaje {
     public static emptyDate = 'Ingrese la fecha de cumpleaños del usuario';
     public static emptyDNI = 'Ingrese DNI del usuario';
     public static emptyPass = 'Ingrese contraseña de usuario';
+
+    public static emptyNomMesa = 'Ingrese nombre de mesa';
+    public static emptyDescMesa = 'Ingrese descripcion de mesa';
+    public static emptyCapacMesa = 'Ingrese capacidad de mesa';
 }

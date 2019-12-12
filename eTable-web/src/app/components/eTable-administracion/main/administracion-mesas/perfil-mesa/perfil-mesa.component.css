@@ -13,3 +13,8 @@
     padding: 8px;
     border-radius: 5px;
 }
+
+.btn-none{
+    background: transparent;
+    border: 0px;
+}
