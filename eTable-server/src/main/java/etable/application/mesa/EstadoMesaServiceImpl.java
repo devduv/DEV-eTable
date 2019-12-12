@@ -21,6 +21,13 @@ public class EstadoMesaServiceImpl implements EstadoMesaService{
 		return this.repository.getEstadoMesas();
 	}
 
+
+	@Override
+	public EstadoMesa getEstadoMesaById(int id) {
+		// TODO Auto-generated method stub
+		return this.repository.getEstadoMesaById(id);
+	}
+
 	
 
 

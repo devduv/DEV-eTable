@@ -3,6 +3,7 @@ package etable.application.mesa;
 import java.util.List;
 
 import etable.domain.mesa.model.PerfilMesa;
+import etable.domain.user.model.User;
 
 public interface PerfilMesaService {
 
@@ -11,4 +12,5 @@ public interface PerfilMesaService {
 	PerfilMesa actualizarPerfilMesaById(PerfilMesa perfilmesa, int id);
 	boolean eliminarPerfilMesaById(int id);
 	PerfilMesa crearPerfilMesa(PerfilMesa perfilmesa);
+	PerfilMesa getPerfilMesaById(int id);
 }

@@ -38,6 +38,12 @@ public class PerfilMesaServiceImpl implements PerfilMesaService{
 		// TODO Auto-generated method stub
 		return this.repository.crearPerfilMesa(perfilmesa);
 	}
+
+	@Override
+	public PerfilMesa getPerfilMesaById(int id) {
+		// TODO Auto-generated method stub
+		return this.repository.getPerfilMesaById(id);
+	}
 	
 
 

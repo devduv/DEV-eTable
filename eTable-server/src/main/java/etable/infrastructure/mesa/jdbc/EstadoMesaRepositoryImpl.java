@@ -1,12 +1,14 @@
 package etable.infrastructure.mesa.jdbc;
 
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import etable.domain.mesa.model.EstadoMesa;
+import etable.domain.mesa.model.PerfilMesa;
 import etable.domain.mesa.repository.EstadoMesaRepository;
 import etable.web.constants.querys.Query;
 
@@ -28,8 +30,18 @@ public class EstadoMesaRepositoryImpl implements EstadoMesaRepository{
 		List<EstadoMesa> estadomesas = row.mapRowEstadoMesa(rows);
 		return estadomesas;
 	}
-	
 
+
+	@Override
+	public EstadoMesa getEstadoMesaById(int id) {
+		String findEstadomesa = Query.selectFromWhere(Query.table_estadomesa, "CESTADOMESA", id);
+		List<EstadoMesa> estadomesa = this.row.mapRowEstadoMesa(this.jdbcTemplate.queryForList(findEstadomesa));
+		if (estadomesa.size() > 0) {
+			return estadomesa.get(0);
+		}
+		return null;
+	}
+	
 	
 	
 	

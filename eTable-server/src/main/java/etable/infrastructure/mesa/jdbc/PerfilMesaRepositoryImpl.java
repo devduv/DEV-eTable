@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 import etable.domain.mesa.model.PerfilMesa;
 import etable.domain.mesa.repository.PerfilMesaRepository;
+import etable.domain.user.model.User;
 import etable.web.constants.querys.Query;
 
 @Component
@@ -70,5 +71,17 @@ public class PerfilMesaRepositoryImpl implements PerfilMesaRepository {
 		return null;
 
 	}
+
+	@Override
+	
+	public PerfilMesa getPerfilMesaById(int id) {
+		String findPerfil = Query.selectFromWhere(Query.table_perfilmesa, "CPERFILMESA", id);
+		List<PerfilMesa> perfilmesa = this.row.getPerfilMesa(this.jdbcTemplate.queryForList(findPerfil));
+		if (perfilmesa.size() > 0) {
+			return perfilmesa.get(0);
+		}
+		return null;
+	}
+	
 
 }
