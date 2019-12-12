@@ -30,6 +30,11 @@ public class MenuServiceImpl implements MenuService{
 	public List<SubItem> getSubItemByItem(int citem) {
 		return this.repository.getSubItemByItem(citem);
 	}
+
+	@Override
+	public List<Item> accesoTipoUsuario(int id) {
+		return this.repository.acceso(id);
+	}
 	
 	
 }

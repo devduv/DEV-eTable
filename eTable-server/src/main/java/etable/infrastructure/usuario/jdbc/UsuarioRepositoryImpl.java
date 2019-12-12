@@ -66,7 +66,7 @@ public class UsuarioRepositoryImpl implements UserRepository{
 		String query = "SELECT CUSUARIO, NICKNAME, TP.TIPONOMBRE, USNOMBRE, USAPELLIDOS, ESTADO FROM TBUSUARIOS AS U " + 
 				"INNER JOIN TBTIPOUSUARIO AS TP " + 
 				"ON U.CTIPOUSUARIO = TP.CTIPOUSUARIO " + 
-				"WHERE U.CTIPOUSUARIO = 1 ORDER BY U.CTIPOUSUARIO";
+				"WHERE U.CTIPOUSUARIO != 2 ORDER BY U.CTIPOUSUARIO";
 		List<UserDTO> list = this.row.mapRowUsuarioDTO(this.jdbcTemplate.queryForList(query));
 		return list;
 	}

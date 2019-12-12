@@ -10,4 +10,6 @@ public interface MenuService {
 	List<Item> getItems();
 	List<SubItem> getSubItems();
 	List<SubItem> getSubItemByItem(int citem);
+	
+	List<Item> accesoTipoUsuario(int id);
 }

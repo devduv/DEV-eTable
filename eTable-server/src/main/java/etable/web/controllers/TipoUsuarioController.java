@@ -67,5 +67,4 @@ public class TipoUsuarioController {
 	public boolean eliminarTipoUsuario(@PathVariable int id) {
 		return this.service.eliminarTipoUsuarioById(id);
 	}
-
 }
