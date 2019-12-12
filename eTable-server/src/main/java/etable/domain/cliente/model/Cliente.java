@@ -11,6 +11,7 @@ public class Cliente {
 	
 	public Cliente() {
 		
+		
 	}
 	
 	public Cliente(int ccliente, int dni, int cusuario, String email, String phone, String date) {
