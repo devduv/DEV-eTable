@@ -89,8 +89,11 @@
                 <button class="btn-habilitado" (click)="newPassword()">Nueva contraseña</button>
             </div>
         </div>
+        <span><b>Estado del usuario</b></span>
+        <hr class="mt-1" />
         <div>
-            <button class="btn-habilitado">Usuario habilitado</button>
+                <span class="mr-2">Estado actual: </span>
+            <button [ngClass]="user.estado ? 'btn-habilitado' : 'btn-deshabilitado'" (click)="cambiarEstado()">{{user.estado ? 'Habilitado' : 'Deshabilitado'}}</button>
         </div>
     
     </div>

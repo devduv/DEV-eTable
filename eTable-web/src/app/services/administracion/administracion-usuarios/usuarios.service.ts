@@ -25,6 +25,10 @@ export class UsuarioService {
     return this.http.post<Cliente>(this.url + '/crearCliente', {'user': user, 'cliente': cliente});
   }
 
+  public editCliente(cliente: Cliente) {
+    return this.http.put<Cliente>(this.url + '/editarCliente', cliente);
+  }
+
   public getUsuarioByAuthentication(user: User) {
     return this.http.post<User>(this.url + '/obtenerUsuario', user);
   }

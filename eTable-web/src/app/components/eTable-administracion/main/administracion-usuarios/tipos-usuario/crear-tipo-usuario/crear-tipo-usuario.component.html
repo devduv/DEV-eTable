@@ -44,7 +44,7 @@
     <div class="row m-0 mb-5">
         <div class="col-lg-6 col-sm-6">
             <div class="card">
-                <span class="card-header">Permisos del Sistema</span>
+                <span class="card-header">Permisos del Sistema <button *ngIf="!allPermisos" class="btn-permiso" (click)="asignarTodo()"><b>Asignar todo</b></button></span>
                 <div class="card-body card-permiso">
                     <select class="form-control form-control-sm select-sm" [(ngModel)]="selectedItemId"
                         (change)="getModuloMenuSubItems()">

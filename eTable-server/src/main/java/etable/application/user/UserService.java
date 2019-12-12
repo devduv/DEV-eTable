@@ -16,4 +16,7 @@ public interface UserService {
 	User getUsuarioById(int id);
 	boolean deleteUser(int id);
 	Cliente crearCliente(User user , Cliente cliente);
+	Cliente actualizarCliente(Cliente cliente);
+	List<Cliente> getClientes();
+	Cliente getClienteById(int id);
 }

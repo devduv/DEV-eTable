@@ -42,10 +42,11 @@
                     <div class="center-body" *ngIf="perfil.pmcapacidad>1">{{perfil.pmcapacidad}} personas</div>
                 </td>
                 <td>
-                    <div class="center-body" *ngIf="perfil.pmcompuesta">
-                        <button class="btn-componer">Se puede componer</button></div>
-                    <div class="center-body" *ngIf="!perfil.pmcompuesta">
-                        <button class="btn-no-componer">No se puede componer</button></div>
+                    <div>
+                        <button [ngClass] = "perfil.pmcompuesta ? 'btn-componer' : 'btn-no-componer'">
+                         {{perfil.pmcompuesta ? 'Se puede componer' : 'No se puede componer'}}
+                        </button>
+                    </div>
                 </td>
             </tr>
         </tbody>

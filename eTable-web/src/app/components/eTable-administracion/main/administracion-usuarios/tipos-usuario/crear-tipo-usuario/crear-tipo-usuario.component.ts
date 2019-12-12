@@ -34,6 +34,7 @@ export class CrearTipoUsuarioComponent implements OnInit {
   public emptyText: string;
   public listDelete: TipoUsuarioPermiso[];
   public listAdd: TipoUsuarioPermiso[];
+  public allPermisos: boolean;
 
   constructor(
     private router: Router,
@@ -50,10 +51,12 @@ export class CrearTipoUsuarioComponent implements OnInit {
     this.empty = false;
     this.listDelete = [];
     this.listAdd = [];
+    this.allPermisos = false;
   }
 
   ngOnInit() {
     if (this.isEdit()) {
+      this.allPermisos = true;
       this.onEdit = true;
       this.serviceUsuario.getTipoUsuarioById(this.id)
         .subscribe(data => {
@@ -235,6 +238,7 @@ export class CrearTipoUsuarioComponent implements OnInit {
     if (this.onEdit) { this.removeAllOnEdit(); }
     this.permisosAsignados = [];
     this.listTipoUsuarioPermiso = [];
+    this.allPermisos = false;
   }
 
   private removeAllOnEdit() {
@@ -321,6 +325,15 @@ export class CrearTipoUsuarioComponent implements OnInit {
       if (data) {
         this.navigateList();
       }
+    });
+  }
+
+  public asignarTodo() {
+    this.servicePermiso.getPermisos().subscribe(data => {
+      data.forEach(val => {
+        this.permisosAsignados.push(val);
+        this.allPermisos = true;
+      });
     });
   }
 

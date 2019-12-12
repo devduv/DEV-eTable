@@ -63,5 +63,19 @@ public class UserServiceImpl implements UserService{
 		}
 	}
 
+	@Override
+	public Cliente actualizarCliente(Cliente cliente) {
+		return this.repository.editCliente(cliente);
+	}
+
+	@Override
+	public List<Cliente> getClientes() {
+		return this.repository.getClientes();
+	}
+
+	@Override
+	public Cliente getClienteById(int id) {
+		return this.repository.getClienteById(id);
+	}
 
 }

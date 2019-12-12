@@ -27,6 +27,7 @@ import { EditarPermisoComponent } from './components/eTable-administracion/main/
 import { CrearTipoUsuarioComponent } from './components/eTable-administracion/main/administracion-usuarios/tipos-usuario/crear-tipo-usuario/crear-tipo-usuario.component';
 import { RegisterComponent } from './components/eTable-autenticacion/register/register.component';
 import { EditarUsuarioComponent } from './components/eTable-administracion/main/administracion-usuarios/usuarios/editar-usuario/editar-usuario.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 const routes: Routes = [
   { path: 'eTable', component: LoginComponent },

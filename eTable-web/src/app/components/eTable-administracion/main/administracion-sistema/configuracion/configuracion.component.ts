@@ -66,6 +66,7 @@ export class ConfiguracionComponent implements OnInit {
   guardarCambios() {
     this.load = true;
     this.configuracion.dias_atencion = this.diasEnAtencion();
+    console.log(this.configuracion);
     this.service.actualizarParametrosSistemaGeneral(this.configuracion).subscribe(data => {
       this.load = false;
       this.successText = Mensaje.successText;
