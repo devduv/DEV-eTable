@@ -35,4 +35,9 @@ public class MenuController {
 	public List<SubItem> getMenuSubItemsByItem(@PathVariable int id) {
 		return this.service.getSubItemByItem(id);
 	}
+	
+	@GetMapping(path = {"/listMenuItems/acceso/{id}"})
+	public List<Item> accesoSistemaByTipoUsuario(@PathVariable int id) {
+		return this.service.accesoTipoUsuario(id);
+	}
 }

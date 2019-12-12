@@ -44,6 +44,16 @@ public class MenuRepositoryImpl implements MenuRepository{
 		List<SubItem> subitems = row.mapRowSubItem(rows);
 		return subitems;
 	}
+
+	@Override
+	public List<Item> acceso(int id) {
+		String query = "select distinct i.citem, i.item from tbtipousuariopermiso as tp "
+				+ "inner join tbpermisos as p on tp.cpermiso = p.cpermiso "
+				+ "inner join tbmenusubitems as sub on sub.csubitem = p.csubitem "
+				+ "inner join tbmenuitems as i on i.citem = sub.citem where tp.ctipousuario = " + id;
+		List<Item> items = row.mapRowItem(this.jdbctemplate.queryForList(query));
+		return items;
+	}
 	
 	
 }

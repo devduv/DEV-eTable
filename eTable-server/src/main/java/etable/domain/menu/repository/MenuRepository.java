@@ -10,4 +10,5 @@ public interface MenuRepository {
 	List<Item> getItems();
 	List<SubItem> getSubItems();
 	List<SubItem> getSubItemByItem(int citem);
+	List<Item> acceso(int id);
 }
