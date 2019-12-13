@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import etable.domain.mesa.model.Mesa;
+import etable.domain.mesa.model.MesaDTO;
 import etable.domain.mesa.repository.MesaRepository;
 
 @Service
@@ -15,7 +16,7 @@ public class MesaServiceImpl implements MesaService{
 	private MesaRepository repository;
 
 	@Override
-	public List<Mesa> getMesas() {
+	public List<MesaDTO> getMesas() {
 		// TODO Auto-generated method stub
 		return this.repository.getMesas();
 	}

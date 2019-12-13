@@ -18,10 +18,13 @@
                 <td>
                     <div class="center-head">Estado</div>
                 </td>
+                <td>
+                    <div class="center-head">Capacidad</div>
+                </td>
             </tr>
         </thead>
         <tbody class="header-body">
-                <tr *ngFor= "let mesa of mesas">
+                <tr *ngFor= "let mesadto of mesasdto">
                     <td >
                         <div class="row">
                                 <button class="btn-edit mt-1 ml-3 "(click)="editarMesa(mesa.cmesa)">
@@ -36,23 +39,23 @@
                         
     
                     </td>
-                    <td>
+                    <!-- <td>
                             <div class="center-body"><button (click)="editarMesa(mesa.cmesa)" class="btn-none">{{mesa.nombremesa}}</button></div>
                             
-                    </td>
-                    <td>
-                            <div class="center-body">{{mesa.perfilmesa}} </div>
-                    </td>
-                    <td>
-                            <div class="center-body"> {{mesa.tipoestado}}  </div>
-                    </td>
-                    <!-- <td>
-                        <div>
-                            <button [ngClass] = "perfil.estadomesa ? 'btn-componer' : 'btn-no-componer'">
-                             {{mesas.estadomesa ? 'ACTIVO' : 'INACTIVO'}}
-                            </button>
-                        </div>
                     </td> -->
+                    <td>
+                        <div class="center-body">{{mesadto.nombremesa}} </div>
+                     </td>
+                    <td>
+                            <div class="center-body">{{mesadto.emdescripcion}} </div>
+                    </td>
+                    <td>
+                            <div class="center-body">{{mesadto.pmnombre}} </div>
+                    </td>
+                    <td>
+                            <div class="center-body"> {{mesadto.pmcapacidad}}  </div>
+                    </td>
+                    
                 </tr>
             </tbody>
     </table>

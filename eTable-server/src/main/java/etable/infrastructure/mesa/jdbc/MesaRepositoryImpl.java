@@ -9,6 +9,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
 import etable.domain.mesa.model.Mesa;
+import etable.domain.mesa.model.MesaDTO;
 import etable.domain.mesa.repository.MesaRepository;
 import etable.web.constants.querys.Query;
 
@@ -22,14 +23,16 @@ public class MesaRepositoryImpl implements MesaRepository{
 	private MesaRowMapper row;
 
 	@Override
-	public List<Mesa> getMesas() {
+	public List<MesaDTO> getMesas() {
 		// TODO Auto-generated method stub
 		
-		String query = Query.selectFrom(Query.table_mesa);
+		String query = "SELECT * FROM TBMESA AS M INNER JOIN TBESTADOMESA "
+				+ "AS N ON M.CESTADOMESA = N.CESTADOMESA INNER JOIN TBPERFILMESA"
+				+ " AS T ON M.CPERFILMESA = T.CPERFILMESA" ;
 		
 
 		List<Map<String, Object>> rows = this.jdbcTemplate.queryForList(query);
-		List<Mesa> mesas = row.mapRowMesa(rows);
+		List<MesaDTO> mesas = row.mapRowMesaDTO(rows);
 		return mesas;
 	}
 

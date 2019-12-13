@@ -18,11 +18,11 @@
                     <span class="mr-2">Nombre:</span>
                 </td>
                 <td>
-                    <input name="tiponombre" [(ngModel)]="perfilMesa.pmnombre"
+                    <input name="nombre" [(ngModel)]="mesa.nombremesa"
                         class="mb-2 form-control input-small form-control-sm" type="text" />
                 </td>
             </tr>
-            <tr>
+             <tr>
                 <td>
                     <span class="mr-2">Descripcion:</span>
                 </td>
@@ -40,15 +40,7 @@
                         class="mb-2 form-control form-control-sm input-large" type="number" />
                 </td>
             </tr>
-            <tr>
-                <td>
-                    <span class="mr-2">Mesa Compuesta:</span>
-                </td>
-                <td>
-                   <button  style="width: 200px;"[ngClass]=" this.pmcompuesta ? 'btn-habilitado' : 'btn-deshabilitado'" (click)="cambiarEstado()">{{this.pmcompuesta ? 'Compuesta' : 'No Compuesta'}}</button>
-    
-                </td>
-            </tr>
+            
         </tbody>
     </table>
 </div>

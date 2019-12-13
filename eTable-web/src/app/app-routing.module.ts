@@ -15,6 +15,7 @@ import { ConfiguracionComponent } from './components/eTable-administracion/main/
 import { TiposUsuarioComponent } from './components/eTable-administracion/main/administracion-usuarios/tipos-usuario/tipos-usuario.component';
 import { PermisosComponent } from './components/eTable-administracion/main/administracion-usuarios/permisos/permisos.component';
 import { MesaComponent } from './components/eTable-administracion/main/administracion-mesas/mesas/mesas.component';
+import { CreateMesaComponent } from './components/eTable-administracion/main/administracion-mesas/mesas/create-mesa/create-mesa.component';
 import { PerfilMesaComponent } from './components/eTable-administracion/main/administracion-mesas/perfil-mesa/perfil-mesa.component';
 import { ProgramacionMesaComponent } from './components/eTable-administracion/main/administracion-mesas/programacion-mesa/programacion-mesa.component';
 import { ClientesComponent } from './components/eTable-administracion/main/administracion-clientes/clientes/clientes.component';
@@ -46,6 +47,7 @@ const routes: Routes = [
   { path: 'usuarios/editar/:id', component: EditarUsuarioComponent},
 
   { path: 'mesas/list', component: MesaComponent},
+  { path: 'mesas/crear', component: CreateMesaComponent},
   { path: 'mesas/perfiles', component: PerfilMesaComponent},
   { path: 'mesas/perfiles/crear', component: CreatePerfilMesaComponent},
   { path: 'mesas/perfiles/editar/:id', component: EditarPerfilMesaComponent},
