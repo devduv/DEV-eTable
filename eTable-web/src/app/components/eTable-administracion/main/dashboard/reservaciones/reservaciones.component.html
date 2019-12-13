@@ -3,6 +3,9 @@
         <i class="mdi mdi-plus-box-multiple-outline f-16"></i> Nuevo
     </button>
 </div>
+<div *ngIf="mesas?.length == 0">
+    <span>No hay mesas disponibles</span>
+</div>
 <div *ngFor="let mesa of mesas">
 {{mesa.nombremesa}}
 </div>

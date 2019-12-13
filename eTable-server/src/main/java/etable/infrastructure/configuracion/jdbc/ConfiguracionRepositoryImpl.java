@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
 import etable.domain.configuracion.model.Configuracion;
+import etable.domain.configuracion.model.Image;
 import etable.domain.configuracion.repository.ConfiguracionRepository;
 import etable.web.constants.querys.Query;
 
@@ -31,7 +32,9 @@ public class ConfiguracionRepositoryImpl implements ConfiguracionRepository {
 	}
 
 	@Override
-	public Configuracion actualizarById(Configuracion configuracion) {
+	public Configuracion actualizarById(Configuracion configuracion, Image image) {
+		String imagePath = image.saveImage();
+		configuracion.setEmplogo(imagePath);
 		String query = Query.update_configuracion;
 		int update = this.jdbcTemplate.update(query, configuracion.getCempresa(), configuracion.getEmpnombre(),configuracion.getEmpdireccion() , configuracion.getEmpdescripcion(), configuracion.getEmpemail(),
 						configuracion.getEmpcelular(), configuracion.getEmplogo(),

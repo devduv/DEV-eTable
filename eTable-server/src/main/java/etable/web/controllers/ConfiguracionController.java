@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import etable.application.configuracion.ConfiguracionService;
 import etable.domain.configuracion.model.Configuracion;
+import etable.domain.configuracion.model.Image;
 
 @CrossOrigin(origins = "localhost:4200")
 @RestController
@@ -27,9 +28,9 @@ public class ConfiguracionController {
 	}
 	
 	@PutMapping(path = {"/actualizarConfiguracion/{id}"})
-	public Configuracion actualizarConfiguracionSistemaGeneral(@RequestBody Configuracion configuracion, @PathVariable int id) {
+	public Configuracion actualizarConfiguracionSistemaGeneral(@RequestBody Image image, @RequestBody Configuracion configuracion, @PathVariable int id) {
 		configuracion.setCconfiguracion(id);
-		return this.service.actualizarConfiguracion(configuracion);
+		return this.service.actualizarConfiguracion(configuracion, image);
 	}
 	
 	@PostMapping(path = {"/actualizarParametros/{id}"})

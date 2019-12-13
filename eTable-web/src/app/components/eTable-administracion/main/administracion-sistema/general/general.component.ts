@@ -191,7 +191,7 @@ export class GeneralComponent implements OnInit {
   }
 
   public onUploadFinish(event) {
-    this.image = new ImageSelected;
+    this.image = new ImageSelected();
     this.image.image = event.src;
     this.image.name = event.file.name;
     console.log('image: ', this.image.image);
