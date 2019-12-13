@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit, DoCheck {
     private serviceConfig: SistemaGeneralService,
     private dialog: MatDialog,
     private serviceUser: UsuarioService) {
-    this.logo = Path.logo;
+    // this.logo = Path.logo;
     this.notuser = false;
     this.notpass = false;
     this.notuserexist = false;
@@ -103,6 +103,7 @@ export class LoginComponent implements OnInit, DoCheck {
   }
 
   public register() {
+    localStorage.setItem('emplogo',  this.config.emplogo);
     localStorage.setItem('empnombre', this.config.empnombre);
     localStorage.setItem('registration', 'true');
   }
@@ -187,11 +188,23 @@ export class LoginComponent implements OnInit, DoCheck {
   }
 
   private getConfiguracion() {
+    console.log('Cargando imagen...');
     this.serviceConfig.getConfiguracionSistemaGeneral().subscribe(data => {
       this.config = data;
+      if (this.config.empnombre.length === 0) {
+        this.config.empnombre = 'Bienvenido, Reserva tu mesa';
+      }
+      if (this.config.emplogo.length !== 0) {
+        this.logo = '../../' + this.config.emplogo;
+      } else {
+        this.logo = Path.logo;
+        console.log('lol',  this.logo);
+      }
+      
       this.load = false;
     }, error => {
       if (error) {
+        console.log('lol',  this.logo);
         this.load = false;
         this.serverConected = false;
       }

@@ -29,7 +29,6 @@ export class RegisterComponent implements OnInit {
     this.cliente = new Cliente();
     this.load = false;
     this.loading = Path.loading;
-    this.logo = Path.logo;
     this.empnombre = '';
     this.empty = false;
     this.successText = '';
@@ -37,6 +36,10 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
     this.empnombre = localStorage.getItem('empnombre');
+    this.logo = localStorage.getItem('emplogo');
+    if (this.logo.length === 0) {
+      this.logo = Path.logo;
+    }
   }
 
   public register() {
@@ -70,19 +73,17 @@ export class RegisterComponent implements OnInit {
     if (this.isEmpytText(this.user.password, Mensaje.emptyPass)) {
       return true;
     }
-    if (this.esCliente) {
-      if (this.isEmpytText(this.cliente.email, Mensaje.emptyEmail)) {
-        return true;
-      }
-      if (this.isEmpytText(this.cliente.phone, Mensaje.emptyPhone)) {
-        return true;
-      }
-      if (this.isEmpytText(this.cliente.date, Mensaje.emptyDate)) {
-        return true;
-      }
-      if (this.isEmpytText(this.cliente.dni.toString(), Mensaje.emptyDNI)) {
-        return true;
-      }
+    if (this.isEmpytText(this.cliente.email, Mensaje.emptyEmail)) {
+      return true;
+    }
+    if (this.isEmpytText(this.cliente.phone, Mensaje.emptyPhone)) {
+      return true;
+    }
+    if (this.isEmpytText(this.cliente.date, Mensaje.emptyDate)) {
+      return true;
+    }
+    if (this.isEmpytText(this.cliente.dni.toString(), Mensaje.emptyDNI)) {
+      return true;
     }
   }
 

@@ -23,6 +23,9 @@ export class Configuracion {
     dias_atencion: string;
     max_us_trab_conectados: number;
 
+    imageByte: string;
+    imageName: string;
+
 
     public setConfiguracion(configuracion: Configuracion) {
         this.cconfiguracion = configuracion.cconfiguracion;

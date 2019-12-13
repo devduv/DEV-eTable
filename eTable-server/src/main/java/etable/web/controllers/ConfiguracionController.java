@@ -28,7 +28,8 @@ public class ConfiguracionController {
 	}
 	
 	@PutMapping(path = {"/actualizarConfiguracion/{id}"})
-	public Configuracion actualizarConfiguracionSistemaGeneral(@RequestBody Image image, @RequestBody Configuracion configuracion, @PathVariable int id) {
+	public Configuracion actualizarConfiguracionSistemaGeneral(@RequestBody Configuracion configuracion, @PathVariable int id) {
+		Image image = new Image(configuracion.getImageByte(), configuracion.getImageName());
 		configuracion.setCconfiguracion(id);
 		return this.service.actualizarConfiguracion(configuracion, image);
 	}

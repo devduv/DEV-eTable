@@ -1,8 +1,9 @@
 package etable.domain.configuracion.model;
 
-import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.util.Base64;
 
-import com.mysql.jdbc.Buffer;
 
 public class Image {
 
@@ -28,14 +29,29 @@ public class Image {
 	}
 	
 	public String saveImage() {
-		Buffer buff = new Buffer("");
-		if (this.image.startsWith("data:image/jpeg;base64,/")) {
-			buff = new Buffer(this.image.replace("data:image/jpeg;base64,/", ""), "base64").toString("binary"); 
+		if (this.name != null && this.image != null) {
+			String path = "src/../../eTable-web/src/assets/logo-emp/";
+			String pathName = "/assets/logo-emp/" + this.name;
+			try {
+				String imageByte = new String(image.substring(image.indexOf(",") + 1));
+				File filePath = new File(path, this.name);
+		        FileOutputStream fos=new FileOutputStream(filePath.getPath());
+		        fos.write(decodeImage(imageByte));
+		        fos.close();
+		      }
+		      catch (java.io.IOException e) {
+		    	  pathName = "";
+		      }
+			return pathName;
 		} else {
-			buff = new Buffer(this.image.replace("data:image/png;base64,/", ""), "base4"); 
+			return "";
 		}
-		
-		return "";
 	}
+	
+	public  byte[] decodeImage(String imageByte) {
+		byte[] decodedString = Base64.getDecoder().decode(new String(imageByte).getBytes());
+		return decodedString;
+	}
+	
 	
 }

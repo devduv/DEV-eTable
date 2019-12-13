@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Configuracion } from 'src/app/domain/Configuracion';
+import { ImageSelected } from 'src/app/infrastructure/plugins/ImageSelected';
 
 @Injectable({
   providedIn: 'root'

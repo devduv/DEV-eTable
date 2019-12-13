@@ -29,6 +29,9 @@ public class Configuracion {
 	
 	private String date_configurado;
 	
+	private String imageByte;
+	private String imageName;
+	
 	public Configuracion() {
 		
 	}
@@ -225,4 +228,22 @@ public class Configuracion {
 	public void setReservas_no_sesionadas(boolean reservas_no_sesionadas) {
 		this.reservas_no_sesionadas = reservas_no_sesionadas;
 	}
+
+	public String getImageByte() {
+		return imageByte;
+	}
+
+	public void setImageByte(String imageByte) {
+		this.imageByte = imageByte;
+	}
+
+	public String getImageName() {
+		return imageName;
+	}
+
+	public void setImageName(String imageName) {
+		this.imageName = imageName;
+	}
+	
+	
 }
