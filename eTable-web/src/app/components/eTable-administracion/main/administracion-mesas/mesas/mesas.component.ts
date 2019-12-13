@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Mesa } from 'src/app/domain/Mesa';
+import { MesaDTO } from 'src/app/domain/MesaDTO';
 import { MesasService } from 'src/app/services/administracion/administracion-mesas/mesas.service';
 import { EstadoMesa } from 'src/app/domain/EstadoMesa';
 import { EstadoMesasService } from 'src/app/services/administracion/administracion-mesas/estado-mesas.service';
@@ -15,6 +16,7 @@ export class MesaComponent implements OnInit {
   prueba : string;
   public id: number;
   mesas: Mesa[];
+  mesasdto: MesaDTO[];
   estadomesa : EstadoMesa;
   load: boolean;
   loading: string;
@@ -32,9 +34,9 @@ export class MesaComponent implements OnInit {
     this.serviceMesas.getMesas().subscribe(data => 
       { 
        this.load=false;
-       this.mesas =data;
-       console.log(this.mesas);
-
+       this.mesasdto = data;
+       console.log("MESAS" ,this.mesasdto);
+/*
         for (let i = 0; i < this.mesas.length; i++) {
           console.log("le paso ",this.mesas[i].cestadomesa)
            this.prueba  = this.obtenerEstadoMesas(this.mesas[i].cestadomesa);
@@ -42,7 +44,8 @@ export class MesaComponent implements OnInit {
           this.mesas[i].tipoestado = this.prueba;
 
           console.log(this.mesas[i] );
-        } }
+        } */
+      } 
     )}
     /*
   public obtenerEstadoMesas(i : number){
@@ -64,25 +67,24 @@ export class MesaComponent implements OnInit {
     return descEstado;
 }*/
 // obtenerPerfilMesas
-public obtenerEstadoMesas(i : number) : string {
-  this.id=i;
-  var descPerfil ='A';
-   var descEstado = "aaaA";
-  this.serviceestadomesa.obtenerEstadoMesa(this.id).subscribe(o => {
-    if (o !== null) {
-      this.estadomesa = o;
-      console.log("this.estadomesa",this.estadomesa);
-      descEstado =this.estadomesa.emdescripcion;
-      console.log("this.descEstadoooo",typeof descEstado);
-      console.log("this.descEstadoooo", descEstado);
+// public obtenerEstadoMesas(i : number) : string {
+//   this.id=i;
+//   var descPerfil ='A';
+//    var descEstado = "aaaA";
+//   this.serviceestadomesa.obtenerEstadoMesa(this.id).subscribe(o => {
+//     if (o !== null) {
+//       this.estadomesa = o;
+//       console.log("this.estadomesa",this.estadomesa);
+//       descEstado =this.estadomesa.emdescripcion;
+//       console.log("this.descEstadoooo", descEstado);
      
-      return descEstado;
-     } 
-    })
+//       return descEstado;
+//      } 
+//     })
      
-     ;
-    return descEstado;
-}
+//      ;
+//     return descEstado;
+// }
 
   cambiarEstadoMesa(id: number, estado: boolean) {
     this.estado = !this.estado;

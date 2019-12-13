@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import etable.application.mesa.MesaService;
 import etable.domain.mesa.model.Mesa;
-
+import etable.domain.mesa.model.MesaDTO;
 @CrossOrigin(origins = "localhost:4200")
 @RestController
 @RequestMapping({"/api/mainMesa"})
@@ -25,7 +25,7 @@ public class MesaController {
 	private MesaService service;
 	
 	@GetMapping(path = {"/listMesas"})
-	public List<Mesa> listMesas() {
+	public List<MesaDTO> listMesas() {
 		return this.service.getMesas();
 	}
 	
