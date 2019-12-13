@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import etable.domain.cliente.model.Cliente;
+import etable.domain.cliente.model.ClienteDTO;
 import etable.domain.user.model.User;
 import etable.domain.user.model.UserDTO;
 import etable.domain.user.repository.UserRepository;
@@ -69,7 +70,7 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public List<Cliente> getClientes() {
+	public List<ClienteDTO> getClientes() {
 		return this.repository.getClientes();
 	}
 

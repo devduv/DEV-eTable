@@ -103,6 +103,7 @@ export class LoginComponent implements OnInit, DoCheck {
   }
 
   public register() {
+    localStorage.setItem('empnombre', this.config.empnombre);
     localStorage.setItem('registration', 'true');
   }
 
@@ -153,7 +154,7 @@ export class LoginComponent implements OnInit, DoCheck {
       us.password = passwordHash;
       this.serviceUser.getUsuarioByAuthentication(us).subscribe(data => {
       this.openDialog(data);
-      }); 
+      });
     }
   }
 

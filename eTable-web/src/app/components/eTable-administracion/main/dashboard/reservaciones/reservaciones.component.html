@@ -1,1 +1,8 @@
-<p>reservaciones works!</p>
+<div class="header-user-list">
+    <button class="btn-nuevo ml-1 mr-1">
+        <i class="mdi mdi-plus-box-multiple-outline f-16"></i> Nuevo
+    </button>
+</div>
+<div *ngFor="let mesa of mesas">
+{{mesa.nombremesa}}
+</div>

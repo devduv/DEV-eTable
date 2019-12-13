@@ -8,7 +8,7 @@
             <div class="row">
                 <div class="col-lg-1"></div>
                 <div class="col-lg-10">
-                    <div class="row">
+                    <div class="row mb-2">
                         <div class="col-lg-4 col-md-4 col-sm-4 col-4">
                             <div style="text-align: center;">
                                 <img src="{{logo}}" width=90>
@@ -17,13 +17,15 @@
                         <div class="col-lg-8 col-md-8 col-sm-8 col-8">
                             <div class="mt-2">
                                 <div class="mb-4">
-                                    <h4><b>Papa Jhon's Pizza</b></h4>
+                                    <h4><b>{{empnombre}}</b></h4>
                                     <h6>Crear una cuenta</h6>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <form class="form-group m-0" novalidate>
+                        <span *ngIf="empty" class="not-complete">
+                            {{successText}} <br /></span>
                         <div class="row">
                             <div class="col-lg-6 col-md-6 col-sm-6 col-6">
                                 <div class="mt-3">

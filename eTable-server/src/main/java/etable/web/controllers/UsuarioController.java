@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import etable.application.user.UserService;
 import etable.domain.cliente.model.Cliente;
+import etable.domain.cliente.model.ClienteDTO;
 import etable.domain.user.model.User;
 import etable.domain.user.model.UserDTO;
 
@@ -73,12 +74,12 @@ public class UsuarioController {
 	}
 	
 	@GetMapping(path = {"/clientes"})
-	public List<Cliente> listClientes() {
+	public List<ClienteDTO> listClientes() {
 		return this.service.getClientes();
 	}
 	
 	@GetMapping(path = {"/clientes/{id}"})
-	public Cliente listClientes(@PathVariable int id) {
+	public Cliente getClienteById(@PathVariable int id) {
 		return this.service.getClienteById(id);
 	}
 }

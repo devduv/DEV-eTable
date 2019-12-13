@@ -4,6 +4,7 @@ import { User } from 'src/app/domain/User';
 import { EventEmitter } from 'events';
 import { UsuarioService } from 'src/app/services/administracion/administracion-usuarios/usuarios.service';
 import { Cliente } from 'src/app/domain/Cliente';
+import { Mensaje } from 'src/app/infrastructure/constans/Mensaje';
 
 @Component({
   selector: 'app-register',
@@ -17,7 +18,9 @@ export class RegisterComponent implements OnInit {
   public logo: string;
   public loading: string;
   public load: boolean;
-
+  public empnombre: string;
+  public empty: boolean;
+  public successText: string;
   public cliente: Cliente;
   public user: User;
 
@@ -27,18 +30,23 @@ export class RegisterComponent implements OnInit {
     this.load = false;
     this.loading = Path.loading;
     this.logo = Path.logo;
-   }
+    this.empnombre = '';
+    this.empty = false;
+    this.successText = '';
+  }
 
   ngOnInit() {
+    this.empnombre = localStorage.getItem('empnombre');
   }
 
   public register() {
-    console.log(this.cliente, this.user);
-    this.user.ctipousuario = 1;
-    this.service.crearCliente(this.user, this.cliente).subscribe(o => {
-      console.log('Cliente creado');
-      this.navigate();
-    });
+    this.empty = this.isEmpty();
+    if (!this.empty) {
+      this.user.ctipousuario = 2;
+      this.service.crearCliente(this.user, this.cliente).subscribe(o => {
+        this.navigate();
+      });
+    }
   }
 
   public backLogin() {
@@ -46,6 +54,42 @@ export class RegisterComponent implements OnInit {
   }
 
   private navigate() {
-    localStorage.setItem('registration', 'false')
+    localStorage.setItem('registration', 'false');
+  }
+
+  private isEmpty() {
+    if (this.isEmpytText(this.user.usnombres, Mensaje.emptyName)) {
+      return true;
+    }
+    if (this.isEmpytText(this.user.usapellidos, Mensaje.emptyName)) {
+      return true;
+    }
+    if (this.isEmpytText(this.user.nickname, Mensaje.notUserEmpty)) {
+      return true;
+    }
+    if (this.isEmpytText(this.user.password, Mensaje.emptyPass)) {
+      return true;
+    }
+    if (this.esCliente) {
+      if (this.isEmpytText(this.cliente.email, Mensaje.emptyEmail)) {
+        return true;
+      }
+      if (this.isEmpytText(this.cliente.phone, Mensaje.emptyPhone)) {
+        return true;
+      }
+      if (this.isEmpytText(this.cliente.date, Mensaje.emptyDate)) {
+        return true;
+      }
+      if (this.isEmpytText(this.cliente.dni.toString(), Mensaje.emptyDNI)) {
+        return true;
+      }
+    }
+  }
+
+  private isEmpytText(info: string, msg: string) {
+    if (info === undefined || info.trim().length === 0) {
+      this.successText = msg;
+      return true;
+    }
   }
 }

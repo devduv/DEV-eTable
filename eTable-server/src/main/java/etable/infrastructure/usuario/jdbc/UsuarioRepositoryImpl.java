@@ -15,6 +15,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import etable.domain.cliente.model.Cliente;
+import etable.domain.cliente.model.ClienteDTO;
 import etable.domain.user.model.User;
 import etable.domain.user.model.UserDTO;
 import etable.domain.user.repository.UserRepository;
@@ -181,9 +182,10 @@ public class UsuarioRepositoryImpl implements UserRepository{
 
 
 	@Override
-	public List<Cliente> getClientes() {
-		String query = Query.selectFrom(Query.table_clientes);
-		List<Cliente> list = this.row.mapRowCliente(this.jdbcTemplate.queryForList(query));
+	public List<ClienteDTO> getClientes() {
+		String query = "SELECT C.CCLIENTE, C.CUSUARIO, C.DNI, C.EMAIL, C.PHONE, C.DATE, U.USNOMBRE, U.USAPELLIDOS, U.ESTADO "
+				+ "FROM TBCLIENTES AS C INNER JOIN TBUSUARIOS AS U ON C.CUSUARIO = U.CUSUARIO";
+		List<ClienteDTO> list = this.row.mapRowClienteDTO(this.jdbcTemplate.queryForList(query));
 		return list;
 	}
 
