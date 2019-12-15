@@ -23,6 +23,7 @@ export class GeneralComponent implements OnInit {
   emptyText: string;
   success: boolean;
   successText: string;
+  existLogo: boolean;
 
   constructor(private service: SistemaGeneralService) {
     this.configuracion = new Configuracion();
@@ -34,6 +35,7 @@ export class GeneralComponent implements OnInit {
     this.btn = 'Editar';
     this.empty = false;
     this.success = false;
+    this.existLogo = false;
     this.successText = Mensaje.successText;
   }
 
@@ -47,10 +49,20 @@ export class GeneralComponent implements OnInit {
       this.load = false;
       if (data != null) {
         this.configuracion.setConfiguracion(data);
+        this.setExistsLogo();
         this.prevconfiguracion.setConfiguracion(this.configuracion);
         this.initConfig();
       }
     });
+  }
+
+  setExistsLogo() {
+    console.log(this.configuracion.emplogo);
+    if (this.configuracion.emplogo.length !== 0) {
+      this.existLogo = true;
+    } else {
+      this.existLogo = false;
+    }
   }
 
   editar() {
@@ -118,7 +130,6 @@ export class GeneralComponent implements OnInit {
   }
 
   guardarCambios() {
-    this.configuracion.emplogo = 'prueba';
     if (this.camposCompletos()) {
       this.saving = true;
       this.service.actualizarConfiguracionSistemaGeneral(this.configuracion).subscribe(data => {
@@ -128,7 +139,6 @@ export class GeneralComponent implements OnInit {
           this.empty = false;
           this.edit = !this.edit;
           this.btn = 'Editar';
-          console.log('Guardado.');
         }
       });
     }
@@ -192,9 +202,8 @@ export class GeneralComponent implements OnInit {
 
   public onUploadFinish(event) {
     this.image = new ImageSelected();
-    this.image.image = event.src;
-    this.image.name = event.file.name;
-    console.log('image: ', this.image.image);
-    console.log('name: ', this.image.name);
+    this.configuracion.imageByte = event.src;
+    this.configuracion.imageName = event.file.name;
+    this.configuracion.emplogo = this.configuracion.imageName;
    }
 }

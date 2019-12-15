@@ -33,10 +33,12 @@ public class ConfiguracionRepositoryImpl implements ConfiguracionRepository {
 
 	@Override
 	public Configuracion actualizarById(Configuracion configuracion, Image image) {
-		String imagePath = image.saveImage();
-		configuracion.setEmplogo(imagePath);
+		String pathName = image.saveImage();
+		configuracion.setEmplogo(pathName);
 		String query = Query.update_configuracion;
-		int update = this.jdbcTemplate.update(query, configuracion.getCempresa(), configuracion.getEmpnombre(),configuracion.getEmpdireccion() , configuracion.getEmpdescripcion(), configuracion.getEmpemail(),
+		int update = this.jdbcTemplate.update(query, configuracion.getCempresa(), 
+						configuracion.getEmpnombre(), configuracion.getEmpdireccion(),
+						configuracion.getEmpdescripcion(), configuracion.getEmpemail(),
 						configuracion.getEmpcelular(), configuracion.getEmplogo(),
 						configuracion.isSist_reservacion_cliente() ? 1 : 0,
 						configuracion.isSist_atencion_cliente() ? 1 : 0,

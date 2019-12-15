@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MesasService } from 'src/app/services/administracion/administracion-mesas/mesas.service';
-import { Mesa } from 'src/app/domain/Mesa';
+import { MesaDTO } from 'src/app/domain/MesaDTO';
 
 @Component({
   selector: 'app-reservaciones',
@@ -9,7 +9,7 @@ import { Mesa } from 'src/app/domain/Mesa';
 })
 export class ReservacionesComponent implements OnInit {
 
-  public mesas: Mesa[];
+  public mesas: MesaDTO[];
   constructor(private serviceMesa: MesasService) { }
 
   ngOnInit() {
