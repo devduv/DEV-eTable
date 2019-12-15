@@ -28,9 +28,9 @@ public class Image {
 	}
 	
 	public String saveImage() {
-		Buffer buff = new Buffer("");
+		Buffer buff = new Buffer(this.image.repl);
 		if (this.image.startsWith("data:image/jpeg;base64,/")) {
-			buff = new Buffer(this.image.replace("data:image/jpeg;base64,/", ""), "base64").toString("binary"); 
+			buff = new Buffer(this.image.replace(	z"data:image/jpeg;base64,/", ""), "base64").toString("binary"); 
 		} else {
 			buff = new Buffer(this.image.replace("data:image/png;base64,/", ""), "base4"); 
 		}
