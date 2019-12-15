@@ -10,5 +10,6 @@ public interface MesaService {
 	Mesa actualizarMesaById(Mesa mesa, int id);
 	boolean eliminarMesaById(int id);
 	Mesa crearMesa(Mesa mesa) ;
+	Mesa getMesaById(int id);
 
 }

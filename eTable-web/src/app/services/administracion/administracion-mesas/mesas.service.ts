@@ -20,6 +20,16 @@ export class MesasService {
     return this.http.post<Mesa>(this.url + '/' + 'crearMesa', mesa);
   }
 
+  public getMesaById(id: number) {
+    return this.http.get<Mesa>(this.url + '/' + 'obtenerMesa' + '/' + id);
+  }
 
+  public editarMesaById(mesa: Mesa,id: number) {
+    return this.http.put<Mesa>(this.url + '/' + 'actualizarMesaById'+ '/' + id, mesa);
+  }
+
+  public deleteMesaById(id: number) {
+    return this.http.delete<boolean>(this.url + '/' + 'eliminarMesaById' + '/' + id);
+  }
 
 }

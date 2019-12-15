@@ -23,11 +23,13 @@ export class CreateMesaComponent implements OnInit {
   public empty: boolean;
   public successText: string;
   public pmcompuesta : boolean;
-  public selectedTypeId : number;
+  public selectedTypeIdPerfil : number;
+  public selectedTypeIdEstado : number;
   constructor(private router: Router,  private servicePerfilMesas: PerfilMesasService,
     private estadoMesasService: EstadoMesasService , private mesasService: MesasService )  {
     this.mesa = new Mesa();
-    this.selectedTypeId = 0;
+    this.selectedTypeIdPerfil = 0;
+    this.selectedTypeIdEstado = 0;
     this.load = true;
     this.empty = false;
     this.loading = Path.loading;
@@ -39,21 +41,35 @@ export class CreateMesaComponent implements OnInit {
     this.getEstadosMesa();
   }
  
-  private crearMesa() {
-   /* this.mesa.cestadomesa = ;
-    this.mesa.cperfilmesa = ;
+
+  crearMesa(){
+    this.empty = this.isEmpty();
+    if (!this.empty) {
+      this.load = true;
+      this.mesa.cperfilmesa = this.selectedTypeIdPerfil;
+      this.mesa.cestadomesa = this.selectedTypeIdEstado;
+      console.log(this.mesa);
+      this.crearMesa2();
+    }
+    
+  }
+  
+  private crearMesa2() {
     this.mesasService.crearMesa(this.mesa)
       .subscribe(o => {
+        console.log("o",o);
         this.load = false;
         if (o) {
-          console.log("o ",o);
           this.navigateList();
         } else {
           this.empty = true;
           this.successText = 'El nombre de mesa ya existe, pruebe otro.';
         }
-      }); */
+      });
   }
+
+  
+  
 
   private isEmpytText(info: string, msg: string) {
     if (info === undefined || info.trim().length === 0) {
@@ -67,48 +83,26 @@ export class CreateMesaComponent implements OnInit {
       return true;
     }
   }
+  
 
-  private isEmpty() {
-    /*
-    if (this.isEmpytText(this.perfilMesa.pmnombre, Mensaje.emptyNomMesa)) {
+  private isEmpty() { // true : vacio 
+
+    if (this.isEmpytText(this.mesa.nombremesa, Mensaje.emptyNomMesa)) {
       return true;
     }
-    if (this.isEmpytText(this.perfilMesa.pmdescripcion, Mensaje.emptyDescMesa)) {
+
+    if (this.isEmpytNum(this.selectedTypeIdPerfil, Mensaje.emptyPerfil)) {
+      
       return true;
     }
-    if (this.isEmpytNum(this.perfilMesa.pmcapacidad, Mensaje.emptyCapacMesa)) {
+    if (this.isEmpytNum(this.selectedTypeIdEstado, Mensaje.emptyEstado)) {
+      
       return true;
-    }*/
-    
+    }
+   
   
   }
 
-  guardar(){ /*
-    this.empty = this.isEmpty();
-    if (!this.empty) {
-      this.load = true;
-     
-      if(this.pmcompuesta) this.perfilMesa.pmcompuesta = 1;
-      else  this.perfilMesa.pmcompuesta = 0;
-      console.log(this.perfilMesa);
-      this.crearPerfilMesa();
-    }*/
-    
-  }
-  private crearPerfilMesa() { /*
-    this.servicePerfilMesas.crearPerfilMesa(this.perfilMesa)
-      .subscribe(o => {
-        console.log("o",o);
-        this.load = false;
-        if (o) {
-          this.navigateList();
-        } else {
-          console.log("e22");
-          this.empty = true;
-          this.successText = 'El nombre de mesa ya existe, pruebe otro.';
-        }
-      });*/
-  }
   cancelar(){
     this.navigateList();
   }

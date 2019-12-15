@@ -1,7 +1,18 @@
-<div class="m-3">
+<div *ngIf="!cliente" class="m-3">
     <div *ngIf="load" class="div-loading" style="position:absolute"><img class="loading" src="{{loading}}" /></div>
     <h3 *ngIf="!load">Bienvenido, {{user.usnombres}}</h3>
     <hr />
     <span class="mb-3">Sistema de Reservación de Mesas</span>
     <p class="f-13">Verisón 1.0.0</p>
 </div>
+
+<div *ngIf="cliente" class="masthead">
+    <div class="container">
+      <div class="intro-text">
+        
+        <div class="intro-heading text-uppercase">La Casa de la Salud</div>
+        <div class="intro-lead-in">Encontrara la mejor comida vegetariana</div>
+        <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#services">Tell Me More</a>
+      </div>
+    </div>
+  </div>

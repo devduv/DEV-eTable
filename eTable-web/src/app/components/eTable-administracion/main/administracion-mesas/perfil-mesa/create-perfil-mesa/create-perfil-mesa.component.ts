@@ -4,7 +4,6 @@ import { PerfilMesa } from 'src/app/domain/PerfilMesa';
 import { PerfilMesasService } from 'src/app/services/administracion/administracion-mesas/perfil-mesas.service';
 import { Mensaje } from 'src/app/infrastructure/constans/Mensaje';
 import { Path } from 'src/app/infrastructure/constans/Path';
-import { Mesa } from 'src/app/domain/Mesa';
 
 @Component({
   selector: 'app-create-perfil-mesa',
@@ -44,8 +43,8 @@ export class CreatePerfilMesaComponent implements OnInit {
   }
 
   private isEmpty() {
-
-    if (this.isEmpytText(this.perfilMesa.pmnombre , Mensaje.emptyNomMesa)) {
+    
+    if (this.isEmpytText(this.perfilMesa.pmnombre, Mensaje.emptyNomMesa)) {
       return true;
     }
     if (this.isEmpytText(this.perfilMesa.pmdescripcion, Mensaje.emptyDescMesa)) {
@@ -89,7 +88,7 @@ export class CreatePerfilMesaComponent implements OnInit {
   }
 
   private navigateList() {
-    this.router.navigate(['mesas/list']);
+    this.router.navigate(['mesas/perfiles']);
   }
 
    public cambiarEstado() {

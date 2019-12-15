@@ -28,6 +28,15 @@
           <button (click)="!navOpen ? nothing() : snav.toggle(); logout()" class="btn-close"
             style="font-size: 13px;">Cerrar Sesión</button>
         </div>
+        <div class="f-right"  (click)="misReservas()">
+          <button class="btn-close"
+            style="font-size: 13px;">Mis Reservas</button>
+        </div>
+        <div class="f-right" (click)="reservar()">
+          <button class="btn-close"
+            style="font-size: 13px;">Reservar Mesa</button>
+        </div>
+        
 
       </div>
       <app-login *ngIf="!authentication"></app-login>

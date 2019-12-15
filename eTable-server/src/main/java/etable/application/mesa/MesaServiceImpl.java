@@ -37,6 +37,12 @@ public class MesaServiceImpl implements MesaService{
 		// TODO Auto-generated method stub
 		return this.repository.crearMesa(mesa);
 	}
+
+	@Override
+	public Mesa getMesaById(int id) {
+		// TODO Auto-generated method stub
+		return this.repository.getMesaById(id);
+	}
 	
 
 

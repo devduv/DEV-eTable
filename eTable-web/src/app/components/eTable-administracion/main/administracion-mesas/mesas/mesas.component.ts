@@ -36,55 +36,10 @@ export class MesaComponent implements OnInit {
        this.load=false;
        this.mesasdto = data;
        console.log("MESAS" ,this.mesasdto);
-/*
-        for (let i = 0; i < this.mesas.length; i++) {
-          console.log("le paso ",this.mesas[i].cestadomesa)
-           this.prueba  = this.obtenerEstadoMesas(this.mesas[i].cestadomesa);
-          console.log("pr > " , this.prueba);
-          this.mesas[i].tipoestado = this.prueba;
 
-          console.log(this.mesas[i] );
-        } */
       } 
     )}
-    /*
-  public obtenerEstadoMesas(i : number){
-    this.id=i;
-    var descEstado ='A';
-    switch (i) {
-    case 1:
-        descEstado='Habilitada';
-        ;
-        break;
-      case 2:
-        descEstado='En re[aracion';
-        
-        break;
-      case 3:
-        descEstado='Desuso';
-       break;
-    }
-    return descEstado;
-}*/
-// obtenerPerfilMesas
-// public obtenerEstadoMesas(i : number) : string {
-//   this.id=i;
-//   var descPerfil ='A';
-//    var descEstado = "aaaA";
-//   this.serviceestadomesa.obtenerEstadoMesa(this.id).subscribe(o => {
-//     if (o !== null) {
-//       this.estadomesa = o;
-//       console.log("this.estadomesa",this.estadomesa);
-//       descEstado =this.estadomesa.emdescripcion;
-//       console.log("this.descEstadoooo", descEstado);
-     
-//       return descEstado;
-//      } 
-//     })
-     
-//      ;
-//     return descEstado;
-// }
+   
 
   cambiarEstadoMesa(id: number, estado: boolean) {
     this.estado = !this.estado;
@@ -92,6 +47,40 @@ export class MesaComponent implements OnInit {
 
   nuevaMesa() {
     this.router.navigate(['mesas/crear']);
+  }
+  editarMesa(id: number) {
+    this.router.navigate(['mesas/editar/' + id]);
+  }
+  public eliminarMesa(id: number) {
+    console.log(id);
+    const c = confirm('Eliminar perfil Mesa');
+    if (c === true) {
+      this.load = true;
+      this.serviceMesas.deleteMesaById(id).subscribe(data => {
+        if (data) {
+          this.load = false;
+          this.navigateList();
+        } else {
+          this.load = false;
+          this.navigateList();
+        }
+      }, error => {
+        if (error) {
+          this.load = false;
+          this.navigateList();
+         
+        }
+      });
+    }
+
+  }
+
+  private navigateList() {
+    this.router.navigate(['mesas/list']);
+    // window.location.reload();
+    // this.router.navigateByUrl('/mesas/perfiles', {skipLocationChange: true}).then(()=>
+    // this.router.navigate(["/mesas/perfiles"])); 
+
   }
 
 }

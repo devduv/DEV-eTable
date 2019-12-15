@@ -17,4 +17,6 @@ export class Mensaje {
     public static emptyNomMesa = 'Ingrese nombre de mesa';
     public static emptyDescMesa = 'Ingrese descripcion de mesa';
     public static emptyCapacMesa = 'Ingrese capacidad de mesa';
+    public static emptyPerfil = 'Seleccione un Tipo de Perfil';
+    public static emptyEstado = 'Seleccione un Estado de la Mesa';
 }
