@@ -57,7 +57,6 @@ export class GeneralComponent implements OnInit {
   }
 
   setExistsLogo() {
-    console.log(this.configuracion.emplogo);
     if (this.configuracion.emplogo.length !== 0) {
       this.existLogo = true;
     } else {
@@ -205,5 +204,6 @@ export class GeneralComponent implements OnInit {
     this.configuracion.imageByte = event.src;
     this.configuracion.imageName = event.file.name;
     this.configuracion.emplogo = this.configuracion.imageName;
+    this.existLogo = false;
    }
 }
