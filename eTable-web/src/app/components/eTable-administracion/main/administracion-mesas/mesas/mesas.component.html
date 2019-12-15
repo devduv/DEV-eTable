@@ -27,11 +27,11 @@
                 <tr *ngFor= "let mesadto of mesasdto">
                     <td >
                         <div class="row">
-                                <button class="btn-edit mt-1 ml-3 "(click)="editarMesa(mesa.cmesa)">
+                                <button class="btn-edit mt-1 ml-3 "(click)="editarMesa(mesadto.cmesa)">
                                         <i class="mdi mdi-border-color" style="font-size: 20px; display: inline-block !important;"></i>
                                     </button>
                                    
-                                    <button type="button" class="btn-edit mt-1 ml-2" (click)="eliminarMesa(mesa.cmesa)">
+                                    <button type="button" class="btn-edit mt-1 ml-2" (click)="eliminarMesa(mesadto.cmesa)">
                                             <i class="mdi mdi-delete  " style="font-size: 20px; display: inline-block !important;"></i> 
                                     </button>
     

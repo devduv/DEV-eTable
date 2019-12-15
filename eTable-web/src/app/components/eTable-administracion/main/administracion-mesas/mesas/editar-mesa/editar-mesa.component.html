@@ -1,4 +1,7 @@
 <div class="header-user-list mb-2">
+    <button type="button" class="btn-nuevo ml-1 mr-1" (click)="eliminar()">
+                <i class="mdi mdi-delete f-16"></i> Eliminar
+    </button>
     <button class="btn-nuevo ml-1 mr-1" (click)="guardar()">
         <i class="mdi mdi-plus-box-multiple-outline f-16"></i> Guardar
     </button>
@@ -18,35 +21,33 @@
                     <span class="mr-2">Nombre:</span>
                 </td>
                 <td>
-                    <input name="tiponombre" [(ngModel)]="perfilMesa.pmnombre"
+                    <input name="nombremesa" [(ngModel)]="mesa.nombremesa"
                         class="mb-2 form-control input-small form-control-sm" type="text" />
                 </td>
             </tr>
             <tr>
                 <td>
-                    <span class="mr-2">Descripcion:</span>
+                    <span class="mr-2">Perfil de Mesa:</span>
                 </td>
                 <td>
-                    <input input name="tipodescripcion" [(ngModel)]="perfilMesa.pmdescripcion"
-                        class="mb-2 form-control form-control-sm input-large" type="text" />
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <span class="mr-2">Capacidad de Mesa:</span>
-                </td>
-                <td>
-                    <input input name="tipocapacidad" [(ngModel)]="perfilMesa.pmcapacidad"
-                        class="mb-2 form-control form-control-sm input-large" type="number" />
+                    <select class="form-control form-control-sm" [(ngModel)]="selectedTypePerfil">
+                        <option [ngValue]="0">Seleccionar perfil de Mesa</option>
+                        <option [ngValue]="tipos.cperfilmesa" *ngFor="let tipos of tiposPerfilMesas">{{tipos.pmnombre}}
+                        </option>
+                    </select>
                 </td>
             </tr>
+
             <tr>
                 <td>
-                    <span class="mr-2">Mesa Compuesta:</span>
+                    <span class="mr-2">Estado de Mesa:</span>
                 </td>
                 <td>
-                   <button  style="width: 200px;"[ngClass]=" this.pmcompuesta ? 'btn-habilitado' : 'btn-deshabilitado'" (click)="cambiarEstado()">{{this.pmcompuesta ? 'Compuesta' : 'No Compuesta'}}</button>
-    
+                    <select class="form-control form-control-sm" [(ngModel)]="selectedTypeEstado">
+                        <option [ngValue]="0">Seleccionar estado de Mesa</option>
+                        <option [ngValue]="tipos.cestadomesa" *ngFor="let tipos of tiposEstadoMesa">{{tipos.emdescripcion}}
+                        </option>
+                    </select>
                 </td>
             </tr>
         </tbody>

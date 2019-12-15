@@ -24,6 +24,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { CreatePerfilMesaComponent } from './components/eTable-administracion/main/administracion-mesas/perfil-mesa/create-perfil-mesa/create-perfil-mesa.component';
 import { EditarPerfilMesaComponent } from './components/eTable-administracion/main/administracion-mesas/perfil-mesa/editar-perfil-mesa/editar-perfil-mesa.component';
+import { EditarMesaComponent } from './components/eTable-administracion/main/administracion-mesas/mesas/editar-mesa/editar-mesa.component';
 import { EditarPermisoComponent } from './components/eTable-administracion/main/administracion-usuarios/permisos/editar-permiso/editar-permiso.component';
 import { CrearTipoUsuarioComponent } from './components/eTable-administracion/main/administracion-usuarios/tipos-usuario/crear-tipo-usuario/crear-tipo-usuario.component';
 import { RegisterComponent } from './components/eTable-autenticacion/register/register.component';
@@ -33,6 +34,10 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { UsuarioDeshabilitadoComponent } from './components/eTable-modals/usuario/usuario-deshabilitado/usuario-deshabilitado.component';
 import { MatNativeDateModule } from '@angular/material/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ClienteReservarComponent } from './components/eTable-cliente/cliente-reservar/cliente-reservar.component';
+import { ClienteMisReservasComponent } from './components/eTable-cliente/cliente-mis-reservas/cliente-mis-reservas.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -56,11 +61,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ImportarExportarComponent,
     CreatePerfilMesaComponent,
     EditarPerfilMesaComponent,
+    EditarMesaComponent,
     EditarPermisoComponent,
     CrearTipoUsuarioComponent,
     RegisterComponent,
     EditarUsuarioComponent,
-    UsuarioDeshabilitadoComponent
+    UsuarioDeshabilitadoComponent,
+    ClienteReservarComponent,
+    ClienteMisReservasComponent
   ],
   imports: [
     BrowserModule,

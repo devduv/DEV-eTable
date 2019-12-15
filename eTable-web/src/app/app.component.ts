@@ -70,4 +70,19 @@ export class AppComponent implements OnInit, DoCheck {
       this.navOpen = !this.navOpen;
     }
   }
+
+  private reservar() {
+    this.navigateReservar();
+  }
+  private misReservas() {
+    this.navigateMisReservas();
+  }
+
+
+  private navigateReservar() {
+    this.router.navigate(['clientes/reservar']);
+  }
+  private navigateMisReservas() {
+    this.router.navigate(['clientes/misReservas']);
+  }
 }

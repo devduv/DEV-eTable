@@ -30,6 +30,10 @@ import { RegisterComponent } from './components/eTable-autenticacion/register/re
 import { EditarUsuarioComponent } from './components/eTable-administracion/main/administracion-usuarios/usuarios/editar-usuario/editar-usuario.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { EditarPerfilMesaComponent } from './components/eTable-administracion/main/administracion-mesas/perfil-mesa/editar-perfil-mesa/editar-perfil-mesa.component';
+import { EditarMesaComponent } from './components/eTable-administracion/main/administracion-mesas/mesas/editar-mesa/editar-mesa.component';
+import { ClienteReservarComponent } from './components/eTable-cliente/cliente-reservar/cliente-reservar.component';
+import { ClienteMisReservasComponent } from './components/eTable-cliente/cliente-mis-reservas/cliente-mis-reservas.component';
+
 
 const routes: Routes = [
   { path: 'eTable', component: LoginComponent },
@@ -48,6 +52,7 @@ const routes: Routes = [
 
   { path: 'mesas/list', component: MesaComponent},
   { path: 'mesas/crear', component: CreateMesaComponent},
+  { path: 'mesas/editar/:id', component: EditarMesaComponent},
   { path: 'mesas/perfiles', component: PerfilMesaComponent},
   { path: 'mesas/perfiles/crear', component: CreatePerfilMesaComponent},
   { path: 'mesas/perfiles/editar/:id', component: EditarPerfilMesaComponent},
@@ -56,6 +61,8 @@ const routes: Routes = [
   { path: 'clientes/list', component: ClientesComponent},
   { path: 'clientes/tipos', component: TipoClientesComponent},
   { path: 'clientes/historial', component: HistorialClienteComponent},
+  { path: 'clientes/reservar', component: ClienteReservarComponent},
+  { path: 'clientes/misReservas', component: ClienteMisReservasComponent},
 
   { path: 'dashboard/reservaciones', component: ReservacionesComponent},
 

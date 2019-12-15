@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import etable.domain.mesa.model.Mesa;
 import etable.domain.mesa.model.MesaDTO;
+import etable.domain.mesa.model.PerfilMesa;
 import etable.domain.mesa.repository.MesaRepository;
 import etable.web.constants.querys.Query;
 
@@ -76,6 +77,16 @@ public class MesaRepositoryImpl implements MesaRepository{
 		}
 		return null;
 		
+	}
+
+	@Override
+	public Mesa getMesaById(int id) {
+		String findMesa = Query.selectFromWhere(Query.table_mesa, "CMESA", id);
+		List<Mesa> mesa = this.row.getMesa(this.jdbcTemplate.queryForList(findMesa));
+		if (mesa.size() > 0) {
+			return mesa.get(0);
+		}
+		return null;
 	}
 	
 

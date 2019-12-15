@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 
 import etable.domain.mesa.model.Mesa;
 import etable.domain.mesa.model.MesaDTO;
+import etable.domain.mesa.model.PerfilMesa;
 
 @Component
 public class MesaRowMapper implements RowMapper {
@@ -27,7 +28,19 @@ public class MesaRowMapper implements RowMapper {
 		}
 		return mesas;
 	}
-	
+	public List<Mesa> getMesa(List<Map<String, Object>> rows){
+		List<Mesa> mesas = new ArrayList<Mesa>();
+		
+		for(Map<String, Object> row: rows) {
+			int cmesa = Integer.parseInt(row.get("CMESA").toString());
+			int cperfilmesa = Integer.parseInt(row.get("CPERFILMESA").toString());
+			int cestadomesa = Integer.parseInt(row.get("CESTADOMESA").toString());
+			String nombreMesa = row.get("NOMBREMESA").toString();
+			Mesa i = new Mesa(cmesa,cperfilmesa,cestadomesa, nombreMesa);
+			mesas.add(i);
+		}
+		return mesas;
+	}
 	public List<MesaDTO> mapRowMesaDTO(List<Map<String, Object>> rows){
 		List<MesaDTO> mesas = new ArrayList<MesaDTO>();
 		for(Map<String, Object> row: rows) {
@@ -41,6 +54,9 @@ public class MesaRowMapper implements RowMapper {
 		}
 		return mesas;
 	}
+	
+	
+
 	
 	@Override
 	public int[] getRowsForPaths(TreePath[] path) {

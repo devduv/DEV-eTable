@@ -15,10 +15,12 @@ export class MainComponent implements OnInit {
   public loading: string;
   public authentication: boolean;
   public user: User;
+  public cliente :boolean;
   constructor(private router: Router, private service: UsuarioService) { 
     this.user = new User();
     this.load = true;
     this.loading = Path.loading;
+    this.cliente= true;
   }
 
   ngOnInit() {
