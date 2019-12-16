@@ -14,6 +14,7 @@ public class Reservacion {
 
 	}
 
+
 	public Reservacion(int creserva, int ccliente, int cestado, String comentario, String fecha,String hora, int cantidad,
 			boolean confirmada) {
 		super();
@@ -26,7 +27,17 @@ public class Reservacion {
 		this.cantidad = cantidad;
 		this.confirmada = confirmada;
 	}
-
+	public Reservacion(int creserva, int ccliente, int cestado, String fecha,String hora, int cantidad,
+			boolean confirmada) {
+		super();
+		this.creserva = creserva;
+		this.ccliente = ccliente;
+		this.cestado = cestado;
+		this.fecha = fecha;
+		this.hora = hora;
+		this.cantidad = cantidad;
+		this.confirmada = confirmada;
+	}
 	public String getHora() {
 		return hora;
 	}

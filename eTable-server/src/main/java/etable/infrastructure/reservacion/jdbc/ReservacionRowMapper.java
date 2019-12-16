@@ -12,22 +12,14 @@ import org.springframework.stereotype.Component;
 import etable.domain.cliente.model.Cliente;
 import etable.domain.mesa.model.EstadoMesa;
 import etable.domain.mesa.model.Mesa;
+import etable.domain.mesa.model.PerfilMesa;
+import etable.domain.reservacion.model.Reservacion;
 
 @Component
 public class ReservacionRowMapper implements RowMapper {
 
 	
-	public List<EstadoMesa> mapRowEstadoMesa(List<Map<String, Object>> rows){
-		List<EstadoMesa> estadomesas = new ArrayList<EstadoMesa>();
-		for(Map<String, Object> row: rows) {
-			
-			int cestadomesa = Integer.parseInt(row.get("CESTADOMESA").toString());
-			String emdescripcion = row.get("EMDESCRIPCION").toString();
-			EstadoMesa i = new EstadoMesa(cestadomesa,emdescripcion);
-			estadomesas.add(i);
-		}
-		return estadomesas;
-	}
+	
 	public List<Cliente> getIdCliente(List<Map<String, Object>> rows){
 		List<Cliente> cliente = new ArrayList<Cliente>();
 		
@@ -44,6 +36,36 @@ public class ReservacionRowMapper implements RowMapper {
 		return cliente;
 	}
 	
+	public List<Reservacion> getReservacionesbyId(List<Map<String, Object>> rows){
+		List<Reservacion> reservacion = new ArrayList<Reservacion>();
+		
+		for(Map<String, Object> row: rows) {
+			
+			int creserva = Integer.parseInt(row.get("CRESERVA").toString());
+			int ccliente = Integer.parseInt(row.get("CCLIENTE").toString());
+			int cestado = Integer.parseInt(row.get("CESTADO").toString());
+			String comentario;
+			comentario =" ";
+			if(row.get("COMENTARIO")!=null){
+				 comentario = row.get("COMENTARIO").toString();
+			}
+			 
+			String fecha = row.get("FECHA").toString();
+			String hora = row.get("HORA").toString();
+			int cantidad = Integer.parseInt(row.get("CANTIDAD").toString());
+			boolean confirmada = Integer.parseInt(row.get("CONFIRMADA").toString()) == 1 ? true : false;
+				
+					Reservacion i = new Reservacion(creserva,ccliente,cestado, comentario ,fecha,hora,cantidad,confirmada);
+					reservacion.add(i);
+		
+		
+		
+		}
+			return reservacion;
+		
+	}
+	
+
 	@Override
 	public int[] getRowsForPaths(TreePath[] path) {
 		return new int[0];

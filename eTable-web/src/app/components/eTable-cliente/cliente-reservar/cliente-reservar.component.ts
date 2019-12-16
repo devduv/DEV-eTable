@@ -114,9 +114,11 @@ export class ClienteReservarComponent implements OnInit {
            title: 'Reserva creada con Exito',
            showConfirmButton: false,
            timer: 1500
-         })
+         });
 
-        this.navigateList();
+                    setTimeout(()=>{   
+                      this.router.navigate(['clientes/misReservas']);
+                }, 2000);
       }); 
     }else {
       

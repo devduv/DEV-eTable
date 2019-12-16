@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import etable.application.reservacion.ReservacionService;
 import etable.domain.cliente.model.Cliente;
-
+import etable.domain.mesa.model.PerfilMesa;
 import etable.domain.reservacion.model.Reservacion;
 @CrossOrigin(origins = "localhost:4200")
 @RestController
@@ -35,4 +35,16 @@ public class ReservacionController {
 	public Cliente obtenerClientebyUsuario(@PathVariable int id) {
 		return this.service.obtenerClientebyUsuario(id);
 	}
+	
+	
+	@GetMapping(path = {"/listReservacionesbyId/{id}"})
+	public List<Reservacion> listReservacionesbyId( @PathVariable int id) {	
+			return this.service.listReservacionesbyId(id);
+	}
+	@PutMapping(path = {"/anularReservacionById/{id}"})
+	public boolean anularReservacionById( @PathVariable int id) {
+		
+		return this.service.anularReservacion(id);
+	}
+	
 }

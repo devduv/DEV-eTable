@@ -5,6 +5,7 @@ import java.util.List;
 
 import etable.domain.cliente.model.Cliente;
 import etable.domain.mesa.model.EstadoMesa;
+import etable.domain.mesa.model.PerfilMesa;
 import etable.domain.reservacion.model.Reservacion;
 
 public interface ReservacionService {
@@ -12,5 +13,7 @@ public interface ReservacionService {
 	Reservacion crearReservacion(Reservacion reservacion);
 	boolean anularReservacion(int id);
 	Cliente obtenerClientebyUsuario(int cusuario);
+	List<Reservacion> listReservacionesbyId(int id);
+	Reservacion getReservacionById(int id);
 	
 }

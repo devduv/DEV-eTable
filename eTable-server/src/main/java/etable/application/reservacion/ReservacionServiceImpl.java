@@ -38,8 +38,21 @@ public class ReservacionServiceImpl implements ReservacionService{
 		return this.repository.obtenerClientebyUsuario(cusuario);
 	}
 
-	
 
+	@Override
+	public List<Reservacion> listReservacionesbyId(int id) {
+		return this.repository.listReservacionesbyId(id);
+	
+	}
+
+
+	@Override
+	public Reservacion getReservacionById(int id) {
+		// TODO Auto-generated method stub
+		return this.repository.getReservacionById(id);
+	}
+
+	
 
 	
 }

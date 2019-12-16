@@ -26,7 +26,7 @@ import etable.domain.user.model.User;
 import etable.web.constants.querys.Query;
 
 @Component
-public class ReservacionRepositoryImpl implements ReservacionRepository{
+public  class ReservacionRepositoryImpl implements ReservacionRepository{
 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
@@ -49,23 +49,6 @@ public class ReservacionRepositoryImpl implements ReservacionRepository{
 
 	}
 
-	@Override
-	public boolean anularReservacion(int id)  {
-	/*	String query = 	"UPDATE " + Query.table_mesa +
-	" SET NOMBREMESA = ? , CPERFILMESA = ? , CESTADOMESA = ? WHERE CMESA = ?";
-	int update = this.jdbcTemplate.update(query, 
-				mesa.getNombremesa(),
-				mesa.getCperfilmesa(), 
-				mesa.getCestadomesa(), 
-				mesa.getCmesa());
-		System.out.print("update");
-		System.out.print(update);
-		if(update == 1) {
-			return true;
-		} */
-				return false;
-			}
-
 
 	@Override
 	public Cliente obtenerClientebyUsuario(int cusuario) {
@@ -75,8 +58,47 @@ public class ReservacionRepositoryImpl implements ReservacionRepository{
 			return cliente.get(0);
 		}
 		return null;
-	}	
+	}
+
+	public Reservacion getReservacionById(int id) {
+		String Reservacion = Query.selectFromWhere(Query.table_reservacion, "CRESERVA", id);
+		List<Reservacion> rsvc = this.row.getReservacionesbyId(this.jdbcTemplate.queryForList(Reservacion));
+		if (rsvc.size() > 0) {
+			return rsvc.get(0);
+		}
+		return null;
+		
+	}
 	
+
+
+	
+	@Override
+	public List<Reservacion> listReservacionesbyId(int id) {
+		String query = Query.selectFromWhere(Query.table_reservacion, "CCLIENTE", id);
+		
+		List<Map<String, Object>> rows = this.jdbcTemplate.queryForList(query);
+		List<Reservacion> reservacion = row.getReservacionesbyId(rows);
+		if (reservacion.size() > 0) {
+			return reservacion;
+		}
+		return null;
+	}
+
+
+	@Override
+	public boolean anularReservacion(int id)  {
+		Reservacion rv = getReservacionById(id);
+	System.out.print(rv);
+		String query = 	"UPDATE " + Query.table_reservacion +
+	" SET CESTADO = ?  WHERE CRESERVA = ?";
+	int update = this.jdbcTemplate.update(query, 4 , rv.getCreserva());
+		
+		if(update == 1) {
+			return true;
+		} 
+				return false;
+			}
 
 	
 }
