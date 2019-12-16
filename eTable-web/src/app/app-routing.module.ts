@@ -33,6 +33,7 @@ import { EditarPerfilMesaComponent } from './components/eTable-administracion/ma
 import { EditarMesaComponent } from './components/eTable-administracion/main/administracion-mesas/mesas/editar-mesa/editar-mesa.component';
 import { ClienteReservarComponent } from './components/eTable-cliente/cliente-reservar/cliente-reservar.component';
 import { ClienteMisReservasComponent } from './components/eTable-cliente/cliente-mis-reservas/cliente-mis-reservas.component';
+import { CrearClienteComponent } from './components/eTable-administracion/main/administracion-clientes/clientes/crear-cliente/crear-cliente.component';
 
 
 const routes: Routes = [
@@ -59,6 +60,7 @@ const routes: Routes = [
   { path: 'mesas/programacion', component: ProgramacionMesaComponent},
 
   { path: 'clientes/list', component: ClientesComponent},
+  { path: 'clientes/crear', component: CrearClienteComponent},
   { path: 'clientes/tipos', component: TipoClientesComponent},
   { path: 'clientes/historial', component: HistorialClienteComponent},
   { path: 'clientes/reservar', component: ClienteReservarComponent},

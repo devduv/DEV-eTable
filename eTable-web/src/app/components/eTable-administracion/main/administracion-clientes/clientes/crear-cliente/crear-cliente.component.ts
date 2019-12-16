@@ -1,64 +1,65 @@
-import { Component, OnInit, Input, Output } from '@angular/core';
-import { Path } from 'src/app/infrastructure/constans/Path';
-import { User } from 'src/app/domain/User';
-import { EventEmitter } from 'events';
-import { UsuarioService } from 'src/app/services/administracion/administracion-usuarios/usuarios.service';
+import { Component, OnInit } from '@angular/core';
 import { Cliente } from 'src/app/domain/Cliente';
+import { User } from 'src/app/domain/User';
+import { Router } from '@angular/router';
+import { UsuarioService } from 'src/app/services/administracion/administracion-usuarios/usuarios.service';
+import { ClientService } from 'src/app/services/administracion/administracion-clientes/clientes.service';
+import { Path } from 'src/app/infrastructure/constans/Path';
 import { Mensaje } from 'src/app/infrastructure/constans/Mensaje';
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
-
+  selector: 'app-crear-cliente',
+  templateUrl: './crear-cliente.component.html',
+  styleUrls: ['./crear-cliente.component.css']
 })
-export class RegisterComponent implements OnInit {
+export class CrearClienteComponent implements OnInit {
 
-
-  public logo: string;
-  public loading: string;
-  public load: boolean;
-  public empnombre: string;
+  public user: User;
   public empty: boolean;
   public successText: string;
   public cliente: Cliente;
-  public user: User;
+  public load: boolean;
+  public loading: string;
+  public passDiferente: boolean;
+  public passw: string;
 
-  constructor(private service: UsuarioService) {
+  constructor(
+    private router: Router,
+    private serviceUsuario: UsuarioService,
+    private serviceCliente: ClientService) {
     this.user = new User();
     this.cliente = new Cliente();
+    this.empty = false;
     this.load = false;
     this.loading = Path.loading;
-    this.empnombre = '';
-    this.empty = false;
-    this.successText = '';
+    this.passDiferente = false;
   }
 
   ngOnInit() {
-    this.empnombre = localStorage.getItem('empnombre');
-    this.logo = localStorage.getItem('emplogo');
-    if (this.logo.length === 0) {
-      this.logo = Path.logo;
-    }
   }
 
-  public register() {
+  guardar() {
     this.empty = this.isEmpty();
     if (!this.empty) {
       this.load = true;
       this.user.ctipousuario = 2;
-      this.service.crearCliente(this.user, this.cliente).subscribe(o => {
-        this.navigate();
+      this.serviceUsuario.crearCliente(this.user, this.cliente).subscribe(o => {
+        this.load = false;
+        if (o) {
+          this.navigateList();
+        } else {
+          this.empty = true;
+          this.successText = 'El nombre de usuario ya existe, pruebe otro.';
+        }
       });
     }
   }
-
-  public backLogin() {
-    this.navigate();
+  cancelar() {
+    this.navigateList();
   }
 
-  private navigate() {
-    localStorage.setItem('registration', 'false');
+  private navigateList() {
+    this.router.navigate(['clientes/list']);
   }
 
   private isEmpty() {

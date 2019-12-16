@@ -13,11 +13,13 @@ public interface UserRepository {
 	User editUser(User user);
 	List<UserDTO> getUsuarios();
 	User getUsuarioByAuthentication(String nickname, String password);
-	boolean eliminarUsuarioById(int id);
 	User getUsuarioById(int id);
 	boolean deleteUser(int id);
+
 	Cliente crearCliente(User user, Cliente cliente);
-	Cliente getClienteById(int id);
+	Cliente getClienteByUserId(int id);
+	ClienteDTO getClienteById(int id);
 	List<ClienteDTO> getClientes();
 	Cliente editCliente(Cliente cliente);
+	boolean eliminarClienteById(ClienteDTO cliente);
 }

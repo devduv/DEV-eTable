@@ -4,7 +4,6 @@ import java.util.List;
 
 import etable.domain.mesa.model.Mesa;
 import etable.domain.mesa.model.MesaDTO;
-import etable.domain.mesa.model.PerfilMesa;
 public interface MesaRepository {
 
 	List<MesaDTO> getMesas();

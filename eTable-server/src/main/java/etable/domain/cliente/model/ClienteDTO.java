@@ -11,13 +11,16 @@ public class ClienteDTO {
 	private String phone;
 	private String date;
 	private boolean estado;
+	private String nickname;
+	private String password;
 	
 	public ClienteDTO() {
 		
 		
 	}
-	
-	public ClienteDTO(int ccliente, int dni, String usnombre, String usapellidos, int cusuario, String email, String phone, String date, boolean estado) {
+
+	public ClienteDTO(int ccliente, int dni, String usnombre, String usapellidos, int cusuario, String email,
+			String phone, String date, boolean estado, String nickname, String password) {
 		super();
 		this.ccliente = ccliente;
 		this.dni = dni;
@@ -28,6 +31,8 @@ public class ClienteDTO {
 		this.phone = phone;
 		this.date = date;
 		this.estado = estado;
+		this.nickname = nickname;
+		this.password = password;
 	}
 
 	public int getCcliente() {
@@ -44,6 +49,22 @@ public class ClienteDTO {
 
 	public void setDni(int dni) {
 		this.dni = dni;
+	}
+
+	public String getUsnombre() {
+		return usnombre;
+	}
+
+	public void setUsnombre(String usnombre) {
+		this.usnombre = usnombre;
+	}
+
+	public String getUsapellidos() {
+		return usapellidos;
+	}
+
+	public void setUsapellidos(String usapellidos) {
+		this.usapellidos = usapellidos;
 	}
 
 	public int getCusuario() {
@@ -78,22 +99,6 @@ public class ClienteDTO {
 		this.date = date;
 	}
 
-	public String getUsnombre() {
-		return usnombre;
-	}
-
-	public void setUsnombre(String usnombre) {
-		this.usnombre = usnombre;
-	}
-
-	public String getUsapellidos() {
-		return usapellidos;
-	}
-
-	public void setUsapellidos(String usapellidos) {
-		this.usapellidos = usapellidos;
-	}
-
 	public boolean isEstado() {
 		return estado;
 	}
@@ -101,5 +106,22 @@ public class ClienteDTO {
 	public void setEstado(boolean estado) {
 		this.estado = estado;
 	}
+
+	public String getNickname() {
+		return nickname;
+	}
+
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
 
 }

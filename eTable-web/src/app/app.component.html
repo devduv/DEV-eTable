@@ -20,21 +20,25 @@
 
     <mat-sidenav-content>
       <div class="header-login">
-        <button [disabled]="!authentication" (click)="!authentication ? nothing(): snav.toggle(); navOpenClose()" class="f-left btn-sidenav">
+        <button *ngIf="!esCliente" [disabled]="!authentication" (click)="!authentication ? nothing(): snav.toggle(); navOpenClose()" class="f-left btn-sidenav">
           <i *ngIf="authentication" class="ml-2 mdi mdi-menu white f-20"></i>
           <div class="f-left"><span class="text-header">{{title}}</span></div>
         </button>
         <div class="f-right" *ngIf="authentication">
-          <button (click)="!navOpen ? nothing() : snav.toggle(); logout()" class="btn-close"
-            style="font-size: 13px;">Cerrar Sesión</button>
+          <button (click)="!navOpen ? nothing() : snav.toggle(); logout()" 
+          class="btn-close">
+            <span class="subline">Cerrar Sesión</span>
+          </button>
         </div>
-        <div class="f-right"  (click)="misReservas()">
-          <button class="btn-close"
-            style="font-size: 13px;">Mis Reservas</button>
+        <div class="f-right" *ngIf="authentication && esCliente">
+          <button class="btn-close" (click)="misReservas()">
+            <i class="mdi mdi-file-document-box-outline f-16 mr-1"></i> <span class="subline">Mis Reservas</span>
+          </button>
         </div>
-        <div class="f-right" (click)="reservar()">
-          <button class="btn-close"
-            style="font-size: 13px;">Reservar Mesa</button>
+        <div class="f-right" *ngIf="authentication && esCliente">
+          <button class="btn-close" (click)="reservar()">
+            <i class="mdi mdi-table-large f-16 mr-1"></i> <span class="subline">Reservar Mesa</span>
+          </button>
         </div>
         
 

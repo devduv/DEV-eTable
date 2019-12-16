@@ -86,13 +86,15 @@ public class UsuarioRowMapper {
 			int ccliente = Integer.parseInt(row.get("CCLIENTE").toString());
 			int dni = Integer.parseInt(row.get("DNI").toString());
 			int cusuario = Integer.parseInt(row.get("CUSUARIO").toString());
+			String nickname = row.get("NICKNAME").toString();;
+			String password = row.get("PASSWORD").toString();;
 			String usnombre = row.get("USNOMBRE").toString();
 			String usapellidos = row.get("USAPELLIDOS").toString();
 			String email = row.get("EMAIL").toString();
 			String phone = row.get("PHONE").toString();
 			String date = row.get("DATE").toString();
 			boolean estado = Integer.parseInt(row.get("ESTADO").toString()) == 1 ? true : false;
-			ClienteDTO cliente = new ClienteDTO(ccliente, dni, usnombre, usapellidos, cusuario, email, phone, date, estado);
+			ClienteDTO cliente = new ClienteDTO(ccliente, dni, usnombre, usapellidos, cusuario, email, phone, date, estado, nickname, password);
 			clientes.add(cliente);
 		}
 		return clientes;

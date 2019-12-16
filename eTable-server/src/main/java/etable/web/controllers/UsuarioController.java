@@ -79,7 +79,18 @@ public class UsuarioController {
 	}
 	
 	@GetMapping(path = {"/clientes/{id}"})
-	public Cliente getClienteById(@PathVariable int id) {
+	public Cliente getClienteByUserId(@PathVariable int id) {
+		return this.service.getClienteByUserId(id);
+	}
+	
+	@GetMapping(path = {"/clientes/obtenerCliente/{id}"})
+	public ClienteDTO getClienteById(@PathVariable int id) {
 		return this.service.getClienteById(id);
+	}
+	
+	@DeleteMapping(path = {"/clientes/deleteCliente/{id}"})
+	public boolean deleteClienteById(@PathVariable int id) {
+		System.out.println(id);
+		return this.service.eliminarClienteById(id);
 	}
 }

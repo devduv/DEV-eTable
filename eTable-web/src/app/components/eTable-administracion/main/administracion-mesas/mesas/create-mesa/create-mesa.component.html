@@ -16,8 +16,7 @@
     <div class="row">
         <div class="col-lg-2 col-md-4 col-sm-4 col-6">
             <span><b>Nombre de Mesa</b> </span>
-            <input type="text" class="form-control form-control-sm mt-1" [(ngModel)]="mesa.nombremesa"
-                name="apellidos">
+            <input type="text" class="form-control form-control-sm mt-1" [(ngModel)]="mesa.nombremesa" name="apellidos">
         </div>
 
     </div>
@@ -25,7 +24,7 @@
     <hr class="mt-1" />
     <div class="row mt-2 mb-3">
         <div class="col-lg-4 col-md-6 col-sm-6">
-            <select class="form-control form-control-sm"  [(ngModel)]="selectedTypeIdPerfil">
+            <select class="form-control form-control-sm" [(ngModel)]="selectedTypeIdPerfil">
                 <option [ngValue]="0">Seleccionar perfil de mesa</option>
                 <option [ngValue]="perfil.cperfilmesa" *ngFor="let perfil of perfilmesa">{{perfil.pmnombre}}
                 </option>
@@ -45,7 +44,7 @@
         </div>
     </div>
 
-    
+
 
 </div>
 

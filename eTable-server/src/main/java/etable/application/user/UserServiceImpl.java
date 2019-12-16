@@ -35,11 +35,6 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public boolean eliminarUsuarioById(User user) {
-		return repository.eliminarUsuarioById(user.getCusuario());
-	}
-
-	@Override
 	public Cliente crearCliente(User user, Cliente cliente) {
 		return this.repository.crearCliente(user, cliente);
 	}
@@ -75,7 +70,23 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public Cliente getClienteById(int id) {
+	public Cliente getClienteByUserId(int id) {
+		return this.repository.getClienteByUserId(id);
+	}
+
+	@Override
+	public boolean eliminarClienteById(int id) {
+		ClienteDTO cliente = this.repository.getClienteById(id);
+		if (cliente != null) {
+			System.out.println(Integer.toString(cliente.getCusuario()));
+			return this.repository.eliminarClienteById(cliente);
+		} else {
+			 return false;
+		}
+	}
+
+	@Override
+	public ClienteDTO getClienteById(int id) {
 		return this.repository.getClienteById(id);
 	}
 
