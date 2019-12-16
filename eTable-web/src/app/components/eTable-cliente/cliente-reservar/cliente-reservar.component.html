@@ -31,15 +31,15 @@
           <form class="needs-validation ml-1 " novalidate >
             <div class="form-row">
               <div class="col-md-3 mb-3 mr-3 ml-5">
-                <input  class="form-control" [(ngModel)]="reservacion.fecha" name ="fecha" type="date" name="date">
+                <input  id= "fecha" class="form-control"onChange="sinDomingos();" [(ngModel)]="reservacion.fecha" name ="fecha" type="date" name="date" min="2019-12-16">
               </div>
 
               <div class="col-md-2 mb-3 mr-3">
-                <input [disabled]="edit"  [(ngModel)]="reservacion.hora" name ="hora" min="08:00" max="20:00"  type="time"  class="form-control input-m">
+                <input  [(ngModel)]="reservacion.hora" name ="hora" min="08:00" max="20:00"  type="time"  class="form-control input-m">
               </div>
 
               <div class="col-md-2 mb-3 mr-3">
-                <input [disabled]="edit" [(ngModel)]="reservacion.cantidad" name ="cantidad"
+                <input  [(ngModel)]="reservacion.cantidad" name ="cantidad"
               class="form-control input-small " min="1" max="40" type="number" />
               </div>
              
@@ -51,7 +51,7 @@
             <div class="form-row">
                 
                 <textarea class="col-md-9 mb-3 mt-4 ml-4" rows="5"  id="comment" 
-                [(ngModel)]="reservacion.comentario" name ="comentario" ></textarea>
+                [(ngModel)]="reservacion.comentario" name ="comentario"  placeholder="Ingrese un comentario aqui -OPCIONAL-"></textarea>
               </div>
          
          

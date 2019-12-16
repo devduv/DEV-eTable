@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ReservacionService } from 'src/app/services/administracion/reservacion/reservacion.service';
 import { Reservacion } from 'src/app/domain/Reservacion';
+import { ReservacionDTO } from 'src/app/domain/ReservacionDTO';
 import { Mensaje } from 'src/app/infrastructure/constans/Mensaje';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Cliente } from 'src/app/domain/Cliente';
@@ -16,13 +17,16 @@ import { UsuarioService } from 'src/app/services/administracion/administracion-u
 export class ClienteMisReservasComponent implements OnInit  {
   public empty: boolean;
   public reservaciones: Reservacion[];
+  public reservacionesDTO: ReservacionDTO[];
   public reservacion: Reservacion;
+  public reservacionDTO: ReservacionDTO;
   public user : User ;
   public cliente : Cliente;
   public successText :String;
   public idCliente :number;
   public  pageActual : number ;
 
+ 
   constructor(private activedRouter: ActivatedRoute,private router: Router,
     private service: ReservacionService, private usuarioservice: UsuarioService) { 
     this.empty = false;
@@ -30,6 +34,7 @@ export class ClienteMisReservasComponent implements OnInit  {
     this.successText = " ";
     this.user = new User();
     this.pageActual = 1;
+   
   }
 
   ngOnInit() {
@@ -73,11 +78,12 @@ export class ClienteMisReservasComponent implements OnInit  {
      
     } ) ;  
 }
+
 obtenerReservacionesbyCliente(id:number){
-  this.service.getReservacionesbyCliente(id).subscribe(data => 
+  this.service.getReservacionesDTObyCliente(id).subscribe(data => 
     { console.log("data",data);
     //  this.load=false;
-     this.reservaciones=data;
+     this.reservacionesDTO =data;
      }
   )
 }
@@ -106,7 +112,6 @@ obtenerReservacionesbyCliente(id:number){
  
   }
   
-
   public register() {
     this.empty = this.isEmpty();
     if (!this.empty) {
@@ -139,14 +144,57 @@ Swal.fire(
   'Campos Incompletos',
   this.successText +'',
   'question'
-)
-
-    }
-  }
+)} }
 
   private navigateList() {
     this.router.navigate(['clientes/misReservas']);
   }
+
+  public anularReservacion(reservacionDTO: ReservacionDTO) {
+    console.log(reservacionDTO);
+    var id = reservacionDTO.creserva;
+   var c = false;
+ 
+    Swal.fire({
+      title: 'Estas seguro que deseas eliminarlo?',
+      // text: "S",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Anular',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.value) {
+        Swal.fire(
+          'Anulado!',
+          'El Registro se anulo correctamente.',
+          'success'
+        );
+        c = true;
+       
+      }
+      console.log(" ccccccccc", c);
+
+      
+        // this.load = true;
+        console.log("entro");
+        this.reservacionesDTO=[];
+         this.service.anularReservacionById(id).subscribe(data => {
+          if (data) {  console.log("1");
+          this.obtenerReservacionesbyCliente(this.idCliente);
+          } else {  console.log("2");
+          this.obtenerReservacionesbyCliente(this.idCliente);
+          }
+        }, error => {
+          if (error) {   console.log("3");
+            this.navigateList();
+          }
+        }); 
+     
+    })
+
+  } 
 
 }
 

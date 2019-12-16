@@ -18,9 +18,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import etable.domain.cliente.model.Cliente;
 import etable.domain.mesa.model.EstadoMesa;
 import etable.domain.mesa.model.Mesa;
+import etable.domain.mesa.model.MesaDTO;
 import etable.domain.mesa.model.PerfilMesa;
 import etable.domain.mesa.repository.EstadoMesaRepository;
 import etable.domain.reservacion.model.Reservacion;
+import etable.domain.reservacion.model.ReservacionDTO;
 import etable.domain.reservacion.repository.ReservacionRepository;
 import etable.domain.user.model.User;
 import etable.web.constants.querys.Query;
@@ -86,6 +88,19 @@ public  class ReservacionRepositoryImpl implements ReservacionRepository{
 	}
 
 
+
+	@Override
+	public List<ReservacionDTO> listReservacionesbyIdDTO(int id) {
+
+		String query = "SELECT * FROM TBRESERVACION AS M  INNER JOIN TBESTADORESERVACION AS N ON M.CESTADO = N.CESTADO " +
+				" WHERE CCLIENTE = " + id;
+		
+
+		List<Map<String, Object>> rows = this.jdbcTemplate.queryForList(query);
+		List<ReservacionDTO> reservaciones = row.getReservacionesbyIdDTO(rows);
+		return reservaciones ;
+	}
+
 	@Override
 	public boolean anularReservacion(int id)  {
 		Reservacion rv = getReservacionById(id);
@@ -99,6 +114,7 @@ public  class ReservacionRepositoryImpl implements ReservacionRepository{
 		} 
 				return false;
 			}
+
 
 	
 }

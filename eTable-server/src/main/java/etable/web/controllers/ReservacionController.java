@@ -18,6 +18,7 @@ import etable.application.reservacion.ReservacionService;
 import etable.domain.cliente.model.Cliente;
 import etable.domain.mesa.model.PerfilMesa;
 import etable.domain.reservacion.model.Reservacion;
+import etable.domain.reservacion.model.ReservacionDTO;
 @CrossOrigin(origins = "localhost:4200")
 @RestController
 @RequestMapping({"/api/reservacion"})
@@ -41,6 +42,13 @@ public class ReservacionController {
 	public List<Reservacion> listReservacionesbyId( @PathVariable int id) {	
 			return this.service.listReservacionesbyId(id);
 	}
+	@GetMapping(path = {"/listReservacionesDTObyId/{id}"})
+	public List<ReservacionDTO> listReservacionesDTObyId( @PathVariable int id) {	
+			return this.service.listReservacionesbyIdDTO(id);
+	}
+	
+
+	
 	@PutMapping(path = {"/anularReservacionById/{id}"})
 	public boolean anularReservacionById( @PathVariable int id) {
 		

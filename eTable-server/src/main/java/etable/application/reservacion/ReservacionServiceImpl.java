@@ -10,6 +10,7 @@ import etable.domain.cliente.model.Cliente;
 import etable.domain.mesa.model.EstadoMesa;
 import etable.domain.mesa.repository.EstadoMesaRepository;
 import etable.domain.reservacion.model.Reservacion;
+import etable.domain.reservacion.model.ReservacionDTO;
 import etable.domain.reservacion.repository.ReservacionRepository;
 
 @Service
@@ -51,6 +52,15 @@ public class ReservacionServiceImpl implements ReservacionService{
 		// TODO Auto-generated method stub
 		return this.repository.getReservacionById(id);
 	}
+
+
+	@Override
+	public List<ReservacionDTO> listReservacionesbyIdDTO(int id) {
+		// TODO Auto-generated method stub
+		return this.repository.listReservacionesbyIdDTO(id);
+	}
+
+
 
 	
 

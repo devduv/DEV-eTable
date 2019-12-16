@@ -18,10 +18,10 @@
                         </td>
                        
                         <td>
-                            <div class="center-head">Fecha</div>
+                            <div class="center-head">Fecha de Reservacion</div>
                         </td>
                         <td>
-                            <div class="center-head">Hora</div>
+                            <div class="center-head">Hora de Reservacion</div>
                         </td>
                         <td>
                             <div class="center-head">Cantidad</div>
@@ -41,7 +41,7 @@
                     </tr>
                 </thead>
                 <tbody class="header-body">
-                    <tr *ngFor= "let reservacion of reservaciones | paginate : {itemsPerPage :7,currentPage : pageActual}; let i = index">
+                    <tr *ngFor= "let reservacion of reservacionesDTO | paginate : {itemsPerPage :7,currentPage : pageActual}; let i = index">
                         <td>
                             <div class="center-body">{{i+1}}</div> 
                         </td>
@@ -60,14 +60,15 @@
                             <div class="center-body">{{reservacion.comentario}}</div> 
                         </td>
                         <td>
-                            <div class="center-body">{{reservacion.confirmada}}</div>
+                            <div class="center-body">{{reservacion.nomconfirmada}}</div>
                         </td>
                         <td>
-                            <div class="center-body">{{reservacion.cestado}}</div> 
+                            <div class="center-body">{{reservacion.nomcestado}}</div> 
                         </td>
                         <td>
-                            <button class="btn-edit mt-1 ml-3 "(click)="anularReservacion(reservacion.creserva)">
+                            <button class="btn-edit mt-1 ml-3 "(click)="anularReservacion(reservacion)">
                                 <i class="mdi mdi-delete" style="font-size: 20px; display: inline-block !important;;"></i>
+                            
                             </button>
                         </td>
                         <!-- <td>
