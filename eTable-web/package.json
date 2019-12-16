@@ -25,6 +25,7 @@
     "@mdi/font": "^4.5.95",
     "angular2-image-upload": "^1.0.0-rc.2",
     "bootstrap": "^4.3.1",
+    "ngx-pagination": "^5.0.0",
     "password-hash": "^1.2.2",
     "rxjs": "~6.4.0",
     "sweetalert2": "^9.5.3",

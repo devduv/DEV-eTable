@@ -34,7 +34,7 @@ import { EditarMesaComponent } from './components/eTable-administracion/main/adm
 import { ClienteReservarComponent } from './components/eTable-cliente/cliente-reservar/cliente-reservar.component';
 import { ClienteMisReservasComponent } from './components/eTable-cliente/cliente-mis-reservas/cliente-mis-reservas.component';
 import { CrearClienteComponent } from './components/eTable-administracion/main/administracion-clientes/clientes/crear-cliente/crear-cliente.component';
-
+import { NgxPaginationModule} from 'ngx-pagination';
 
 const routes: Routes = [
   { path: 'eTable', component: LoginComponent },

@@ -23,6 +23,9 @@ export class ReservacionService {
     return this.http.get<Cliente>(this.url + '/' + 'obtenerClientebyUsuario' + '/' + id);
   }
  
+  getReservacionesbyCliente(id: number) {
+    return this.http.get<Reservacion[]>(this.url + '/' + 'listReservacionesbyId'+ '/' + id);
+  }
 
 
 }

@@ -39,7 +39,7 @@ import { ClienteMisReservasComponent } from './components/eTable-cliente/cliente
 import { EliminarClienteComponent } from './components/eTable-modals/cliente/eliminar/eliminar-cliente';
 import { CrearClienteComponent } from './components/eTable-administracion/main/administracion-clientes/clientes/crear-cliente/crear-cliente.component';
 import { EditarClienteComponent } from './components/eTable-modals/cliente/editar/editar-cliente';
-
+import {NgxPaginationModule} from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -84,7 +84,8 @@ import { EditarClienteComponent } from './components/eTable-modals/cliente/edita
     FormsModule,
     MatNativeDateModule,
     MatDialogModule,
-    ImageUploadModule.forRoot()
+    ImageUploadModule.forRoot(),
+    NgxPaginationModule
   ],
   entryComponents: [UsuarioDeshabilitadoComponent, EliminarClienteComponent, EditarClienteComponent],
   providers: [],
