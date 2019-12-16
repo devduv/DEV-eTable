@@ -5,6 +5,8 @@ import { Mensaje } from 'src/app/infrastructure/constans/Mensaje';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Cliente } from 'src/app/domain/Cliente';
 import Swal from 'sweetalert2'
+import { User } from 'src/app/domain/User';
+import { UsuarioService } from 'src/app/services/administracion/administracion-usuarios/usuarios.service';
 
 @Component({
   selector: 'app-cliente-reservar',
@@ -14,23 +16,45 @@ import Swal from 'sweetalert2'
 export class ClienteReservarComponent implements OnInit {
   public empty: boolean;
   public reservacion: Reservacion;
+  public user : User ;
   public cliente : Cliente;
   public successText :String;
   public idCliente :number
-  constructor(private activedRouter: ActivatedRoute,private router: Router,private service: ReservacionService) { 
+  constructor(private activedRouter: ActivatedRoute,private router: Router,
+    private service: ReservacionService, private usuarioservice: UsuarioService) { 
     this.empty = false;
     this.reservacion = new Reservacion();
     this.idCliente = 0;
     this.successText = " ";
+    this.user = new User();
   }
 
   ngOnInit() {
-      this.obtenerClientebyUsuario();
+      
+      this.getUserName();
   }
+
+  private getUserName() {
+
+    this.user.nickname = localStorage.getItem('nickname').toString();
+    this.user.password = localStorage.getItem('password').toString();
+    this.usuarioservice.getUsuarioByAuthentication(this.user).subscribe(o => {
+      if (o !== null) {
+        this.user = o;
+
+        this.obtenerClientebyUsuario();
+      }
+    }, error => {
+      if (error) {
+        // this.authentication = false;
+        localStorage.clear();
+      }
+    });
+  }
+
   private obtenerClientebyUsuario()  {
+    var cusuario = this.user.cusuario ; 
    
-    var cusuario = Number(localStorage.getItem('cusuario'));
-    
       this.service.obtenerClientebyUsuario(cusuario).subscribe(o => {
         if (o !== null) {
           this.cliente = o;

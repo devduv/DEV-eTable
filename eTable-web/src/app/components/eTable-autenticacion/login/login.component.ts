@@ -112,8 +112,6 @@ export class LoginComponent implements OnInit, DoCheck {
     this.service.findUserByNickname(nickname).subscribe(data => {
       if (data !== null) {
         const user = new User();
-        user.ctipousuario = data.ctipousuario;
-        user.cusuario = data.cusuario;
         user.nickname = data.nickname;
         user.password = password;
        
@@ -154,8 +152,6 @@ export class LoginComponent implements OnInit, DoCheck {
       localStorage.setItem('nickname', this.user.nickname);
       localStorage.setItem('password', passwordHash);
       localStorage.setItem('authentication', 'true');
-      localStorage.setItem('cusuario', (this.user.cusuario).toString());
-      localStorage.setItem('ctipousuairo', (this.user.ctipousuario).toString());
       
       this.router.navigate(['main']);
     } else {
