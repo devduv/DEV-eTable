@@ -9,6 +9,7 @@ public class Authentication {
 	private boolean estado;
 	private int ctipousuario;
 	
+	
 	public Authentication(int cusuario, String nickname, String password, boolean estado, int ctipousuario){
 		this.cusuario = cusuario;
 		this.nickname = nickname;

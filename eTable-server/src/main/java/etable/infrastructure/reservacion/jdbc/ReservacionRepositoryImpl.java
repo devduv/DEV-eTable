@@ -49,7 +49,6 @@ public class ReservacionRepositoryImpl implements ReservacionRepository{
 
 	}
 
-
 	@Override
 	public boolean anularReservacion(int id)  {
 	/*	String query = 	"UPDATE " + Query.table_mesa +

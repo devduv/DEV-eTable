@@ -15,6 +15,8 @@ import etable.web.constants.querys.UserQuery;
 public class AuthenticationRowMapper implements RowMapper {
 	
 	
+	
+	
 	public List<Authentication> mapRow(List<Map<String, Object>> rows) {
 		List<Authentication> authentication = new ArrayList<Authentication>();
 		for(Map<String, Object> row: rows){

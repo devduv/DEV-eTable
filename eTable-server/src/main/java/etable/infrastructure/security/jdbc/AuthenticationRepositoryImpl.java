@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import etable.domain.security.model.Authentication;
 import etable.domain.security.repository.AuthenticationRepository;
 
+
 @Component
 public class AuthenticationRepositoryImpl implements AuthenticationRepository{
 
@@ -23,6 +24,8 @@ public class AuthenticationRepositoryImpl implements AuthenticationRepository{
 		this.row = row;
 		this.passwordEncoder = passwordEncoder;
 	}
+	
+	
 	
 	public Authentication buscarUsuarioSiExiste(String nickname) {
 		Authentication auth = new Authentication();
@@ -38,6 +41,7 @@ public class AuthenticationRepositoryImpl implements AuthenticationRepository{
 		}
 		return null;
 	}
+	
 	
 	@Override
 	public Authentication authenticationLogin(Authentication auth) {

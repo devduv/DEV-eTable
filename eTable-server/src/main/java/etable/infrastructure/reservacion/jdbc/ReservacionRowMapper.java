@@ -16,6 +16,7 @@ import etable.domain.mesa.model.Mesa;
 @Component
 public class ReservacionRowMapper implements RowMapper {
 
+	
 	public List<EstadoMesa> mapRowEstadoMesa(List<Map<String, Object>> rows){
 		List<EstadoMesa> estadomesas = new ArrayList<EstadoMesa>();
 		for(Map<String, Object> row: rows) {
