@@ -20,7 +20,7 @@ export class Mensaje {
     public static emptyPerfil = 'Seleccione un Tipo de Perfil';
     public static emptyEstado = 'Seleccione un Estado de la Mesa';
 
-    public static emptyFecha = 'Ingrese una hora';
-    public static emptyHora = 'Ingrese una fecha';
+    public static emptyFecha = 'Ingrese una fecha';
+    public static emptyHora = 'Ingrese una hora';
     public static emptyCantidad = 'Ingrese una Cantidad';
 }

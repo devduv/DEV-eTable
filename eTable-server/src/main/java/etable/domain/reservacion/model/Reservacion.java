@@ -1,6 +1,5 @@
 package etable.domain.reservacion.model;
 
-
 public class Reservacion {
 	private int creserva;
 	private int ccliente;

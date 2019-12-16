@@ -15,10 +15,11 @@ export class ReservacionService {
   }
 
   public crearReservacion(reservacion: Reservacion) {
-    console.log("llego");
+ 
     return this.http.post<Reservacion>(this.url + '/' + 'crearReservacion', reservacion);
   }
   public obtenerClientebyUsuario(id: number) {
+    console.log("llego2");
     return this.http.get<Cliente>(this.url + '/' + 'obtenerClientebyUsuario' + '/' + id);
   }
  
