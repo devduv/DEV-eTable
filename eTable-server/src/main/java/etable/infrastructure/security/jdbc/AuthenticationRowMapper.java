@@ -22,8 +22,9 @@ public class AuthenticationRowMapper implements RowMapper {
 			String nickname = row.get(UserQuery.NICKNAME).toString();
 			String password = row.get(UserQuery.PASSWORD).toString();
 			boolean estado = Integer.parseInt(row.get(UserQuery.ESTADO).toString()) == 1 ? true : false;
+			int ctipousuario = Integer.parseInt(row.get("CTIPOUSUARIO").toString());
 			
-			Authentication auth= new Authentication(Integer.parseInt(cusuario), nickname, password, estado);
+			Authentication auth= new Authentication(Integer.parseInt(cusuario), nickname, password, estado,ctipousuario);
             authentication.add(auth);
         }
 		return authentication;

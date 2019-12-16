@@ -33,6 +33,7 @@ public class AuthenticationRepositoryImpl implements AuthenticationRepository{
 		if(authentication.size() > 0) {
 			auth.setCusuario(authentication.get(0).getCusuario());
 			auth.setNickname(authentication.get(0).getNickname());
+			auth.setCtipousuario(authentication.get(0).getCtipousuario());
 			return auth;
 		}
 		return null;

@@ -112,9 +112,14 @@ export class LoginComponent implements OnInit, DoCheck {
     this.service.findUserByNickname(nickname).subscribe(data => {
       if (data !== null) {
         const user = new User();
+        user.ctipousuario = data.ctipousuario;
         user.cusuario = data.cusuario;
         user.nickname = data.nickname;
         user.password = password;
+       
+    
+  console.log("Confe", user);
+
         this.authenticationLogin(user, password);
       } else {
         this.load = false;
@@ -142,14 +147,16 @@ export class LoginComponent implements OnInit, DoCheck {
 
   private setAuthentication(password: string) {
     const passwordHash = this.user.password;
+    console.log("userrrr",this.user);
     this.user.password = password;
     if (this.user.estado) {
       this.authentication = true;
       localStorage.setItem('nickname', this.user.nickname);
       localStorage.setItem('password', passwordHash);
       localStorage.setItem('authentication', 'true');
-      // localStorage.setItem('ccliente', this.user.nickname);
-      // localStorage.setItem('ctipousuario', passwordHash);
+      localStorage.setItem('cusuario', (this.user.cusuario).toString());
+      localStorage.setItem('ctipousuairo', (this.user.ctipousuario).toString());
+      
       this.router.navigate(['main']);
     } else {
       const us = new User();

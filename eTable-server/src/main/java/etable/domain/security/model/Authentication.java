@@ -7,12 +7,22 @@ public class Authentication {
 	private String nickname;
 	private String password;
 	private boolean estado;
+	private int ctipousuario;
 	
-	public Authentication(int cusuario, String nickname, String password, boolean estado){
+	public Authentication(int cusuario, String nickname, String password, boolean estado, int ctipousuario){
 		this.cusuario = cusuario;
 		this.nickname = nickname;
 		this.password = password;
 		this.estado = estado;
+		this.ctipousuario = ctipousuario;
+	}
+
+	public int getCtipousuario() {
+		return ctipousuario;
+	}
+
+	public void setCtipousuario(int ctipousuario) {
+		this.ctipousuario = ctipousuario;
 	}
 
 	public Authentication() {
