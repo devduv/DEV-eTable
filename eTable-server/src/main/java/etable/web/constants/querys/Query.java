@@ -6,7 +6,7 @@ public class Query {
 	public static final String table_mesa = "TBMESA";
 	public static final String table_perfilmesa = "TBPERFILMESA";
 	public static final String table_estadomesa = "TBESTADOMESA";
-
+	public static final String table_reservacion = "TBRESERVACION";
 	public static final String table_permisos = "TBPERMISOS";
 	public static final String table_menuitems = "TBMENUITEMS";
 	public static final String table_menusubitems = "TBMENUSUBITEMS";

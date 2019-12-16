@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import etable.domain.security.model.Authentication;
 import etable.domain.security.repository.AuthenticationRepository;
 
+
 @Component
 public class AuthenticationRepositoryImpl implements AuthenticationRepository{
 
@@ -24,6 +25,8 @@ public class AuthenticationRepositoryImpl implements AuthenticationRepository{
 		this.passwordEncoder = passwordEncoder;
 	}
 	
+	
+	
 	public Authentication buscarUsuarioSiExiste(String nickname) {
 		Authentication auth = new Authentication();
 		String query = "SELECT * FROM TBUSUARIOS WHERE NICKNAME = '" + nickname  + "'";
@@ -33,10 +36,12 @@ public class AuthenticationRepositoryImpl implements AuthenticationRepository{
 		if(authentication.size() > 0) {
 			auth.setCusuario(authentication.get(0).getCusuario());
 			auth.setNickname(authentication.get(0).getNickname());
+			auth.setCtipousuario(authentication.get(0).getCtipousuario());
 			return auth;
 		}
 		return null;
 	}
+	
 	
 	@Override
 	public Authentication authenticationLogin(Authentication auth) {

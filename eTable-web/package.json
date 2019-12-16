@@ -27,6 +27,7 @@
     "bootstrap": "^4.3.1",
     "password-hash": "^1.2.2",
     "rxjs": "~6.4.0",
+    "sweetalert2": "^9.5.3",
     "tslib": "^1.10.0",
     "webpack": "^4.41.2",
     "zone.js": "~0.9.1"
