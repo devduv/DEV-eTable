@@ -1,6 +1,8 @@
 export class Cliente {
     ccliente: number;
     dni: number;
+    nickname: string;
+    password: string;
     usnombre: string;
     usapellidos: string;
     cusuario: number;

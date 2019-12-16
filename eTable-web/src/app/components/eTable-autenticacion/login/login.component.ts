@@ -148,8 +148,6 @@ export class LoginComponent implements OnInit, DoCheck {
       localStorage.setItem('nickname', this.user.nickname);
       localStorage.setItem('password', passwordHash);
       localStorage.setItem('authentication', 'true');
-      // localStorage.setItem('ccliente', this.user.nickname);
-      // localStorage.setItem('ctipousuario', passwordHash);
       this.router.navigate(['main']);
     } else {
       const us = new User();

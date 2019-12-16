@@ -149,13 +149,6 @@ INSERT INTO `tbtipousuariopermiso` (`CTIPOUSPERMISO`,`CTIPOUSUARIO`,`CPERMISO`) 
 -- Usuario 
 INSERT INTO TBUSUARIOS (NICKNAME, PASSWORD, USNOMBRE, USAPELLIDOS, ESTADO, CTIPOUSUARIO)
 VALUES ('administrador', '$2a$10$ov5FpWF2fd6TmezlBz7PEuijaixY6EpQI4./6X.d6NyE.rwyCnXJO', 'Nataly Grace', 'Vasquez Saenz', 1, 1);
-VALUES ('miguel', '$2a$10$ov5FpWF2fd6TmezlBz7PEuijaixY6EpQI4./6X.d6NyE.rwyCnXJO', 'Miguel Eduardo', 'Velasquez Yzquierdo', 1, 2);
-VALUES ('duvan', '$2a$10$ov5FpWF2fd6TmezlBz7PEuijaixY6EpQI4./6X.d6NyE.rwyCnXJO', 'Brandon Duvan', 'Saenz Falcon', 1, 2);
-
-
-INSERT INTO `tbclientes`(`CCLIENTE`, `DNI`, `CUSUARIO`, `EMAIL`, `PHONE`, `DATE`) VALUES (2,4455667,2,'miguel@gmail.com',9999999,2019-12-11);
-INSERT INTO `tbclientes`(`CCLIENTE`, `DNI`, `CUSUARIO`, `EMAIL`, `PHONE`, `DATE`) VALUES (3,4455668,3,'miguel@gmail.com',99999998,2019-12-15)
-
 
 
 -- INSERT INTO TBPERFILMESA (PMNOMBRE, PMDESCRIPCION, PMCAPACIDAD, PMCOMPUESTA) VALUES ('Personal', 'Tipo de Mesa para 1 persona', 1, 1);

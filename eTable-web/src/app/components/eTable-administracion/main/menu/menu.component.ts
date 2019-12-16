@@ -91,6 +91,11 @@ export class MenuComponent implements OnInit, DoCheck {
       this.serviceUsuario.getUsuarioByAuthentication(this.user).subscribe(o => {
         if (o !== null) {
           this.user = o;
+          if (this.user.ctipousuario === 2) {
+            localStorage.setItem('esCliente', 'true');
+          } else {
+            localStorage.setItem('esCliente', 'false');
+          }
           this.getAccesoSistema();
         }
       }, error => {
@@ -109,7 +114,6 @@ export class MenuComponent implements OnInit, DoCheck {
   }
 
   private setAccesoSistema() {
-    let i = 1;
     this.items.forEach(val => {
       switch (val.citem) {
         case 1:

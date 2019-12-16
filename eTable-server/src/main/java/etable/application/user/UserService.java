@@ -13,12 +13,13 @@ public interface UserService {
 	User actualizarUsuario(User user);
 	List<UserDTO> getUsuarios();
 	User getUsuarioByAuthentication(User user);
-	boolean eliminarUsuarioById(User user);
 	User getUsuarioById(int id);
 	boolean deleteUser(int id);
 	
 	Cliente crearCliente(User user , Cliente cliente);
 	Cliente actualizarCliente(Cliente cliente);
 	List<ClienteDTO> getClientes();
-	Cliente getClienteById(int id);
+	Cliente getClienteByUserId(int id);
+	ClienteDTO getClienteById(int id);
+	boolean eliminarClienteById(int id);
 }

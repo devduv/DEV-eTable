@@ -10,13 +10,13 @@ import { Router } from '@angular/router';
 export class AppComponent implements OnInit, DoCheck {
   authentication: boolean;
   register: boolean;
+  esCliente: boolean;
   navOpen: boolean;
   title: string;
   public date: number;
   public version: string;
   mobile: MediaQueryList;
   mobileListener: () => void;
-
 
   ngOnInit() {
     this.navOpen = false;
@@ -33,6 +33,11 @@ export class AppComponent implements OnInit, DoCheck {
   getAuth(auth: string) {
     if (auth === 'true') {
       this.authentication = true;
+      if (localStorage.getItem('esCliente') === 'true') {
+        this.esCliente = true;
+      } else {
+        this.esCliente = false;
+      }
     } else {
       this.authentication = false;
     }
@@ -41,6 +46,7 @@ export class AppComponent implements OnInit, DoCheck {
   constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private router: Router) {
     this.title = 'eTable - Reservaciones';
     this.authentication = false;
+    this.esCliente = false;
     this.date = Date.now();
     this.version = 'Versión 1.0.0';
     this.mobile = media.matchMedia('(max-width: 500px)');

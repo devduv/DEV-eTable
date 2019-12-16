@@ -73,12 +73,6 @@ public class UsuarioRepositoryImpl implements UserRepository{
 	}
 
 	@Override
-	public boolean eliminarUsuarioById(int id) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
 	public Cliente crearCliente(User user, Cliente cliente) {
 		User newUser = this.crearUsuario(user, user.getPassword());
 		if (newUser != null) {
@@ -171,7 +165,7 @@ public class UsuarioRepositoryImpl implements UserRepository{
 
 
 	@Override
-	public Cliente getClienteById(int id) {
+	public Cliente getClienteByUserId(int id) {
 		String query = Query.selectFromWhere(Query.table_clientes, "CUSUARIO", id);
 		List<Cliente> list = this.row.mapRowCliente(this.jdbcTemplate.queryForList(query));
 		if (list.size() > 0) {
@@ -183,7 +177,7 @@ public class UsuarioRepositoryImpl implements UserRepository{
 
 	@Override
 	public List<ClienteDTO> getClientes() {
-		String query = "SELECT C.CCLIENTE, C.CUSUARIO, C.DNI, C.EMAIL, C.PHONE, C.DATE, U.USNOMBRE, U.USAPELLIDOS, U.ESTADO "
+		String query = "SELECT U.NICKNAME, U.PASSWORD, C.CCLIENTE, C.CUSUARIO, C.DNI, C.EMAIL, C.PHONE, C.DATE, U.USNOMBRE, U.USAPELLIDOS, U.ESTADO "
 				+ "FROM TBCLIENTES AS C INNER JOIN TBUSUARIOS AS U ON C.CUSUARIO = U.CUSUARIO";
 		List<ClienteDTO> list = this.row.mapRowClienteDTO(this.jdbcTemplate.queryForList(query));
 		return list;
@@ -192,7 +186,7 @@ public class UsuarioRepositoryImpl implements UserRepository{
 
 	@Override
 	public Cliente editCliente(Cliente cliente) {
-		Cliente aux = this.getClienteById(cliente.getCusuario());
+		Cliente aux = this.getClienteByUserId(cliente.getCusuario());
 		System.out.println(aux);
 		if (aux != null) {
 			System.out.println("Actualiza");
@@ -213,6 +207,31 @@ public class UsuarioRepositoryImpl implements UserRepository{
 				return null;
 			}
 		}
+	}
+
+
+	@Override
+	public boolean eliminarClienteById(ClienteDTO cliente) {
+		String deleteCliente = "DELETE FROM " + Query.table_clientes + " WHERE CCLIENTE = ?";
+		int success = this.jdbcTemplate.update(deleteCliente, cliente.getCcliente());
+		if (success == 1) {
+			boolean successful = this.deleteUser(cliente.getCusuario());
+			return successful;
+		} else {
+			return false;
+		}
+	}
+
+
+	@Override
+	public ClienteDTO getClienteById(int id) {
+		String query = "SELECT U.NICKNAME, U.PASSWORD, C.CCLIENTE, C.CUSUARIO, C.DNI, C.EMAIL, C.PHONE, C.DATE, U.USNOMBRE, U.USAPELLIDOS, U.ESTADO "
+				+ "FROM TBCLIENTES AS C INNER JOIN TBUSUARIOS AS U ON C.CUSUARIO = U.CUSUARIO WHERE CCLIENTE = " + id;
+		List<ClienteDTO> list = this.row.mapRowClienteDTO(this.jdbcTemplate.queryForList(query));
+		if (list.size() > 0) {
+			return list.get(0);
+		}
+		return null;
 	}
 
 }

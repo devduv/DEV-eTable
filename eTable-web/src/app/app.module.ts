@@ -36,6 +36,9 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ClienteReservarComponent } from './components/eTable-cliente/cliente-reservar/cliente-reservar.component';
 import { ClienteMisReservasComponent } from './components/eTable-cliente/cliente-mis-reservas/cliente-mis-reservas.component';
+import { EliminarClienteComponent } from './components/eTable-modals/cliente/eliminar/eliminar-cliente';
+import { CrearClienteComponent } from './components/eTable-administracion/main/administracion-clientes/clientes/crear-cliente/crear-cliente.component';
+import { EditarClienteComponent } from './components/eTable-modals/cliente/editar/editar-cliente';
 
 
 @NgModule({
@@ -68,7 +71,10 @@ import { ClienteMisReservasComponent } from './components/eTable-cliente/cliente
     EditarUsuarioComponent,
     UsuarioDeshabilitadoComponent,
     ClienteReservarComponent,
-    ClienteMisReservasComponent
+    ClienteMisReservasComponent,
+    EliminarClienteComponent,
+    CrearClienteComponent,
+    EditarClienteComponent
   ],
   imports: [
     BrowserModule,
@@ -80,7 +86,7 @@ import { ClienteMisReservasComponent } from './components/eTable-cliente/cliente
     MatDialogModule,
     ImageUploadModule.forRoot()
   ],
-  entryComponents: [UsuarioDeshabilitadoComponent],
+  entryComponents: [UsuarioDeshabilitadoComponent, EliminarClienteComponent, EditarClienteComponent],
   providers: [],
   bootstrap: [AppComponent]
 })
