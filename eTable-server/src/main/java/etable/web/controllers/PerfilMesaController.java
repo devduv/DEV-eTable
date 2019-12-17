@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import etable.application.mesa.PerfilMesaService;
 import etable.domain.mesa.model.PerfilMesa;
-import etable.domain.user.model.User;
 
 @CrossOrigin(origins = "localhost:4200")
 @RestController

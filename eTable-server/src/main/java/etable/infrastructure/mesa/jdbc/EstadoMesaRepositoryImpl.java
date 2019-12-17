@@ -1,14 +1,11 @@
 package etable.infrastructure.mesa.jdbc;
 
-
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import etable.domain.mesa.model.EstadoMesa;
-import etable.domain.mesa.model.PerfilMesa;
 import etable.domain.mesa.repository.EstadoMesaRepository;
 import etable.web.constants.querys.Query;
 

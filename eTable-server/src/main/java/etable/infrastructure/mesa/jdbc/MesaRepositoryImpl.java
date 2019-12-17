@@ -8,9 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
+import etable.domain.mesa.factory.method.IFabrica;
 import etable.domain.mesa.model.Mesa;
 import etable.domain.mesa.model.MesaDTO;
-import etable.domain.mesa.model.PerfilMesa;
 import etable.domain.mesa.repository.MesaRepository;
 import etable.web.constants.querys.Query;
 
@@ -21,6 +21,9 @@ public class MesaRepositoryImpl implements MesaRepository{
 	private JdbcTemplate jdbcTemplate;
 	@Autowired
 	private MesaRowMapper row;
+	
+	@Autowired
+	private IFabrica fabrica;
 
 	@Override
 	public List<MesaDTO> getMesas() {
@@ -66,13 +69,14 @@ public class MesaRepositoryImpl implements MesaRepository{
 
 	@Override
 	public Mesa crearMesa(Mesa mesa) {
-		
-		String insertQuery = "insert into "+ Query.table_mesa +"(NOMBREMESA,CPERFILMESA,CESTADOMESA) values (?, ?, ?)";
-		int success = this.jdbcTemplate.update( insertQuery, mesa.getNombremesa(),mesa.getCperfilmesa() , mesa.getCestadomesa());
-		if (success >= 0) {
-			return mesa;
+		if (this.fabrica.fabricarMesa(mesa) != null) {
+			String insertQuery = "insert into "+ Query.table_mesa +"(NOMBREMESA,CPERFILMESA,CESTADOMESA) values (?, ?, ?)";
+			int success = this.jdbcTemplate.update( insertQuery, mesa.getNombremesa(),mesa.getCperfilmesa() , mesa.getCestadomesa());
+			if (success >= 0) {
+				return mesa;
+			}	
 		}
-		return null;
+		return mesa;
 		
 	}
 

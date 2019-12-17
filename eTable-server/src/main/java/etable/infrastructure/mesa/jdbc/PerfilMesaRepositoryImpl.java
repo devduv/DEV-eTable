@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 
 import etable.domain.mesa.model.PerfilMesa;
 import etable.domain.mesa.repository.PerfilMesaRepository;
-import etable.domain.user.model.User;
 import etable.web.constants.querys.Query;
 
 @Component

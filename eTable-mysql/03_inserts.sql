@@ -1,3 +1,4 @@
+USE DB_ETABLE;
 -- Configuración inicial
 INSERT INTO TBCONFIGURACIONSISTEMA (CEMPRESA, EMPNOMBRE, EMPDESCRIPCION, EMPDIRECCION, EMPEMAIL, EMPCELULAR, EMPLOGO, SIST_RESERVACION_CLIENTE, SIST_ATENCION_CLIENTE, MESAS_COMPUESTAS, AGREGAR_CLIENTE_MANUAL,  PAGOS_TARJETA_CREDITO, RESERVACION_PEDIDOS, RESERVAS_ESPECIALES, RESERVAS_NO_SESIONADAS, DATE_CONFIGURADO,CANT_MAX_MESAS, CANT_MAX_US_REGISTRADOS, HORARIO_INI_ATENCION, HORARIO_FIN_ATENCION, DIAS_ATENCION, MAX_US_TRAB_CONECTADOS)  VALUES 
 (1,'', '', '', '', 993420344, '', 1, 1, 1, 1, 1, 1, 1, 1, '', 30, 1000, '9:00', '9:00', '', 10);
@@ -150,6 +151,20 @@ INSERT INTO `tbtipousuariopermiso` (`CTIPOUSPERMISO`,`CTIPOUSUARIO`,`CPERMISO`) 
 INSERT INTO TBUSUARIOS (NICKNAME, PASSWORD, USNOMBRE, USAPELLIDOS, ESTADO, CTIPOUSUARIO)
 VALUES ('administrador', '$2a$10$ov5FpWF2fd6TmezlBz7PEuijaixY6EpQI4./6X.d6NyE.rwyCnXJO', 'Nataly Grace', 'Vasquez Saenz', 1, 1);
 
+
+INSERT INTO `tbestadomesa` (`CESTADOMESA`, `EMDESCRIPCION`) VALUES
+(1, 'Habilitada'), (2, 'En Reparación'), (3, 'Desuso');
+
+INSERT INTO `tbperfilmesa` (`PMNOMBRE`, `PMDESCRIPCION`, `PMCAPACIDAD`, `PMCOMPUESTA`) VALUES
+('Individual', 'Es una mesa individual', 1, 0),
+('Grupo Pequeño', 'Mesa Grupo Pequeño', 4, 1),
+('Pareja de 2', 'Mesa para 2 personas', 2, 0);
+
+INSERT INTO `tbestadoreservacion` (`CESTADO`, `NOMESTADO`, `DESCESTADO`) VALUES
+(1, 'En Espera', 'Los clientes aun no hacen uso de su reservacion'),
+(2, 'Finalizado', 'Los clientes ya asistieron a la reservacion'),
+(3, 'En Despacho', 'Los clientes estan en la mesa reservada'),
+(4, 'Anulado', 'Los clientes anulan la reservacion');
 -- INSERT INTO `tbclientes`(`CCLIENTE`, `DNI`, `CUSUARIO`, `EMAIL`, `PHONE`, `DATE`) VALUES (2,4455667,2,'miguel@gmail.com',9999999,2019-12-11);
 -- INSERT INTO `tbclientes`(`CCLIENTE`, `DNI`, `CUSUARIO`, `EMAIL`, `PHONE`, `DATE`) VALUES (3,4455668,3,'duvan@gmail.com',99999998,2019-12-15)
 
