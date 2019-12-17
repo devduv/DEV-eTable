@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Reservacion } from 'src/app/domain/Reservacion';
 import { Cliente } from 'src/app/domain/Cliente';
 import { ReservacionDTO } from 'src/app/domain/ReservacionDTO';
+import { ReservacionDTOCli } from 'src/app/domain/ReservacionDTOCli';
 
 @Injectable({
   providedIn: 'root'
@@ -34,6 +35,8 @@ export class ReservacionService {
    public anularReservacionById(id: number) {
      return this.http.put<boolean>(this.url + '/' + 'anularReservacionById' + '/' + id, id);
    }
-
+   getReservacionesDTO() {
+    return this.http.get<ReservacionDTOCli[]>(this.url + '/' + 'listReservacionesDTO');
+  }
 
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import etable.domain.cliente.model.Cliente;
 import etable.domain.reservacion.model.Reservacion;
 import etable.domain.reservacion.model.ReservacionDTO;
+import etable.domain.reservacion.model.ReservacionDTOCli;
 
 public interface ReservacionRepository {
 	Cliente obtenerClientebyUsuario(int cusuario);
@@ -12,5 +13,6 @@ public interface ReservacionRepository {
 	boolean anularReservacion(int id);
 	List<Reservacion> listReservacionesbyId (int id);
 	List<ReservacionDTO> listReservacionesbyIdDTO (int id);
+	List<ReservacionDTOCli> listReservacionesDTO();
 	Reservacion getReservacionById(int id);
 }

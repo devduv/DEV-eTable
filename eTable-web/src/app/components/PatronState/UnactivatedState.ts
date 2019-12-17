@@ -1,4 +1,4 @@
-import { State } from './State';
+import { State } from './UserState';
 import { Router } from '@angular/router';
 import { User } from 'src/app/domain/User';
 import { UsuarioService } from 'src/app/services/administracion/administracion-usuarios/usuarios.service';

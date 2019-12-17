@@ -36,13 +36,8 @@
                                     </button>
     
                         </div>
-                        
-    
                     </td>
-                    <!-- <td>
-                            <div class="center-body"><button (click)="editarMesa(mesa.cmesa)" class="btn-none">{{mesa.nombremesa}}</button></div>
-                            
-                    </td> -->
+                   
                     <td>
                         <div class="center-body">{{mesadto.nombremesa}} </div>
                      </td>
@@ -53,9 +48,9 @@
                             <div class="center-body">{{mesadto.pmnombre}} </div>
                     </td>
                     <td>
-                            <div class="center-body"> {{mesadto.pmcapacidad}}  </div>
+                        <div class="center-body" *ngIf="mesadto.pmcapacidad===1">{{mesadto.pmcapacidad}} persona</div>
+                        <div class="center-body" *ngIf="mesadto.pmcapacidad>1">{{mesadto.pmcapacidad}} personas</div>
                     </td>
-                    
                 </tr>
             </tbody>
     </table>

@@ -11,12 +11,13 @@ public class ReservacionDTOCli {
 	private boolean confirmada;
 	private String nomconfirmada;
 	private String nomestado;
-	
+	private int cusuario;
+	private String nickname ;
 	
 	
 	
 	public ReservacionDTOCli(int creserva, int ccliente, int cestado, String comentario, String fecha, String hora,
-			int cantidad, boolean confirmada, String nomconfirmada, String nomestado) {
+			int cantidad, boolean confirmada, String nomconfirmada, String nomestado, int cusuario, String nickname) {
 		super();
 		this.creserva = creserva;
 		this.ccliente = ccliente;
@@ -28,7 +29,31 @@ public class ReservacionDTOCli {
 		this.confirmada = confirmada;
 		this.nomconfirmada = nomconfirmada;
 		this.nomestado = nomestado;
+		this.cusuario = cusuario;
+		this.nickname = nickname;
 	}
+	
+	
+	public String getNomestado() {
+		return nomestado;
+	}
+	public void setNomestado(String nomestado) {
+		this.nomestado = nomestado;
+	}
+	public int getCusuario() {
+		return cusuario;
+	}
+	public void setCusuario(int cusuario) {
+		this.cusuario = cusuario;
+	}
+	public String getNickname() {
+		return nickname;
+	}
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+	
+
 	public int getCreserva() {
 		return creserva;
 	}

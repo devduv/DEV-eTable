@@ -23,6 +23,7 @@ import etable.domain.mesa.model.PerfilMesa;
 import etable.domain.mesa.repository.EstadoMesaRepository;
 import etable.domain.reservacion.model.Reservacion;
 import etable.domain.reservacion.model.ReservacionDTO;
+import etable.domain.reservacion.model.ReservacionDTOCli;
 import etable.domain.reservacion.repository.ReservacionRepository;
 import etable.domain.user.model.User;
 import etable.web.constants.querys.Query;
@@ -114,6 +115,17 @@ public  class ReservacionRepositoryImpl implements ReservacionRepository{
 		} 
 				return false;
 			}
+
+
+	@Override
+	public List<ReservacionDTOCli> listReservacionesDTO() {
+		String query = "SELECT * FROM TBRESERVACION AS M INNER JOIN TBESTADORESERVACION AS N ON M.CESTADO = N.CESTADO INNER JOIN tbclientes AS C ON M.CCLIENTE = C.CCLIENTE INNER JOIN tbusuarios AS U ON C.CUSUARIO = U.CUSUARIO "; 
+		
+
+		List<Map<String, Object>> rows = this.jdbcTemplate.queryForList(query);
+		List<ReservacionDTOCli> reservaciones = row.getReservacionesDTO(rows);
+		return reservaciones ;
+	}
 
 
 	
