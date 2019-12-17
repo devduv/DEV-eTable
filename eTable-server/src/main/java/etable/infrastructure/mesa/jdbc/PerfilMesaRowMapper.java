@@ -10,7 +10,6 @@ import javax.swing.tree.TreePath;
 import org.springframework.stereotype.Component;
 
 import etable.domain.mesa.model.PerfilMesa;
-import etable.domain.user.model.User;
 
 @Component
 public class PerfilMesaRowMapper implements RowMapper {

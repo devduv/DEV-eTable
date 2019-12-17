@@ -1,31 +1,16 @@
 package etable.infrastructure.reservacion.jdbc;
 
-
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.PreparedStatementCreator;
-import org.springframework.jdbc.support.GeneratedKeyHolder;
-import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import etable.domain.cliente.model.Cliente;
-import etable.domain.mesa.model.EstadoMesa;
-import etable.domain.mesa.model.Mesa;
-import etable.domain.mesa.model.MesaDTO;
-import etable.domain.mesa.model.PerfilMesa;
-import etable.domain.mesa.repository.EstadoMesaRepository;
 import etable.domain.reservacion.model.Reservacion;
 import etable.domain.reservacion.model.ReservacionDTO;
 import etable.domain.reservacion.model.ReservacionDTOCli;
 import etable.domain.reservacion.repository.ReservacionRepository;
-import etable.domain.user.model.User;
 import etable.web.constants.querys.Query;
 
 @Component

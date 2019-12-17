@@ -10,9 +10,6 @@ import javax.swing.tree.TreePath;
 import org.springframework.stereotype.Component;
 
 import etable.domain.cliente.model.Cliente;
-import etable.domain.mesa.model.EstadoMesa;
-import etable.domain.mesa.model.Mesa;
-import etable.domain.mesa.model.PerfilMesa;
 import etable.domain.reservacion.model.Reservacion;
 import etable.domain.reservacion.model.ReservacionDTO;
 import etable.domain.reservacion.model.ReservacionDTOCli;

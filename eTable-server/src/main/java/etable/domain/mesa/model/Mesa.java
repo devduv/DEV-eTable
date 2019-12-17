@@ -1,7 +1,6 @@
 package etable.domain.mesa.model;
 
-
-public class Mesa {
+public class Mesa{
 	private int cmesa;
 	private int cperfilmesa;
 	private int cestadomesa;
@@ -51,5 +50,10 @@ public class Mesa {
 		this.nombremesa = nombremesa;
 	}
 
+	@Override
+	public String toString() {
+		return "Mesa [cmesa=" + cmesa + ", cperfilmesa=" + cperfilmesa + ", cestadomesa=" + cestadomesa
+				+ ", nombremesa=" + nombremesa + "]";
+	}
 	
 }

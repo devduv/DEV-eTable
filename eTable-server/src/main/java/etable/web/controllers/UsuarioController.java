@@ -36,8 +36,8 @@ public class UsuarioController {
 	
 	@PostMapping(path = {"/crearCliente"})
 	public Cliente crearCliente(@RequestBody JSONObject obj) {
-		LinkedHashMap<Object, Object> u = (LinkedHashMap) obj.get("user");
-		LinkedHashMap<Object, Object> c = (LinkedHashMap) obj.get("cliente");
+		@SuppressWarnings("unchecked")LinkedHashMap<Object, Object> u = (LinkedHashMap<Object, Object>) obj.get("user");
+		@SuppressWarnings("unchecked")LinkedHashMap<Object, Object> c = (LinkedHashMap<Object, Object>) obj.get("cliente");
 		User user = new User(0, (String) u.get("nickname"), (String)u.get("password"), (String)u.get("usnombres"), (String)u.get("usapellidos"), true, (int)u.get("ctipousuario"));
 		Cliente cliente = new Cliente(0, Integer.parseInt(c.get("dni").toString()), 0, (String) c.get("email"), (String)c.get("phone"), (String)c.get("date"));
 		return this.service.crearCliente(user, cliente);

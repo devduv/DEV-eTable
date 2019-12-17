@@ -16,15 +16,16 @@ public class UsuarioRowMapper {
 
 	public List<User> mapRowUsuario(List<Map<String, Object>> rows){
 		List<User> users = new ArrayList<User>();
-		
+		System.out.println("Obteniendo lista de usuario");
 		for(Map<String, Object> row: rows) {
 			int cusuario = Integer.parseInt(row.get("CUSUARIO").toString()); 
 			String nickname = row.get("NICKNAME").toString();
+			String password = "";
 			int ctipousuario = Integer.parseInt(row.get("CTIPOUSUARIO").toString()); 
 			String usnombres = row.get("USNOMBRE").toString();
 			String usapellidos = row.get("USAPELLIDOS").toString();
 			boolean estado = Integer.parseInt(row.get("ESTADO").toString()) == 1 ? true : false;
-			User user = new User(cusuario, nickname, usnombres, usapellidos, estado, ctipousuario);
+			User user = User.getInstancia(cusuario, nickname, password, usnombres, usapellidos, estado, ctipousuario);
 			users.add(user);
 		}
 		return users;
@@ -32,7 +33,7 @@ public class UsuarioRowMapper {
 	
 	public List<User> getUser(List<Map<String, Object>> rows){
 		List<User> users = new ArrayList<User>();
-		
+		System.out.println("Obteniendo usuario para editar");
 		for(Map<String, Object> row: rows) {
 			int cusuario = Integer.parseInt(row.get("CUSUARIO").toString()); 
 			String nickname = row.get("NICKNAME").toString();
@@ -41,7 +42,7 @@ public class UsuarioRowMapper {
 			String usapellidos = row.get("USAPELLIDOS").toString();
 			String password = row.get("PASSWORD").toString();
 			boolean estado = Integer.parseInt(row.get("ESTADO").toString()) == 1 ? true : false;
-			User user = new User(cusuario, nickname, password, usnombres, usapellidos, estado, ctipousuario);
+			User user = User.getInstancia(cusuario, nickname, password, usnombres, usapellidos, estado, ctipousuario);
 			users.add(user);
 		}
 		return users;

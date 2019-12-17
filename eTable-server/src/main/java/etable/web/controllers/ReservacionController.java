@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import etable.application.reservacion.ReservacionService;
 import etable.domain.cliente.model.Cliente;
-import etable.domain.mesa.model.PerfilMesa;
 import etable.domain.reservacion.model.Reservacion;
 import etable.domain.reservacion.model.ReservacionDTO;
 import etable.domain.reservacion.model.ReservacionDTOCli;

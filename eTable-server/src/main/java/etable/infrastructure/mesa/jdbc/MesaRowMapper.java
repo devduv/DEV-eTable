@@ -11,7 +11,6 @@ import org.springframework.stereotype.Component;
 
 import etable.domain.mesa.model.Mesa;
 import etable.domain.mesa.model.MesaDTO;
-import etable.domain.mesa.model.PerfilMesa;
 
 @Component
 public class MesaRowMapper implements RowMapper {
@@ -54,9 +53,6 @@ public class MesaRowMapper implements RowMapper {
 		}
 		return mesas;
 	}
-	
-	
-
 	
 	@Override
 	public int[] getRowsForPaths(TreePath[] path) {

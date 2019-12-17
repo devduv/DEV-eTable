@@ -3,7 +3,6 @@ package etable.application.mesa;
 import java.util.List;
 
 import etable.domain.mesa.model.PerfilMesa;
-import etable.domain.user.model.User;
 
 public interface PerfilMesaService {
 
