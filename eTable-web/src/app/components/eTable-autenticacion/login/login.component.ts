@@ -8,7 +8,7 @@ import { SistemaGeneralService } from 'src/app/services/administracion/sistema/s
 import { Configuracion } from 'src/app/domain/Configuracion';
 import { MatDialog } from '@angular/material/dialog';
 import { UsuarioService } from 'src/app/services/administracion/administracion-usuarios/usuarios.service';
-import { State } from '../../PatronState/UserState';
+import { UserState } from '../../PatronState/UserState';
 import Swal from 'sweetalert2';
 import { ActivatedState } from '../../PatronState/ActivatedState';
 import { UnactivatedState } from '../../PatronState/UnactivatedState';
@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit, DoCheck {
   public serverConected: boolean;
   public config: Configuracion;
 
-  public estadoSesion: State;
+  public estadoSesion: UserState;
 
   constructor(
     private router: Router,
@@ -43,7 +43,6 @@ export class LoginComponent implements OnInit, DoCheck {
     private serviceConfig: SistemaGeneralService,
     private dialog: MatDialog,
     private serviceUser: UsuarioService) {
-    // this.logo = Path.logo;
     this.notuser = false;
     this.notpass = false;
     this.notuserexist = false;

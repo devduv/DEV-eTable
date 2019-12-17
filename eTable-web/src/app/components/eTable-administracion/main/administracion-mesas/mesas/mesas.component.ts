@@ -5,6 +5,7 @@ import { MesaDTO } from 'src/app/domain/MesaDTO';
 import { MesasService } from 'src/app/services/administracion/administracion-mesas/mesas.service';
 import { EstadoMesa } from 'src/app/domain/EstadoMesa';
 import { EstadoMesasService } from 'src/app/services/administracion/administracion-mesas/estado-mesas.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-mesas',
@@ -53,25 +54,59 @@ export class MesaComponent implements OnInit {
   }
   public eliminarMesa(id: number) {
     console.log(id);
-    const c = confirm('Eliminar perfil Mesa');
-    if (c === true) {
-      this.load = true;
-      this.serviceMesas.deleteMesaById(id).subscribe(data => {
-        if (data) {
-          this.load = false;
-          this.navigateList();
-        } else {
-          this.load = false;
-          this.navigateList();
-        }
-      }, error => {
-        if (error) {
-          this.load = false;
-          this.navigateList();
-         
-        }
-      });
-    }
+
+///////////////////
+Swal.fire({
+  title: 'Estas seguro que desea eliminarl la mesa?',
+  // text: "S",
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Eliminar',
+  cancelButtonText: 'Cancelar'
+}).then((result) => {
+  if (result.value) {
+    this.load = true;
+    this.serviceMesas.deleteMesaById(id).subscribe(data => {
+      if (data) {
+        this.load = false;
+        Swal.fire(
+          'Mesa Elimianda!',
+          'El Registro se elimino correctamente.',
+          'success'
+        );
+        this.obtenerMesas();
+        Swal.fire(
+            'Mesa Elimianda!',
+            'El Registro se elimino correctamente.',
+            'success'
+          );
+
+
+      } else {
+        this.load = false;
+        // this.obtenerMesas();
+      }
+    }, error => {
+      if (error) {
+        this.load = false;
+        // this.obtenerMesas();
+       
+      }
+    });
+   
+  }
+      
+
+
+ 
+})
+
+
+
+
+    
 
   }
 

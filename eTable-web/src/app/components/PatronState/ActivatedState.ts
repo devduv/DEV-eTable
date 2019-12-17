@@ -1,8 +1,8 @@
-import { State } from './UserState';
+import { UserState } from './UserState';
 import { Router } from '@angular/router';
 import { UsuarioService } from 'src/app/services/administracion/administracion-usuarios/usuarios.service';
 
-export class ActivatedState implements State { 
+export class ActivatedState implements UserState { 
 
     constructor( private router: Router
         , private serviceUser: UsuarioService) {

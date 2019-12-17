@@ -19,14 +19,11 @@ public class MesaRepositoryImpl implements MesaRepository{
 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
-	
 	@Autowired
 	private MesaRowMapper row;
 
 	@Override
 	public List<MesaDTO> getMesas() {
-		// TODO Auto-generated method stub
-		
 		String query = "SELECT * FROM TBMESA AS M INNER JOIN TBESTADOMESA "
 				+ "AS N ON M.CESTADOMESA = N.CESTADOMESA INNER JOIN TBPERFILMESA"
 				+ " AS T ON M.CPERFILMESA = T.CPERFILMESA" ;

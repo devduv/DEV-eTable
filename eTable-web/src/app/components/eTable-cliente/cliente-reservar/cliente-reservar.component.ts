@@ -21,7 +21,6 @@ export class ClienteReservarComponent implements OnInit {
   public successText :String;
   public idCliente :number
 
-  //public State state;
 
   constructor(private activedRouter: ActivatedRoute,private router: Router,
     private service: ReservacionService, private usuarioservice: UsuarioService) { 

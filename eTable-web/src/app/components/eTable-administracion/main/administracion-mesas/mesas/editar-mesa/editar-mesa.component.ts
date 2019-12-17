@@ -8,6 +8,7 @@ import { Mesa } from 'src/app/domain/Mesa';
 import { EstadoMesa } from 'src/app/domain/EstadoMesa';
 import { PerfilMesasService } from 'src/app/services/administracion/administracion-mesas/perfil-mesas.service';
 import { EstadoMesasService } from 'src/app/services/administracion/administracion-mesas/estado-mesas.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-editar-mesa',
@@ -138,7 +139,7 @@ export class EditarMesaComponent implements OnInit {
   private navigateList() {
     this.router.navigate(['mesas/list']);
   }
-
+/*
   public eliminar() {
     const c = confirm('Eliminar mesa');
     if (c === true) {
@@ -159,6 +160,54 @@ export class EditarMesaComponent implements OnInit {
         }
       });
     }
-  }
+  }*/
+
+  public eliminar() {
+ 
+ 
+    Swal.fire({
+      title: 'Estas seguro que deseas eliminar la mesa?',
+      // text: "S",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Eliminar',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.value) {
+
+        this.load = true;
+        this.serviceMesas.deleteMesaById(this.mesa.cmesa).subscribe(data => {
+          if (data) {
+            Swal.fire(
+              'Eliminada!',
+              'La mesa se elimino correctamente.',
+              'success'
+            );
+            this.navigateList();
+          } else {
+            this.load = false;
+            this.success = true;
+            this.successText = 'No se puede eliminar esta mesa';
+          }
+        }, error => {
+          if (error) {
+            this.load = false;
+            this.success = true;
+            this.successText = 'Sucedió un error con el servidor';
+          }
+        });
+      
+       
+      }
+     
+        
+     
+
+    })
+
+  } 
+
 
 }

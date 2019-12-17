@@ -43,6 +43,9 @@ export class ProgramacionMesaComponent implements OnInit {
     )}
    
 
+    revisar(id: number) {
+      // this.router.navigate(['mesas/editar/' + id]);
+    }
 
   private navigateList() {
     this.router.navigate(['mesas/list']);

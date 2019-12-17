@@ -1,10 +1,10 @@
-import { State } from './UserState';
+import { UserState } from './UserState';
 import { Router } from '@angular/router';
 import { User } from 'src/app/domain/User';
 import { UsuarioService } from 'src/app/services/administracion/administracion-usuarios/usuarios.service';
 import Swal from 'sweetalert2';
 
-export class UnactivatedState implements State { 
+export class UnactivatedState implements UserState { 
 
     constructor( private router: Router , private serviceUser: UsuarioService) {
     }
