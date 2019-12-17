@@ -15,8 +15,7 @@ public class ClienteDTO {
 	private String password;
 	
 	public ClienteDTO() {
-		
-		
+				
 	}
 
 	public ClienteDTO(int ccliente, int dni, String usnombre, String usapellidos, int cusuario, String email,

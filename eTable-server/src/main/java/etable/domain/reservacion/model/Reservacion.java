@@ -14,6 +14,7 @@ public class Reservacion {
 
 	}
 
+	
 
 	public Reservacion(int creserva, int ccliente, int cestado, String comentario, String fecha,String hora, int cantidad,
 			boolean confirmada) {

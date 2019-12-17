@@ -14,8 +14,7 @@ public class ReservacionDTOCli {
 	private int cusuario;
 	private String nickname ;
 	
-	
-	
+		
 	public ReservacionDTOCli(int creserva, int ccliente, int cestado, String comentario, String fecha, String hora,
 			int cantidad, boolean confirmada, String nomconfirmada, String nomestado, int cusuario, String nickname) {
 		super();

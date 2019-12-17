@@ -27,6 +27,5 @@ public class AppConfig extends WebMvcConfigurerAdapter {
     JdbcTemplate JdbcTemplate(DataSource centralDataSource) {
         return new JdbcTemplate(centralDataSource);
     }
-    
-
+  
 }
