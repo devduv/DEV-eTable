@@ -31,7 +31,6 @@ import { RegisterComponent } from './components/eTable-autenticacion/register/re
 import { EditarUsuarioComponent } from './components/eTable-administracion/main/administracion-usuarios/usuarios/editar-usuario/editar-usuario.component';
 import { ImageUploadModule } from 'angular2-image-upload';
 import {MatDialogModule} from '@angular/material/dialog';
-import { UsuarioDeshabilitadoComponent } from './components/eTable-modals/usuario/usuario-deshabilitado/usuario-deshabilitado.component';
 import { MatNativeDateModule } from '@angular/material/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ClienteReservarComponent } from './components/eTable-cliente/cliente-reservar/cliente-reservar.component';
@@ -69,7 +68,6 @@ import {NgxPaginationModule} from 'ngx-pagination';
     CrearTipoUsuarioComponent,
     RegisterComponent,
     EditarUsuarioComponent,
-    UsuarioDeshabilitadoComponent,
     ClienteReservarComponent,
     ClienteMisReservasComponent,
     EliminarClienteComponent,
@@ -87,7 +85,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
     ImageUploadModule.forRoot(),
     NgxPaginationModule
   ],
-  entryComponents: [UsuarioDeshabilitadoComponent, EliminarClienteComponent, EditarClienteComponent],
+  entryComponents: [EliminarClienteComponent, EditarClienteComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

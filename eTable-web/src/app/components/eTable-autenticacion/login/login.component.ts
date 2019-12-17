@@ -7,8 +7,11 @@ import { LoginService } from 'src/app/services/authentication/login.service';
 import { SistemaGeneralService } from 'src/app/services/administracion/sistema/sistema-general.service';
 import { Configuracion } from 'src/app/domain/Configuracion';
 import { MatDialog } from '@angular/material/dialog';
-import { UsuarioDeshabilitadoComponent } from '../../eTable-modals/usuario/usuario-deshabilitado/usuario-deshabilitado.component';
 import { UsuarioService } from 'src/app/services/administracion/administracion-usuarios/usuarios.service';
+import { State } from '../../PatronState/State';
+import Swal from 'sweetalert2';
+import { ActivatedState } from '../../PatronState/ActivatedState';
+import { UnactivatedState } from '../../PatronState/UnactivatedState';
 
 @Component({
   selector: 'app-login',
@@ -31,6 +34,8 @@ export class LoginComponent implements OnInit, DoCheck {
   public user: User;
   public serverConected: boolean;
   public config: Configuracion;
+
+  public estadoSesion: State;
 
   constructor(
     private router: Router,
@@ -90,24 +95,6 @@ export class LoginComponent implements OnInit, DoCheck {
       this.authenticationByNickname(this.user.nickname, this.user.password);
     }
   }
-
-  public openDialog(data: User) {
-    const dialogRef = this.dialog.open(UsuarioDeshabilitadoComponent, {
-      width: '250px',
-      data: data
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-    });
-  }
-
-  public register() {
-    localStorage.setItem('emplogo',  this.config.emplogo);
-    localStorage.setItem('empnombre', this.config.empnombre);
-    localStorage.setItem('registration', 'true');
-  }
-
   private authenticationByNickname(nickname: string, password: string) {
     this.service.findUserByNickname(nickname).subscribe(data => {
       if (data !== null) {
@@ -130,39 +117,31 @@ export class LoginComponent implements OnInit, DoCheck {
       }
     });
   }
-
   private authenticationLogin(user: User, password: string) {
     this.service.authenticationLogin(user).subscribe(data => {
       this.load = false;
       if (data != null) {
         this.user = data;
-        this.setAuthentication(password);
+        if (this.user.estado)
+          this.estadoSesion = new ActivatedState(this.router,this.serviceUser);
+        else
+          this.estadoSesion = new UnactivatedState(this.router,this.serviceUser);
+
+        this.estadoSesion.setAuthentication(password ,this.user);
       } else {
         this.notUser(4);
       }
     });
   }
 
-  private setAuthentication(password: string) {
-    const passwordHash = this.user.password;
-    console.log("userrrr",this.user);
-    this.user.password = password;
-    if (this.user.estado) {
-      this.authentication = true;
-      localStorage.setItem('nickname', this.user.nickname);
-      localStorage.setItem('password', passwordHash);
-      localStorage.setItem('authentication', 'true');
-      
-      this.router.navigate(['main']);
-    } else {
-      const us = new User();
-      us.nickname = this.user.nickname;
-      us.password = passwordHash;
-      this.serviceUser.getUsuarioByAuthentication(us).subscribe(data => {
-      this.openDialog(data);
-      });
-    }
+
+  public register() {
+    localStorage.setItem('emplogo',  this.config.emplogo);
+    localStorage.setItem('empnombre', this.config.empnombre);
+    localStorage.setItem('registration', 'true');
   }
+
+
 
   private notUser(id: number) {
     if (id === 1) {
