@@ -77,10 +77,10 @@ export class AppComponent implements OnInit, DoCheck {
     }
   }
 
-  private reservar() {
+  public reservar() {
     this.navigateReservar();
   }
-  private misReservas() {
+  public misReservas() {
     this.navigateMisReservas();
   }
 

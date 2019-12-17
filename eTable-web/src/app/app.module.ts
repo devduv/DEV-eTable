@@ -31,7 +31,6 @@ import { RegisterComponent } from './components/eTable-autenticacion/register/re
 import { EditarUsuarioComponent } from './components/eTable-administracion/main/administracion-usuarios/usuarios/editar-usuario/editar-usuario.component';
 import { ImageUploadModule } from 'angular2-image-upload';
 import {MatDialogModule} from '@angular/material/dialog';
-import { UsuarioDeshabilitadoComponent } from './components/eTable-modals/usuario/usuario-deshabilitado/usuario-deshabilitado.component';
 import { MatNativeDateModule } from '@angular/material/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ClienteReservarComponent } from './components/eTable-cliente/cliente-reservar/cliente-reservar.component';
@@ -39,7 +38,7 @@ import { ClienteMisReservasComponent } from './components/eTable-cliente/cliente
 import { EliminarClienteComponent } from './components/eTable-modals/cliente/eliminar/eliminar-cliente';
 import { CrearClienteComponent } from './components/eTable-administracion/main/administracion-clientes/clientes/crear-cliente/crear-cliente.component';
 import { EditarClienteComponent } from './components/eTable-modals/cliente/editar/editar-cliente';
-
+import {NgxPaginationModule} from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -69,7 +68,6 @@ import { EditarClienteComponent } from './components/eTable-modals/cliente/edita
     CrearTipoUsuarioComponent,
     RegisterComponent,
     EditarUsuarioComponent,
-    UsuarioDeshabilitadoComponent,
     ClienteReservarComponent,
     ClienteMisReservasComponent,
     EliminarClienteComponent,
@@ -84,9 +82,10 @@ import { EditarClienteComponent } from './components/eTable-modals/cliente/edita
     FormsModule,
     MatNativeDateModule,
     MatDialogModule,
-    ImageUploadModule.forRoot()
+    ImageUploadModule.forRoot(),
+    NgxPaginationModule
   ],
-  entryComponents: [UsuarioDeshabilitadoComponent, EliminarClienteComponent, EditarClienteComponent],
+  entryComponents: [EliminarClienteComponent, EditarClienteComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

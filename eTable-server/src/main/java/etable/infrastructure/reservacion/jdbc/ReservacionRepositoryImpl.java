@@ -18,15 +18,18 @@ import org.springframework.web.bind.annotation.PathVariable;
 import etable.domain.cliente.model.Cliente;
 import etable.domain.mesa.model.EstadoMesa;
 import etable.domain.mesa.model.Mesa;
+import etable.domain.mesa.model.MesaDTO;
 import etable.domain.mesa.model.PerfilMesa;
 import etable.domain.mesa.repository.EstadoMesaRepository;
 import etable.domain.reservacion.model.Reservacion;
+import etable.domain.reservacion.model.ReservacionDTO;
+import etable.domain.reservacion.model.ReservacionDTOCli;
 import etable.domain.reservacion.repository.ReservacionRepository;
 import etable.domain.user.model.User;
 import etable.web.constants.querys.Query;
 
 @Component
-public class ReservacionRepositoryImpl implements ReservacionRepository{
+public  class ReservacionRepositoryImpl implements ReservacionRepository{
 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
@@ -49,23 +52,6 @@ public class ReservacionRepositoryImpl implements ReservacionRepository{
 
 	}
 
-	@Override
-	public boolean anularReservacion(int id)  {
-	/*	String query = 	"UPDATE " + Query.table_mesa +
-	" SET NOMBREMESA = ? , CPERFILMESA = ? , CESTADOMESA = ? WHERE CMESA = ?";
-	int update = this.jdbcTemplate.update(query, 
-				mesa.getNombremesa(),
-				mesa.getCperfilmesa(), 
-				mesa.getCestadomesa(), 
-				mesa.getCmesa());
-		System.out.print("update");
-		System.out.print(update);
-		if(update == 1) {
-			return true;
-		} */
-				return false;
-			}
-
 
 	@Override
 	public Cliente obtenerClientebyUsuario(int cusuario) {
@@ -75,8 +61,72 @@ public class ReservacionRepositoryImpl implements ReservacionRepository{
 			return cliente.get(0);
 		}
 		return null;
-	}	
+	}
+
+	public Reservacion getReservacionById(int id) {
+		String Reservacion = Query.selectFromWhere(Query.table_reservacion, "CRESERVA", id);
+		List<Reservacion> rsvc = this.row.getReservacionesbyId(this.jdbcTemplate.queryForList(Reservacion));
+		if (rsvc.size() > 0) {
+			return rsvc.get(0);
+		}
+		return null;
+		
+	}
 	
+
+
+	
+	@Override
+	public List<Reservacion> listReservacionesbyId(int id) {
+		String query = Query.selectFromWhere(Query.table_reservacion, "CCLIENTE", id);
+		
+		List<Map<String, Object>> rows = this.jdbcTemplate.queryForList(query);
+		List<Reservacion> reservacion = row.getReservacionesbyId(rows);
+		if (reservacion.size() > 0) {
+			return reservacion;
+		}
+		return null;
+	}
+
+
+
+	@Override
+	public List<ReservacionDTO> listReservacionesbyIdDTO(int id) {
+
+		String query = "SELECT * FROM TBRESERVACION AS M  INNER JOIN TBESTADORESERVACION AS N ON M.CESTADO = N.CESTADO " +
+				" WHERE CCLIENTE = " + id;
+		
+
+		List<Map<String, Object>> rows = this.jdbcTemplate.queryForList(query);
+		List<ReservacionDTO> reservaciones = row.getReservacionesbyIdDTO(rows);
+		return reservaciones ;
+	}
+
+	@Override
+	public boolean anularReservacion(int id)  {
+		Reservacion rv = getReservacionById(id);
+	System.out.print(rv);
+		String query = 	"UPDATE " + Query.table_reservacion +
+	" SET CESTADO = ?  WHERE CRESERVA = ?";
+	int update = this.jdbcTemplate.update(query, 4 , rv.getCreserva());
+		
+		if(update == 1) {
+			return true;
+		} 
+				return false;
+			}
+
+
+	@Override
+	public List<ReservacionDTOCli> listReservacionesDTO() {
+		String query = "SELECT * FROM TBRESERVACION AS M INNER JOIN TBESTADORESERVACION AS N ON M.CESTADO = N.CESTADO INNER JOIN tbclientes AS C ON M.CCLIENTE = C.CCLIENTE INNER JOIN tbusuarios AS U ON C.CUSUARIO = U.CUSUARIO "; 
+		
+
+		List<Map<String, Object>> rows = this.jdbcTemplate.queryForList(query);
+		List<ReservacionDTOCli> reservaciones = row.getReservacionesDTO(rows);
+		return reservaciones ;
+	}
+
 
 	
 }

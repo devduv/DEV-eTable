@@ -44,6 +44,7 @@ export class MenuComponent implements OnInit, DoCheck {
   }
 
   ngOnInit() {
+      
   }
 
   ngDoCheck() {

@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --proxy-config proxy.config.json",
-    "build": "ng build",
+    "start": "ng serve",
+    "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -25,6 +25,7 @@
     "@mdi/font": "^4.5.95",
     "angular2-image-upload": "^1.0.0-rc.2",
     "bootstrap": "^4.3.1",
+    "ngx-pagination": "^5.0.0",
     "password-hash": "^1.2.2",
     "rxjs": "~6.4.0",
     "sweetalert2": "^9.5.3",

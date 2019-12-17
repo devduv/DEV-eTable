@@ -6,6 +6,7 @@
     <button class="list-group-item btn-light subitem" mat-list-item (click)="setTitle(1)" [routerLink]="['sistema/general']">Sistema General</button>
     <button class="list-group-item btn-light subitem" mat-list-item (click)="setTitle(2)" [routerLink]="['sistema/configuracion']">Configuración</button>
 </div>
+
 <button *ngIf="usuarios" (click)="show(2)" class="list-group-item btn-item">Administración de Usuarios</button>
 <div *ngIf="admus" class="ele">
     <button class="list-group-item btn-light subitem" (click)="setTitle(5)" mat-list-item [routerLink]="['usuarios/permisos']">Permisos</button>
