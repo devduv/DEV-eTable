@@ -15,6 +15,7 @@ public class ReservacionDTO {
 	
 	
 	
+	
 	public ReservacionDTO(int creserva, int ccliente, int cestado, String comentario, String fecha, String hora,
 			int cantidad, boolean confirmada, String nomconfirmada, String nomestado) {
 		super();
