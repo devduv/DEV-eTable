@@ -40,9 +40,12 @@ Sublime Text
 MySQL Workbench
 ```
 ### ⚙️ Base de Datos en Azure, para visualizar las tablas, poner los siguientes en MySQL Workbench
+```
 Hostname : dev-fisi.mysql.database.azure.com
 Username : dev01@dev-fisi
 Contraseña Servidor123456
+```
+
 
 ## 🚀 Construyendo el Sistema
 _El Sistema de Reservaciones está dividido en 3 módulos_
