@@ -31,12 +31,12 @@
           </button>
         </div>
         <div class="f-right" *ngIf="authentication && esCliente">
-          <button class="btn-close" (click)="misReservas()">
+          <button (click)="misReservas()" [ngClass]="activeMisReservas ? 'btn-active-m' : 'btn-close'">
             <i class="mdi mdi-file-document-box-outline f-16 mr-1"></i> <span class="subline">Mis Reservas</span>
           </button>
         </div>
         <div class="f-right" *ngIf="authentication && esCliente">
-          <button class="btn-close" (click)="reservar()">
+          <button (click)="reservar()" [ngClass]="activeReservarMesa ? 'btn-active-m' : 'btn-close'">
             <i class="mdi mdi-table-large f-16 mr-1"></i> <span class="subline">Reservar Mesa</span>
           </button>
         </div>

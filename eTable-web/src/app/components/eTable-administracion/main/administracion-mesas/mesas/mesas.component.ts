@@ -6,6 +6,7 @@ import { MesasService } from 'src/app/services/administracion/administracion-mes
 import { EstadoMesa } from 'src/app/domain/EstadoMesa';
 import { EstadoMesasService } from 'src/app/services/administracion/administracion-mesas/estado-mesas.service';
 import Swal from 'sweetalert2';
+import { Path } from 'src/app/infrastructure/constans/Path';
 
 @Component({
   selector: 'app-mesas',
@@ -24,6 +25,8 @@ export class MesaComponent implements OnInit {
    constructor(private router: Router, private serviceMesas: MesasService , 
     private serviceestadomesa: EstadoMesasService ) {
      this.estado = false;
+     this.load = true;
+      this.loading = Path.loading;
     }
 
   ngOnInit() {
