@@ -53,7 +53,11 @@ public class ReservacionController {
 		
 		return this.service.anularReservacion(id);
 	}
-	
+	@PutMapping(path = {"/revisarReservacionById/{id}"})
+	public boolean revisarReservacion( @PathVariable int id) {
+		
+		return this.service.revisarReservacion(id);
+	}
 	@GetMapping(path = {"/listReservacionesDTO"})
 	public List<ReservacionDTOCli> listReservacionesDTO() {	
 			return this.service.listReservacionesDTO();

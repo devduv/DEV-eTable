@@ -17,6 +17,18 @@ public class ReservacionDTO {
 	
 	
 	public ReservacionDTO(int creserva, int ccliente, int cestado, String comentario, String fecha, String hora,
+			int cantidad, boolean confirmada) {
+		super();
+		this.creserva = creserva;
+		this.ccliente = ccliente;
+		this.cestado = cestado;
+		this.comentario = comentario;
+		this.fecha = fecha;
+		this.hora = hora;
+		this.cantidad = cantidad;
+		this.confirmada = confirmada;
+	}
+	public ReservacionDTO(int creserva, int ccliente, int cestado, String comentario, String fecha, String hora,
 			int cantidad, boolean confirmada, String nomconfirmada, String nomestado) {
 		super();
 		this.creserva = creserva;

@@ -68,6 +68,13 @@ public class ReservacionServiceImpl implements ReservacionService{
 	}
 
 
+	@Override
+	public boolean revisarReservacion(int id) {
+		// TODO Auto-generated method stub
+		return this.repository.revisarReservacion(id);
+	}
+
+
 
 	
 

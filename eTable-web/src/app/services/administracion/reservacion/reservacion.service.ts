@@ -35,6 +35,10 @@ export class ReservacionService {
    public anularReservacionById(id: number) {
      return this.http.put<boolean>(this.url + '/' + 'anularReservacionById' + '/' + id, id);
    }
+
+   public revisarReservacionById(id: number) {
+    return this.http.put<boolean>(this.url + '/' + 'revisarReservacionById' + '/' + id, id);
+  }
    getReservacionesDTO() {
     return this.http.get<ReservacionDTOCli[]>(this.url + '/' + 'listReservacionesDTO');
   }

@@ -24,19 +24,19 @@
                     <div class="center-head">Comentario</div>
                 </td>
                 <td>
-                    <div class="center-head">Revisar</div>
+                    <div class="center-head">Confirmacion</div>
                 </td>
                 <td>
                     <div class="center-head">Estado Reservacion</div>
                 </td>
                 <td> 
-                    <div class="center-head">Revisar</div>
+                    <div class="center-head">Accion Revisar</div>
                 </td>
                 
             </tr>
         </thead>
         <tbody class="header-body">
-                <tr *ngFor= "let reservacion of reservacionesdto">
+                <tr *ngFor= "let reservacion of reservacionesdto | paginate : {itemsPerPage :6,currentPage : pageActual};">
                     <td>
                         <div class="center-body">{{reservacion.creserva}} </div>
                      </td>
@@ -70,4 +70,5 @@
                    </tr>
             </tbody>
     </table>
+    <pagination-controls (pageChange)="pageActual = $event"></pagination-controls>
 </div>
