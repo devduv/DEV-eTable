@@ -150,6 +150,20 @@ INSERT INTO `tbtipousuariopermiso` (`CTIPOUSPERMISO`,`CTIPOUSUARIO`,`CPERMISO`) 
 INSERT INTO TBUSUARIOS (NICKNAME, PASSWORD, USNOMBRE, USAPELLIDOS, ESTADO, CTIPOUSUARIO)
 VALUES ('administrador', '$2a$10$ov5FpWF2fd6TmezlBz7PEuijaixY6EpQI4./6X.d6NyE.rwyCnXJO', 'Nataly Grace', 'Vasquez Saenz', 1, 1);
 
+
+INSERT INTO `tbestadomesa` (`CESTADOMESA`, `EMDESCRIPCION`) VALUES
+(1, 'Habilitada'), (2, 'En Reparación'), (3, 'Desuso');
+
+INSERT INTO `tbperfilmesa` (`PMNOMBRE`, `PMDESCRIPCION`, `PMCAPACIDAD`, `PMCOMPUESTA`) VALUES
+('Individual', 'Es una mesa individual', 1, 0),
+('Grupo Pequeño', 'Mesa Grupo Pequeño', 4, 1),
+('ioio', 'ioioi', 1, 0);
+
+INSERT INTO `tbestadoreservacion` (`CESTADO`, `NOMESTADO`, `DESCESTADO`) VALUES
+(1, 'En Espera', 'Los clientes aun no hacen uso de su reservacion'),
+(2, 'Finalizado', 'Los clientes ya asistieron a la reservacion'),
+(3, 'En Despacho', 'Los clientes estan en la mesa reservada'),
+(4, 'Anulado', 'Los clientes anulan la reservacion');
 -- INSERT INTO `tbclientes`(`CCLIENTE`, `DNI`, `CUSUARIO`, `EMAIL`, `PHONE`, `DATE`) VALUES (2,4455667,2,'miguel@gmail.com',9999999,2019-12-11);
 -- INSERT INTO `tbclientes`(`CCLIENTE`, `DNI`, `CUSUARIO`, `EMAIL`, `PHONE`, `DATE`) VALUES (3,4455668,3,'duvan@gmail.com',99999998,2019-12-15)
 

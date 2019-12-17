@@ -5,7 +5,7 @@
 	<groupId>pe.com.etable</groupId>
 	<artifactId>reservaciones</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 	<name>reservaciones</name>
 
 	<!-- Spring Boot 1.5.9 -->
@@ -81,4 +81,14 @@
 			<artifactId>spring-boot-starter-log4j2</artifactId>
 		</dependency>
 	</dependencies>
+	
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+		<finalName>eTable</finalName>
+	</build>
 </project>

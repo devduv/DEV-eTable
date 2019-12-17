@@ -92,4 +92,13 @@ public class Reservacion {
 		this.confirmada = confirmada;
 	}
 
+	@Override
+	public String toString() {
+		return "Reservacion [creserva=" + creserva + ", ccliente=" + ccliente + ", cestado=" + cestado + ", comentario="
+				+ comentario + ", fecha=" + fecha + ", hora=" + hora + ", cantidad=" + cantidad + ", confirmada="
+				+ confirmada + "]";
+	}
+	
+	
+
 }

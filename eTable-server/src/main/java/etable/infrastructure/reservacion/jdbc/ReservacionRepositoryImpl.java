@@ -36,7 +36,7 @@ public class ReservacionRepositoryImpl implements ReservacionRepository{
 
 
 	public Reservacion crearReservacion(Reservacion reservacion) {
-
+		System.out.println(reservacion.toString());
 		String insertQuery = "insert into " + Query.table_reservacion
 				+ "(CCLIENTE,CESTADO,COMENTARIO,FECHA,HORA,CANTIDAD,CONFIRMADA) values (?, ?, ?,?, ?, ?,?)";
 		int success = this.jdbcTemplate.update(insertQuery,reservacion.getCcliente(), reservacion.getCestado(),
