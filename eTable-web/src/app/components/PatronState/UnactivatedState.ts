@@ -10,6 +10,7 @@ export class UnactivatedState implements UserState {
     }
     setAuthentication(password, user) {
     const passwordHash = user.password;
+    user.password = password;
     const us = new User();
       us.nickname = user.nickname;
       us.password = passwordHash;
@@ -23,7 +24,7 @@ export class UnactivatedState implements UserState {
     public openDialog(data: User) {
         Swal.fire({
          icon: 'error',
-         title: 'Usuario Bloqueado ...',
+         title: 'Usuario Bloqueado',
          text: ''+ data.usnombres +" "+ data.usapellidos + " se encuentra deshabilitado del sistema",
          
        })
