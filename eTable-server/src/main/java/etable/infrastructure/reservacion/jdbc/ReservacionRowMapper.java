@@ -95,6 +95,7 @@ public class ReservacionRowMapper implements RowMapper {
 		
 	}
 	
+	
 
 	public List<ReservacionDTOCli> getReservacionesDTO(List<Map<String, Object>> rows){
 		List<ReservacionDTOCli> reservacion = new ArrayList<ReservacionDTOCli>();
