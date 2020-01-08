@@ -100,10 +100,6 @@ export class LoginComponent implements OnInit, DoCheck {
         const user = new User();
         user.nickname = data.nickname;
         user.password = password;
-       
-    
-  console.log("Confe", user);
-
         this.authenticationLogin(user, password);
       } else {
         this.load = false;
@@ -185,6 +181,7 @@ export class LoginComponent implements OnInit, DoCheck {
       this.load = false;
     }, error => {
       if (error) {
+        this.logo = Path.logo;
         this.load = false;
         this.serverConected = false;
       }
