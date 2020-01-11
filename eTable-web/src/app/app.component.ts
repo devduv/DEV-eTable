@@ -58,6 +58,10 @@ export class AppComponent implements OnInit, DoCheck {
     this.mobile.removeListener(this.mobileListener);
   }
 
+  cleanTitle(){
+    localStorage.removeItem('title');
+  }
+
   logout() {
     this.navOpen = false;
     localStorage.clear();
