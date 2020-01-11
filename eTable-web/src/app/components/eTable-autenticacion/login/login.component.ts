@@ -100,10 +100,6 @@ export class LoginComponent implements OnInit, DoCheck {
         const user = new User();
         user.nickname = data.nickname;
         user.password = password;
-       
-    
-  console.log("Confe", user);
-
         this.authenticationLogin(user, password);
       } else {
         this.load = false;
@@ -171,7 +167,6 @@ export class LoginComponent implements OnInit, DoCheck {
   }
 
   private getConfiguracion() {
-    console.log('Cargando imagen...');
     this.serviceConfig.getConfiguracionSistemaGeneral().subscribe(data => {
       this.config = data;
       if (this.config.empnombre.length === 0) {
@@ -181,13 +176,12 @@ export class LoginComponent implements OnInit, DoCheck {
         this.logo = '../../' + this.config.emplogo;
       } else {
         this.logo = Path.logo;
-        console.log('lol',  this.logo);
       }
       
       this.load = false;
     }, error => {
       if (error) {
-        console.log('lol',  this.logo);
+        this.logo = Path.logo;
         this.load = false;
         this.serverConected = false;
       }

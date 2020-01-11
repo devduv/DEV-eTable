@@ -7,6 +7,7 @@ import { EstadoMesa } from 'src/app/domain/EstadoMesa';
 import { EstadoMesasService } from 'src/app/services/administracion/administracion-mesas/estado-mesas.service';
 import { ReservacionService } from 'src/app/services/administracion/reservacion/reservacion.service';
 import { ReservacionDTOCli } from 'src/app/domain/ReservacionDTOCli';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-programacion-mesa',
@@ -44,8 +45,45 @@ export class ProgramacionMesaComponent implements OnInit {
    
 
     revisar(id: number) {
-      // this.router.navigate(['mesas/editar/' + id]);
-    }
+     
+      Swal.fire({
+        title: 'Estas seguro que deseas confirmar la reservación?',
+        // text: "S",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Confirmar',
+        cancelButtonText: 'Cancelar'
+      }).then((result) => {
+        if (result.value) {
+          this.service.revisarReservacionById(id).subscribe(data => {
+            if (data) {  console.log("1");
+            Swal.fire(
+              'Confirmada!',
+              'La reservacion fue confirmada correctamente.',
+              'success'
+            );
+            this.obtenerReservaciones();
+            
+            } else {  console.log("2");
+            // this.obtenerReservacionesbyCliente(this.idCliente);
+            }
+          }, error => {
+            if (error) {   console.log("error ",error);
+            // this.obtenerReservaciones();
+            }
+          }); 
+
+
+         
+         }
+          
+        
+       
+      })
+  
+    } 
 
   private navigateList() {
     this.router.navigate(['mesas/list']);

@@ -58,7 +58,9 @@ export class RegisterComponent implements OnInit {
   }
 
   private navigate() {
-    localStorage.setItem('registration', 'false');
+    localStorage.removeItem('emplogo');
+    localStorage.removeItem('empnombre');
+    localStorage.removeItem('registration');
   }
 
   private isEmpty() {

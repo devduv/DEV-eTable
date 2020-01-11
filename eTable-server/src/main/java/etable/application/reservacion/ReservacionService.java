@@ -10,9 +10,12 @@ import etable.domain.reservacion.model.ReservacionDTOCli;
 
 public interface ReservacionService {
 
+	
+	
 	Cliente obtenerClientebyUsuario(int cusuario);
 	Reservacion crearReservacion(Reservacion reservacion);
 	boolean anularReservacion(int id);
+	boolean revisarReservacion(int id);
 	List<Reservacion> listReservacionesbyId (int id);
 	List<ReservacionDTO> listReservacionesbyIdDTO (int id);
 	List<ReservacionDTOCli> listReservacionesDTO();

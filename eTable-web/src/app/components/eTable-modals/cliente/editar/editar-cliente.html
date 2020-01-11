@@ -9,32 +9,32 @@
     <span><b>Datos personales</b></span>
     <hr class="mt-1" />
     <div class="row">
-      <div class="col-lg-2 col-md-4 col-sm-4 col-6">
+      <div class="col-lg-6 col-md-4 col-sm-4 col-6">
         <span>Apellidos</span>
         <input type="text" class="form-control form-control-sm mt-1" [(ngModel)]="cliente.usapellidos" name="apellidos">
       </div>
-      <div class="col-lg-2 col-md-4 col-sm-4 col-6">
+      <div class="col-lg-6 col-md-4 col-sm-4 col-6">
         <span>Nombres</span>
         <input type="text" class="form-control form-control-sm mt-1" [(ngModel)]="cliente.usnombre" name="nombres">
       </div>
     </div>
     <div>
       <div class="row mt-2">
-        <div class="col-lg-2 col-md-4 col-sm-4 col-6">
+        <div class="col-lg-6 col-md-4 col-sm-4 col-6">
           <span>Correo electrónico</span>
           <input type="email" class="form-control form-control-sm mt-1" [(ngModel)]="cliente.email" name="email">
         </div>
-        <div class="col-lg-2 col-md-4 col-sm-4 col-6">
+        <div class="col-lg-6 col-md-4 col-sm-4 col-6">
           <span>Celular</span>
           <input type="text" class="form-control form-control-sm mt-1" [(ngModel)]="cliente.phone" name="phone">
         </div>
-        <div class="col-lg-2 col-md-4 col-sm-4 col-6">
+        <div class="col-lg-6 col-md-4 col-sm-4 col-6">
           <span>Fecha de nacimiento</span>
           <input type="date" class="form-control form-control-sm mt-1" [(ngModel)]="cliente.date" name="date">
         </div>
       </div>
       <div class="row mt-2">
-        <div class="col-lg-2 col-md-4 col-sm-4 col-6">
+        <div class="col-lg-6 col-md-4 col-sm-4 col-6">
           <span>DNI</span>
           <input type="text" class="form-control form-control-sm mt-1" [(ngModel)]="cliente.dni" name="dni">
         </div>
@@ -46,18 +46,18 @@
     <span><b>Datos de usuario</b></span>
     <hr class="mt-1" />
     <div class="row">
-      <div class="col-lg-2 col-md-4 col-sm-4 col-6">
+      <div class="col-lg-6 col-md-4 col-sm-4 col-6">
         <span>Usuario</span>
         <input type="text" class="form-control form-control-sm mt-1" [(ngModel)]="cliente.nickname" name="nickname">
       </div>
     </div>
-    <div class="row mt-2">
-      <div class="col-lg-2 col-md-4 col-sm-4 col-6">
+    <div class="row mt-2 mb-2">
+      <div class="col-lg-6 col-md-4 col-sm-4 col-6">
         <span>Contraseña</span>
         <input type="password" [disabled]="!changePassword" class="form-control form-control-sm mt-1"
           [(ngModel)]="cliente.password" name="password">
       </div>
-      <div class="col-lg-2 col-md-4 col-sm-4 col-6">
+      <div class="col-lg-6 col-md-4 col-sm-4 col-6">
         <span>Confirmar contraseña</span>
         <input type="password" [disabled]="!changePassword" class="form-control form-control-sm mt-1"
           [(ngModel)]="passw">
@@ -66,7 +66,7 @@
             <i class="mdi mdi-alert mr-1"></i>Las contraseñas no coinciden</span>
         </div>
       </div>
-      <div class="col-lg-2 col-md-4 col-sm-4 col-6">
+      <div class="col-lg-6 col-md-4 col-sm-4 col-6">
         <button class="btn-habilitado" (click)="newPassword()">Nueva contraseña</button>
       </div>
     </div>

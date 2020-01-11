@@ -171,18 +171,13 @@ Swal.fire(
           'El Registro se anulo correctamente.',
           'success'
         );
-        c = true;
-       
-      }
-      console.log(" ccccccccc", c);
-
-      
-        // this.load = true;
+       }
         console.log("entro");
         this.reservacionesDTO=[];
          this.service.anularReservacionById(id).subscribe(data => {
           if (data) {  console.log("1");
           this.obtenerReservacionesbyCliente(this.idCliente);
+          
           } else {  console.log("2");
           this.obtenerReservacionesbyCliente(this.idCliente);
           }

@@ -53,13 +53,13 @@
                             <label style="margin: 0px; padding: 0px; font-size: 14px;">
                                 <i class="mdi mdi-key f-16"></i> Contraseña
                             </label>
-                            <input [(ngModel)]="user.password" class="form-control" type="password" name="password">
+                            <input [(ngModel)]="user.password" class="form-control" type="password" name="password" autocomplete="off">
                         </div>
-                        <button (click)="login()" type="submit" class="btn-login mt-3">Ingresar</button>
+                        <button [disabled]="load" (click)="login()" type="submit" class="btn-login mt-3">Ingresar</button>
                     </form>
                     <div>
-                        <button class="btn btn-recuperar">Recuperar contraseña</button>
-                        <button (click)="register()" class="btn-register">Crear una cuenta</button>
+                        <button [disabled]="load" class="btn btn-recuperar">Recuperar contraseña</button>
+                        <button [disabled]="load" (click)="register()" class="btn-register">Crear una cuenta</button>
                         <div *ngIf="load" class="div-loading"><img class="loading" src="{{loading}}" /></div>
                     </div>
                 </div>

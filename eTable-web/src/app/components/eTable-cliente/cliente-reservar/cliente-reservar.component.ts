@@ -124,11 +124,11 @@ export class ClienteReservarComponent implements OnInit {
       }); 
     }else {
       
-Swal.fire(
-  'Campos Incompletos',
-  this.successText +'',
-  'question'
-)
+            Swal.fire(
+              'Campos Incompletos',
+              this.successText +'',
+              'question'
+            )
 
     }
   }

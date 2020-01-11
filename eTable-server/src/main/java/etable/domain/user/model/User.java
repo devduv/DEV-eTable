@@ -118,13 +118,11 @@ public class User {
 	public static User getInstancia(int cusuario, String nickname, String password, String usnombres,
 			String usapellidos, boolean estado, int ctipousuario) {
 		if (instance == null) {
-			System.out.println("Creando primera instancia de usuario.");
 			instance = (builder().buildCodigo(cusuario).buildNickname(nickname).buildPassword(password)
 					.buildNombres(usnombres).buildApellidos(usapellidos).buildEstado(estado)
 					.buildCodigoTipoUsuario(ctipousuario)).build();
 
 		} else {
-			System.out.println("Modificando instancia de usuario con nuevos valores.");
 			instance.setter(cusuario, nickname, password, usnombres, usapellidos, estado, ctipousuario);
 		}
 		return instance;

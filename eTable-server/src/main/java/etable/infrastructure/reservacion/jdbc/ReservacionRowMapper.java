@@ -83,19 +83,18 @@ public class ReservacionRowMapper implements RowMapper {
 			String hora = row.get("HORA").toString();
 			int cantidad = Integer.parseInt(row.get("CANTIDAD").toString());
 			boolean confirmada = Integer.parseInt(row.get("CONFIRMADA").toString()) == 1 ? true : false;
-//			String nomconfirmada=" ";
-//			if(confirmada){nomconfirmada = "Reservacion Revisada" ;} else nomconfirmada = "Reservacion sin Revisar";
 			String nomconfirmada = (confirmada) ? "Reservacion Revisada"   :   "Reservacion sin Revisar";
 			String nomestado = row.get("NOMESTADO").toString();	
+			
 			ReservacionDTO i = new ReservacionDTO(creserva,ccliente,cestado, comentario ,fecha,hora,cantidad,confirmada,nomconfirmada,nomestado);
-					reservacion.add(i);
-		
-		
+	
+			reservacion.add(i);
 		
 		}
 			return reservacion;
 		
 	}
+	
 	
 
 	public List<ReservacionDTOCli> getReservacionesDTO(List<Map<String, Object>> rows){
@@ -115,14 +114,15 @@ public class ReservacionRowMapper implements RowMapper {
 			String hora = row.get("HORA").toString();
 			int cantidad = Integer.parseInt(row.get("CANTIDAD").toString());
 			boolean confirmada = Integer.parseInt(row.get("CONFIRMADA").toString()) == 1 ? true : false;
-//			String nomconfirmada=" ";
-//			if(confirmada){nomconfirmada = "Reservacion Revisada" ;} else nomconfirmada = "Reservacion sin Revisar";
-			String nomconfirmada = (confirmada) ? "Reservacion Revisada"   :   "Reservacion sin Revisar";
+			String nomconfirmada=" ";
+			if(confirmada){nomconfirmada = "Reservacion Revisada" ;} else nomconfirmada = "Reservacion sin Revisar";
+//			String nomconfirmada = (confirmada) ? "Reservacion Revisada"   :   "Reservacion sin Revisar";
 			String nomestado = row.get("NOMESTADO").toString();	
 			int cusuario = Integer.parseInt(row.get("CUSUARIO").toString());	
 			String nickname = row.get("NICKNAME").toString();	
 			
-			ReservacionDTOCli i = new ReservacionDTOCli(creserva,ccliente,cestado, comentario ,fecha,hora,cantidad,confirmada,nomconfirmada,nomestado,
+			ReservacionDTOCli i = new ReservacionDTOCli(creserva,ccliente,cestado, comentario ,fecha,hora,cantidad,
+					confirmada,nomconfirmada,nomestado,
 				cusuario,nickname);
 					reservacion.add(i);
 		

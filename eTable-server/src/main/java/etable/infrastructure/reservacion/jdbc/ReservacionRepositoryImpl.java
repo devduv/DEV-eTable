@@ -88,6 +88,17 @@ public  class ReservacionRepositoryImpl implements ReservacionRepository{
 		return reservaciones ;
 	}
 
+
+	@Override
+	public List<ReservacionDTOCli> listReservacionesDTO() {
+		String query = "SELECT * FROM TBRESERVACION AS M INNER JOIN TBESTADORESERVACION AS N ON M.CESTADO = N.CESTADO INNER JOIN tbclientes AS C ON M.CCLIENTE = C.CCLIENTE INNER JOIN tbusuarios AS U ON C.CUSUARIO = U.CUSUARIO "; 
+		
+
+		List<Map<String, Object>> rows = this.jdbcTemplate.queryForList(query);
+		List<ReservacionDTOCli> reservaciones = row.getReservacionesDTO(rows);
+		return reservaciones ;
+	}
+
 	@Override
 	public boolean anularReservacion(int id)  {
 		Reservacion rv = getReservacionById(id);
@@ -100,19 +111,23 @@ public  class ReservacionRepositoryImpl implements ReservacionRepository{
 			return true;
 		} 
 				return false;
-			}
-
-
+	}
+	
 	@Override
-	public List<ReservacionDTOCli> listReservacionesDTO() {
-		String query = "SELECT * FROM TBRESERVACION AS M INNER JOIN TBESTADORESERVACION AS N ON M.CESTADO = N.CESTADO INNER JOIN tbclientes AS C ON M.CCLIENTE = C.CCLIENTE INNER JOIN tbusuarios AS U ON C.CUSUARIO = U.CUSUARIO "; 
+	public boolean revisarReservacion(int id) {
+		Reservacion rv = getReservacionById(id);
+		System.out.print(rv);
+		String query = 	"UPDATE " + Query.table_reservacion +
+	" SET CONFIRMADA = ?  WHERE CRESERVA = ?";
+	int update = this.jdbcTemplate.update(query, 1 , rv.getCreserva());
 		
-
-		List<Map<String, Object>> rows = this.jdbcTemplate.queryForList(query);
-		List<ReservacionDTOCli> reservaciones = row.getReservacionesDTO(rows);
-		return reservaciones ;
+		if(update == 1) {
+			return true;
+		} 
+				return false;
 	}
 
 
+	
 	
 }

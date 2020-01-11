@@ -8,6 +8,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit, DoCheck {
+  activeMisReservas: boolean;
+  activeReservarMesa: boolean;
   authentication: boolean;
   register: boolean;
   esCliente: boolean;
@@ -52,6 +54,8 @@ export class AppComponent implements OnInit, DoCheck {
     this.mobile = media.matchMedia('(max-width: 500px)');
     this.mobileListener = () => changeDetectorRef.detectChanges();
     this.mobile.addListener(this.mobileListener);
+    this.activeMisReservas = false;
+    this.activeReservarMesa = false;
   }
 
   ngOnDestroy(): void {
@@ -90,9 +94,13 @@ export class AppComponent implements OnInit, DoCheck {
 
 
   private navigateReservar() {
+    this.activeMisReservas= false;
+    this.activeReservarMesa = true;
     this.router.navigate(['clientes/reservar']);
   }
   private navigateMisReservas() {
+    this.activeMisReservas= true;
+    this.activeReservarMesa = false;
     this.router.navigate(['clientes/misReservas']);
   }
 }

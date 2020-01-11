@@ -67,6 +67,14 @@ public class ReservacionServiceImpl implements ReservacionService{
 		return this.repository.listReservacionesDTO();
 	}
 
+	
+
+	@Override
+	public boolean revisarReservacion(int id) {
+		// TODO Auto-generated method stub
+		return this.repository.revisarReservacion(id);
+	}
+
 
 
 	

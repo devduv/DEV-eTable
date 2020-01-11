@@ -213,6 +213,19 @@
     background-color: rgb(7, 71, 166);
 }
 
+.btn-active-m{
+    margin-left: 5px;
+    margin-right: 5px;
+    font-size: 13.5px;
+    color: white;
+    border: 0px;
+    height: 100%;
+    background-color: rgb(37, 97, 187);
+}
+
+.btn-active-m:hover{
+    background-color: rgb(14, 82, 185);
+}
 .subline{
     padding-bottom: 2px;
     border-bottom: 1px solid;
